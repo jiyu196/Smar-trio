@@ -1,33 +1,63 @@
 package domain;
 
 import java.io.Serializable;
+import Utils.TrioUtils;
 
-public class CalculatorApp implements Serializable{
-	public static void main(String[] args) {
-	    CalculatorApp app = new CalculatorApp("Calculator");
-	    app.run();
-	}
-	String name;
-	
-	public CalculatorApp(String name) { 
-		this.name= name;
-	}
-	
-	public void run() {
-	    while (true) {
-	        // 1. Ask user what they want to do: add, subtract, etc.
-	    	
-	        // 2. Ask for first number
-	        // 3. Ask for second number
-	        // 4. Perform the operation
-	        // 5. Print the result
-	        // 6. Ask if they want to continue
-	        //    If not, break
-	    }
-	}
-	
-	public String getName() {
-        return name;
+public class CalculatorApp extends App implements Serializable {
+    public static void main(String[] args) {
+        CalculatorApp app = new CalculatorApp();
+        app.run();
     }
 
+	public CalculatorApp() {
+		super("계산기");
+	}
+
+    public void run() {
+        System.out.println("계산기 앱을 실행합니다.");
+
+        while (true) {
+            String math = TrioUtils.nextLine("어떤 연산을 하시겠습니까? (+, -, *, / 입력)");
+            
+            double num1 = TrioUtils.nextDouble("첫번째 숫자를 입력하세요:");
+            double num2 = TrioUtils.nextDouble("두번째 숫자를 입력하세요:");
+            double result = 0;
+            boolean valid = true;
+
+            switch (math) {
+                case "+":
+                    result = num1 + num2; break;
+                case "-":
+                    result = num1 - num2; break;
+                case "*":
+                    result = num1 * num2; break;
+                case "/":
+                    if (num2 == 0) {
+                        System.out.println("0으로 나눌 수 없습니다.");
+                        valid = false;
+                    } 
+                    else {
+                        result = num1 / num2;
+                    } break;
+                default:
+                	System.out.println("잘못된 입력. 다시 시도해주세요.");
+                    valid = false;
+            }
+
+            if (valid) {
+                System.out.println("결과 : " + result);
+            }
+
+            if (!TrioUtils.nextConfirm("계속하시겠습니까? (y / n)")) {
+                System.out.println("계산기를 종료합니다.");
+                break;
+            }
+        }
+    }
+
+	public String getName() {
+		return name;
+	}
 }
+
+
