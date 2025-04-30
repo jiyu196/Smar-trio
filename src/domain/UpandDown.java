@@ -1,9 +1,12 @@
-package test;
+package domain;
 
 import java.util.Scanner;
 
+import time_service.timeService;
+
 public class UpandDown {
 	public static void main(String[] args) {
+        
 		int input = 0;
 		int count = 0;
 		
@@ -11,6 +14,9 @@ public class UpandDown {
 		Scanner scanner = new Scanner(System.in);
 		
 		do {
+			String currentTime = timeService.getCurrentTime();
+			System.out.println(currentTime); //시간 뜨는부분
+			
 			System.out.println("1에서 100사이의 숫자를 입력하세요 >");
 			input = scanner.nextInt();
 			if(value < input) {
