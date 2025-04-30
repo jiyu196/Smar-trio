@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Scanner;
 
-import time_service.timeService;
+import service.timeService;
 
 public class UpandDown {
 	public static void main(String[] args) {

@@ -1,0 +1,30 @@
+package service;
+
+import Utils.trioUtils;
+
+public class menuService { // 이 클래스를 호출하는 것으로 메인에 메뉴를 출력, 메뉴에 직접 기능 호출
+	//리스트를 사용해 설치된 어플들의 목록을 호출할 예정, 임시적으로 어플실이 실행 메소드 만으로 실행되는지 알아볼 예정
+
+	public void menu() {
+			System.out.println("메뉴입니다");
+			
+			while(true) {
+				switch (trioUtils.nextInt("사용 기능을 입력해주세요. 1. 테스트 0.종료")) {
+				
+			case 1:
+				System.out.println("앱을실행");
+				break;
+				
+			case 2:
+				System.out.println("설치된 앱 실행 예정");
+			
+			case 0:
+				System.out.println("종료합니다");
+				return;
+			
+			default:
+				break;
+				}
+			}
+		}
+}

@@ -2,7 +2,7 @@ package Utils;
 
 import java.util.Scanner;
 
-public class TrioUtils {
+public class trioUtils {
 	private static final Scanner scanner = new Scanner(System.in);// final : 상수
 	
 	public static String nextLine(String msg) { //메서드

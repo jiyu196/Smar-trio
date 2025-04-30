@@ -1,4 +1,4 @@
-package time_service;
+package service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package time_service;
+package service;
 
 //시간 호출 방법 예제
 public class timeTest {
