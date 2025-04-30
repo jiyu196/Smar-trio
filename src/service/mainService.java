@@ -10,6 +10,6 @@ public class mainService {
 
 	public void installApp(App app) {
 		installedApps.add(app);
-		System.out.println(app.getName() + " 설치 완료!");
+		System.out.println(app.getName() + " 설치 완료");
 	}
 }
