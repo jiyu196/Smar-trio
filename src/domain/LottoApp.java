@@ -38,7 +38,6 @@ public class LottoApp {
 						arr[j+1] = tmp;
 					}
 					System.out.println(Arrays.toString(arr));
-				
 			}
 		}
 	}
