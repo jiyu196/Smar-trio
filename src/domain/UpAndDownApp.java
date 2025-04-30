@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import time_service.timeService;
 
-public class UpandDown {
+public class UpAndDownApp {
 	public static void main(String[] args) {
         
 		int input = 0;

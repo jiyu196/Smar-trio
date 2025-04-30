@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Arrays;
 
-public class Lotto {
+public class LottoApp {
 
 	//25/04/30
 		public static void main(String[] args) {
