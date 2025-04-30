@@ -4,10 +4,6 @@ import java.io.Serializable;
 import Utils.TrioUtils;
 
 public class CalculatorApp extends App implements Serializable {
-    public static void main(String[] args) {
-        CalculatorApp app = new CalculatorApp();
-        app.run();
-    }
 
 	public CalculatorApp() {
 		super("계산기");
@@ -40,7 +36,7 @@ public class CalculatorApp extends App implements Serializable {
                         result = num1 / num2;
                     } break;
                 default:
-                	System.out.println("잘못된 입력. 다시 시도해주세요.");
+                	System.out.println("잘못된 입력입니다.");
                     valid = false;
             }
 

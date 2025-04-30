@@ -15,7 +15,7 @@ public class TrioUtils {
 	        try {
 	            return Integer.parseInt(nextLine(msg));
 	        } catch (NumberFormatException e) {
-	            System.out.println("잘못된 입력입니다. 정수를 입력해주세요.");
+	            System.out.println("잘못된 입력입니다. 숫자를 입력하세요");
 	        }
 	    }
 	}
@@ -25,7 +25,7 @@ public class TrioUtils {
 	        try {
 	            return Double.parseDouble(nextLine(msg));
 	        } catch (NumberFormatException e) {
-	            System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
+	            System.out.println("잘못된 입력입니다. 숫자를 입력하세요");
 	        }
 	    }
 	}
