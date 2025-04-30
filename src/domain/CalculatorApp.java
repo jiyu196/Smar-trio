@@ -8,7 +8,8 @@ public class CalculatorApp extends App implements Serializable {
 	public CalculatorApp() {
 		super("계산기");
 	}
-
+	
+	@Override
     public void run() {
         System.out.println("계산기 앱을 실행합니다.");
 
@@ -51,8 +52,9 @@ public class CalculatorApp extends App implements Serializable {
         }
     }
 
+	@Override
 	public String getName() {
-		return name;
+		return super.getName();
 	}
 }
 
