@@ -16,6 +16,7 @@ public class CalculatorApp implements Serializable{
 	public void run() {
 	    while (true) {
 	        // 1. Ask user what they want to do: add, subtract, etc.
+	    	
 	        // 2. Ask for first number
 	        // 3. Ask for second number
 	        // 4. Perform the operation
