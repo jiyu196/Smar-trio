@@ -3,12 +3,12 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.App;
+import domain.Apps;
 
-public class MainService {
-	private List<App> installedApps = new ArrayList<>();
+public class AppService {
+	private List<Apps> installedApps = new ArrayList<>();
 
-	public void installApp(App app) {
+	public void installApp(Apps app) {
 		installedApps.add(app);
 		System.out.println(app.getName() + " 설치 완료");
 	}
