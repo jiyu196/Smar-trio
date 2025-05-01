@@ -15,11 +15,11 @@ public class CalculatorApp extends App{
 		app.run();
 	}
 
+
 	public CalculatorApp() {
 		super("계산기");
 	}
 
-	@Override
 	public void run() {
 	    System.out.println("계산기 앱을 실행합니다.");
 

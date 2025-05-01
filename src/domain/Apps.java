@@ -15,7 +15,7 @@ public abstract class Apps implements Serializable{ // 해당 클래스를 상�
         return name;
     }
 	
-	public abstract void run(); // 메서드 호출시 어플이 작동할 부분입니다. 
+	public abstract void run();
 	
 	public abstract void svaeData();// 각 어플의 데이터 저장
 	
