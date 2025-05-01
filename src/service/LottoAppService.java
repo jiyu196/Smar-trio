@@ -1,8 +1,8 @@
-package domain;
+package service;
 
 import java.util.Arrays;
 
-public class LottoApp {
+public class LottoAppService {
 
 	//25/04/30
 		public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class LottoApp {
 //			System.out.println(Arrays.toString(lotto));
 			int[]arr = lotto;
 			for(int i = 0 ; i < arr.length - 1 ; i++) {
-				System.out.println(i + 1 + "회차");
+//				System.out.println(i + 1 + "회차");
 				for(int j = 0 ; j < arr.length - 1 -i ; j++) {
 					if(arr[j] > arr[j+1]) {
 						int tmp = arr[j];

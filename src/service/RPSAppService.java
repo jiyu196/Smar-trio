@@ -1,8 +1,8 @@
-package domain;
+package service;
 
 import java.util.Scanner;
 
-public class RPSApp {
+public class RPSAppService {
 	
 
 		public static void main(String[] args) {
