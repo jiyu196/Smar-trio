@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.App;
-import domain.appTest;
+import domain.AppTest;
 
-public class storeService { //스토어에 기능을 담당.
+public class StoreService { //스토어에 기능을 담당.
 	
 	private List<App> storeApps = new ArrayList<>();
 	
 	{
-		storeApps.add(new appTest());
+		storeApps.add(new AppTest());
 	}
 	
 	
-	public storeService() { // 생성자
+	public StoreService() { // 생성자
 		
     }
 	

@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Scanner;
 
-import service.timeService;
+import service.TimeService;
 
 public class UpandDown {
 	public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class UpandDown {
 		Scanner scanner = new Scanner(System.in);
 		
 		do {
-			String currentTime = timeService.getCurrentTime();
+			String currentTime = TimeService.getCurrentTime();
 			System.out.println(currentTime); //시간 뜨는부분
 			
 			System.out.println("1에서 100사이의 숫자를 입력하세요 >");

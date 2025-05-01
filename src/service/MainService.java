@@ -5,7 +5,7 @@ import java.util.List;
 
 import domain.App;
 
-public class mainService {
+public class MainService {
 	private List<App> installedApps = new ArrayList<>();
 
 	public void installApp(App app) {

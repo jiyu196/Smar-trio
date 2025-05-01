@@ -3,9 +3,9 @@ package service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class timeService {
+public class TimeService {
 	public static void main(String[] args) {
-		String currentTime = timeService.getCurrentTime();
+		String currentTime = TimeService.getCurrentTime();
         System.out.println(currentTime);
 	}
 	
