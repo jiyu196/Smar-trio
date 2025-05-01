@@ -9,7 +9,7 @@ import Utils.TrioUtils;
 
 
 //extends App
-public class CalculatorApp extends App{
+public class CalculatorApp{
 	public static void main(String[] args) {
 		CalculatorApp app = new CalculatorApp();
 		app.run();
@@ -17,7 +17,7 @@ public class CalculatorApp extends App{
 
 
 	public CalculatorApp() {
-		super("계산기");
+		
 	}
 
 	public void run() {
@@ -98,10 +98,5 @@ public class CalculatorApp extends App{
 				System.out.println(line);
 			}
 		} catch (IOException e) {}
-	}
-
-	@Override
-	public String getName() {
-		return super.getName();
 	}
 }

@@ -1,4 +1,4 @@
-package service;
+package service.apps;
 
 import java.util.Arrays;
 

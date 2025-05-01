@@ -7,28 +7,15 @@ public class AppTest extends Apps{
 	}
 
 	@Override
+	public String getName() {
+		return "설정";
+	}
+	
+	@Override
 	public void run() {
-		System.out.println("test");
-		
+		System.out.println("테스트 기능 실행");
 	}
 
-	@Override
-	public void svaeData() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void loadData() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void exitApp() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 
 }
