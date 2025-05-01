@@ -38,7 +38,7 @@ public class Lotto {
 						arr[j+1] = tmp;
 					}
 					System.out.println(Arrays.toString(arr));
-				
+					
 			}
 		}
 	}
