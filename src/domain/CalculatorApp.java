@@ -5,11 +5,11 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Serializable;
 import Utils.TrioUtils;
 
-//extends App implements Serializable
-public class CalculatorApp extends Apps implements Serializable {
+
+//extends App
+public class CalculatorApp extends App{
 	public static void main(String[] args) {
 		CalculatorApp app = new CalculatorApp();
 		app.run();
