@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Scanner;
 
-public class RPS {
+public class RPSApp {
 	
 
 		public static void main(String[] args) {
