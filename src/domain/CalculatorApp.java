@@ -5,20 +5,23 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import Utils.TrioUtils;
 
 
-public class CalculatorApp{
+//extends App
+public class CalculatorApp {
 	public static void main(String[] args) {
 		CalculatorApp app = new CalculatorApp();
 		app.run();
 	}
 
 
-	public CalculatorApp() {
-		
-	}
-
+	
+	private static final Path LOG_PATH = Path.of("storage", "calculator", "math_log.txt");
+	public CalculatorApp() {}
 	public void run() {
 	    System.out.println("계산기 앱을 실행합니다.");
 
@@ -28,7 +31,7 @@ public class CalculatorApp{
 	        
 	        if (str.equals("0")) {
 	            System.out.println("종료");
-	            return; //돌아가기?
+	            return;
 
 	        } else if (str.equals("2")) {
 	            showHistory();
@@ -70,9 +73,12 @@ public class CalculatorApp{
 
 	            if (valid) {
 	                System.out.println("결과 : " + result);
-	                try (BufferedWriter writer = new BufferedWriter(new FileWriter("math_log.txt", true))) {
-	                    writer.write(write);
-	                    writer.newLine();
+	                try {
+	                    Files.createDirectories(LOG_PATH.getParent());
+	                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_PATH.toFile(), true))) {
+	                        writer.write(write);
+	                        writer.newLine();
+	                    }
 	                } catch (IOException e) {
 	                    System.out.println("기록 저장 중 오류 발생: " + e.getMessage());
 	                }
@@ -88,14 +94,23 @@ public class CalculatorApp{
 	        }
 	    }
 	}
-
+	
 	private void showHistory() {
-		System.out.println("< 기록 >");
-		try (BufferedReader reader = new BufferedReader(new FileReader("math_log.txt"))) {
-			String line;
-			while ((line = reader.readLine()) != null) {
-				System.out.println(line);
-			}
-		} catch (IOException e) {}
-	}
+        System.out.println("< 기록 >");
+        try {
+            if (!Files.exists(LOG_PATH)) {
+                System.out.println("기록이 없습니다.");
+                return;
+            }
+
+            try (BufferedReader reader = Files.newBufferedReader(LOG_PATH)) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("기록 불러오기 실패: " + e.getMessage());
+        }
+    }
 }

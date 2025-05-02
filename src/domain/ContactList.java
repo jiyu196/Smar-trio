@@ -12,7 +12,7 @@ public class ContactList {
 		app.run();
 	}
 
-    private static final String FILE_NAME = "contacts.txt";
+	private static final Path FILE_PATH = Path.of("storage", "contacts", "contacts.txt");
     private List<Contact> contacts = new ArrayList<>();
 
     public ContactList() {
@@ -56,6 +56,10 @@ public class ContactList {
         String name = TrioUtils.nextLine("이름: ");
         String phone = TrioUtils.nextLine("전화번호: ");
         String email = TrioUtils.nextLine("이메일: ");
+        if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+			System.err.println("\nIncorrect Format > ex. (JohnSmith@Hotmail.com)");
+			return;
+        }
         String nickname = TrioUtils.nextLine("별명: ");
 
         contacts.add(new Contact(name, phone, email, nickname));
@@ -125,25 +129,27 @@ public class ContactList {
     }
 
     private void saveContacts() {
-        List<String> lines = new ArrayList<>();
+        List<String> saveContact = new ArrayList<>();
         for (Contact c : contacts) {
-            lines.add(c.toString());
+        	saveContact.add(c.toString());
         }
 
         try {
-            Path path = Path.of(FILE_NAME);
-            Files.write(path, lines);
-            System.out.println("연락처가 저장되었습니다: " + path.toAbsolutePath());
+        	Files.createDirectories(FILE_PATH.getParent());
+        	Files.write(FILE_PATH, saveContact);
+            System.out.println("연락처가 저장되었습니다: " + FILE_PATH.toAbsolutePath());
         } catch (IOException e) {
             System.err.println("연락처 저장에 실패했습니다: " + e.getMessage());
         }
     }
 
     private void loadContacts() {
+        if (!Files.exists(FILE_PATH)) return;
+
         try {
-            List<String> lines = Files.readAllLines(Path.of(FILE_NAME));
-            for (String line : lines) {
-                Contact c = Contact.fromString(line);
+            List<String> saveContact = Files.readAllLines(FILE_PATH);
+            for (String saveContacts : saveContact) {
+                Contact c = Contact.fromString(saveContacts);
                 if (c != null) contacts.add(c);
             }
         } catch (IOException e) {
