@@ -10,7 +10,8 @@ public class ContactList {
 	public static void main(String[] args) {
 		ContactList app = new ContactList();
 		app.run();
-}
+	}
+
     private static final String FILE_NAME = "contacts.txt";
     private List<Contact> contacts = new ArrayList<>();
 
@@ -21,8 +22,13 @@ public class ContactList {
     public void run() {
         while (true) {
             System.out.println("--- 연락처 메뉴 ---");
-            System.out.println("1. 연락처 추가\\n2. 연락처 수정\\n3. 연락처 삭제\\n4. 연락처 보기\\n5. 돌아가기");
-            int choice = TrioUtils.nextInt("Choose an option:");
+            System.out.println(""
+            		+ "1. 연락처 추가\n"
+            		+ "2. 연락처 수정\n"
+            		+ "3. 연락처 삭제\n"
+            		+ "4. 연락처 보기\n"
+            		+ "5. 돌아가기");
+            int choice = TrioUtils.nextInt("옵션을 선택하세요:");
             switch (choice) {
                 case 1:
                     addContact();
@@ -40,78 +46,75 @@ public class ContactList {
                     saveContacts();
                     return;
                 default:
-                    System.out.println("Invalid choice.");
+                    System.out.println("잘못된 선택입니다.");
                     break;
             }
         }
     }
 
     private void addContact() {
-        String name = TrioUtils.nextLine("Name: ");
-        String phone = TrioUtils.nextLine("Phone: ");
-        String email = TrioUtils.nextLine("Email: ");
-        String nickname = TrioUtils.nextLine("Nickname: ");
+        String name = TrioUtils.nextLine("이름: ");
+        String phone = TrioUtils.nextLine("전화번호: ");
+        String email = TrioUtils.nextLine("이메일: ");
+        String nickname = TrioUtils.nextLine("별명: ");
 
         contacts.add(new Contact(name, phone, email, nickname));
         saveContacts();
-        System.out.println("Contact added and saved.");
+        System.out.println("연락처가 추가되고 저장되었습니다.");
     }
-
 
     private void modifyContact() {
         if (contacts.isEmpty()) {
-            System.out.println("No contacts to modify.");
+            System.out.println("수정할 연락처가 없습니다.");
             return;
         }
 
         showContacts();
-        int index = TrioUtils.nextInt("Enter index to modify:");
+        int index = TrioUtils.nextInt("수정할 번호를 입력하세요:");
 
         if (index < 0 || index >= contacts.size()) {
-            System.out.println("Invalid index.");
+            System.out.println("잘못된 번호입니다.");
             return;
         }
 
         Contact old = contacts.get(index);
-        String name = updateField("name", old.name);
-        String phone = updateField("phone", old.phone);
-        String email = updateField("email", old.email);
-        String nickname = updateField("nickname", old.nickname);
+        String name = updateField("이름", old.name);
+        String phone = updateField("전화번호", old.phone);
+        String email = updateField("이메일", old.email);
+        String nickname = updateField("별명", old.nickname);
 
         contacts.set(index, new Contact(name, phone, email, nickname));
         saveContacts();
-        System.out.println("Contact modified and saved.");
+        System.out.println("연락처가 수정되고 저장되었습니다.");
     }
-
 
     private void deleteContact() {
         if (contacts.isEmpty()) {
-            System.out.println("No contacts to delete.");
+            System.out.println("삭제할 연락처가 없습니다.");
             return;
         }
 
         showContacts();
-        int index = TrioUtils.nextInt("Enter index to delete:");
+        int index = TrioUtils.nextInt("삭제할 번호를 입력하세요:");
 
         if (index < 0 || index >= contacts.size()) {
-            System.out.println("Invalid index.");
+            System.out.println("잘못된 번호입니다.");
             return;
         }
 
-        boolean confirm = TrioUtils.nextConfirm("Are you sure you want to delete this contact? (y/n)");
+        boolean confirm = TrioUtils.nextConfirm("이 연락처를 삭제하시겠습니까? (y/n)");
         if (confirm) {
             contacts.remove(index);
             saveContacts();
-            System.out.println("Contact deleted and saved.");
+            System.out.println("연락처가 삭제되고 저장되었습니다.");
         } else {
-            System.out.println("Deletion cancelled.");
+            System.out.println("삭제가 취소되었습니다.");
         }
     }
 
-
     private void showContacts() {
         if (contacts.isEmpty()) {
-            System.out.println("No contacts found.");
+            System.out.println("연락처가 없습니다.");
             return;
         }
 
@@ -130,9 +133,9 @@ public class ContactList {
         try {
             Path path = Path.of(FILE_NAME);
             Files.write(path, lines);
-            System.out.println("Contacts saved to " + path.toAbsolutePath());
+            System.out.println("연락처가 저장되었습니다: " + path.toAbsolutePath());
         } catch (IOException e) {
-            System.err.println("Failed to save contacts: " + e.getMessage());
+            System.err.println("연락처 저장에 실패했습니다: " + e.getMessage());
         }
     }
 
@@ -144,16 +147,15 @@ public class ContactList {
                 if (c != null) contacts.add(c);
             }
         } catch (IOException e) {
-            System.err.println("Could not load contacts: " + e.getMessage());
+            System.err.println("연락처를 불러올 수 없습니다: " + e.getMessage());
         }
     }
 
     private String updateField(String field, String current) {
-        String input = TrioUtils.nextLine("New " + field + " (" + current + "): ");
+        String input = TrioUtils.nextLine("새로운 " + field + " (" + current + "): ");
         return input.isEmpty() ? current : input;
     }
 
-    // class 내부
     private static class Contact {
         String name;
         String phone;
@@ -182,5 +184,5 @@ public class ContactList {
 
 	public static Object getInstance() {
 		return null;
-	}	
+	}
 }
