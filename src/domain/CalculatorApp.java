@@ -8,7 +8,6 @@ import java.io.IOException;
 import Utils.TrioUtils;
 
 
-//extends App
 public class CalculatorApp{
 	public static void main(String[] args) {
 		CalculatorApp app = new CalculatorApp();
