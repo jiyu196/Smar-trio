@@ -19,7 +19,11 @@ public class StoreService { //스토어에 기능을 담당.
 		
     }
 	
-	public List<Apps> installatableApps(){ //호출을 통해 스토어에 앱 목록 호출
+	public void showStoreAppsList() {
+		System.out.println("스토어의 앱의 목록들");
+	}
+	
+	public List<Apps> getInstallatableApps(){ // 스토어의 앱 리스트 하나 선택 
 		
 		return storeApps;
 	}

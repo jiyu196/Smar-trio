@@ -5,7 +5,7 @@ import java.util.List;
 
 import domain.Apps;
 
-public class AppService { //설치된 앱의 출력 설정
+public class AppService { //설치된 앱의 관리
 	private List<Apps> installableApps = new ArrayList<>();
 
 	

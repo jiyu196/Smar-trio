@@ -16,6 +16,12 @@ public class AppTest extends Apps{
 		System.out.println("테스트 기능 실행");
 	}
 
+	@Override
+	public int appNo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 }
