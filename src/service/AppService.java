@@ -47,7 +47,7 @@ public class AppService { //앱의 설치와 삭제 관리
 	}
 	
 	
-	public void deteleApp(App app) {// 앱 삭제
+	public void deleteApp(App app) {// 앱 삭제
 		if(app == null) {
 			System.out.println("삭제를 위해서는 어플을 선택해 주세요");
 			return;
