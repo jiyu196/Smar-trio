@@ -8,7 +8,7 @@ import domain.App;
 public class AppService { //앱의 설치와 삭제 관리
 	
 	private static AppService appService = new AppService();
-	public AppService() {};
+	private AppService() {};
 	public static AppService getInstance() {
 		return appService;
 		
