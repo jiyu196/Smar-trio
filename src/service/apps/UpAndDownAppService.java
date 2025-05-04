@@ -27,7 +27,7 @@ public class UpAndDownAppService {
 		}
 		while(value != input);
 		
-		System.out.println(count + "번째에 당첨");
+		System.out.println(count + "번째에 당첨! 축하합니다");
 		
 	}
 }
