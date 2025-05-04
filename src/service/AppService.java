@@ -5,9 +5,14 @@ import java.util.List;
 
 import domain.App;
 
-public class AppService { //설치된 앱의 관리
+public class AppService { //앱의 설치와 삭제 관리
 	
-	private List<App> installedApps = new ArrayList<>();
+	
+	public AppService() {
+		
+	}
+	
+	List<App> installedApps = new ArrayList<>();
 	
 	public void showInstalledApps() {
         System.out.println("설치된 앱 목록:");
@@ -15,5 +20,16 @@ public class AppService { //설치된 앱의 관리
             System.out.println(app.getAppNo() + ": " + app.getAppName());
         }
     }
+	
+	public void installApp() {
+		
+	}
+	
+	
+	public void deteleApp() {
+		
+	}
+	
+	
 	
 }
