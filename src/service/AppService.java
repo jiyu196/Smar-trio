@@ -7,8 +7,10 @@ import domain.App;
 
 public class AppService { //앱의 설치와 삭제 관리
 	
-	
-	public AppService() {
+	private static AppService appService = new AppService();
+	public AppService() {};
+	public static AppService getInstance() {
+		return appService;
 		
 	}
 	
@@ -17,16 +19,17 @@ public class AppService { //앱의 설치와 삭제 관리
 	public void showInstalledApps() {
         System.out.println("설치된 앱 목록:");
         for (App app : installedApps) {
-            System.out.println(app.getAppNo() + ": " + app.getAppName());
+        	int index = installedApps.indexOf(app);
+            System.out.println("실제 인덱스 : "+index+", 앱 이름:"+app.getAppNo() + ": 부여한 앱 번호" + app.getAppName());
         }
     }
 	
-	public void installApp() {
+	public void installApp() { //앱 설치
 		
 	}
 	
 	
-	public void deteleApp() {
+	public void deteleApp() { // 앱 삭제
 		
 	}
 	
