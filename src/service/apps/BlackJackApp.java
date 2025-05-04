@@ -1,7 +1,8 @@
 package service.apps;
 
 import java.util.*;
-import Utils.TrioUtils;
+
+import utils.TrioUtils;
 
 public class BlackJackApp {
     public static void main(String[] args) {

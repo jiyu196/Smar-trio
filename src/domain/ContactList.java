@@ -4,7 +4,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import Utils.TrioUtils;
+
+import utils.TrioUtils;
 
 public class ContactList {
 	public static void main(String[] args) {
