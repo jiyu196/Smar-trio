@@ -2,7 +2,6 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import domain.App;
 import domain.AppTest;
 
@@ -18,8 +17,17 @@ public class StoreService { //스토어에 기능을 담당.
 	List<App> instalableApps = new ArrayList<>();  //스토어의 있는 어플 관리 리스트
 	
 	{// 이곳에 스토어에서 사용할 어플들 추가
-		int no = 1; // appno 생성 메서드 추가 예정
+		int no = 1;
+		if(!instalableApps.isEmpty()) {
+			no = instalableApps.get(instalableApps.size()-1).getAppNo()+1;
+		}
 		instalableApps.add(new AppTest(no));
+	}
+	
+	public void storeMenu() {
+		System.out.println("스토어 목록 호출 테스트");
+		showStoreApp();
+		
 	}
 	
 	public void showStoreApp() { // 스토어의 모든 리스트 확인
