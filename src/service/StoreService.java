@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import domain.App;
 import domain.AppTest;
+import static Utils.TrioUtils.*;
 
 public class StoreService { //스토어에 기능을 담당.
 	
@@ -25,28 +26,33 @@ public class StoreService { //스토어에 기능을 담당.
 	}
 	
 	public void storeMenu() {
-		System.out.println("스토어 목록 호출 테스트");
-		showStoreApp();
+		System.out.println("스토어의 어플 목록");
+		showStoreAppList();
+		int no = nextInt("설치할 어플을 번호로 골라주세요 > 0은 취소");
+		if(no == 0) {
+			System.out.println("취소하였습니다.");
+			return;
+		} else {
+			App app = selectApp(no);
+		}
 		
 	}
 	
-	public void showStoreApp() { // 스토어의 모든 리스트 확인
+	private void showStoreAppList() { // 스토어의 모든 리스트 확인
 		for( App a : instalableApps ) {
-			System.out.println(a.getAppNo() +", 어플이름 :" +a.getAppName());
+			System.out.println("("+a.getAppNo() +"), 앱의 고유 넘버, 어플이름 :" +a.getAppName());
 		}
 	}
 	
-	public App selectApp(int appNo) {//어플의 고유 번호를 기준으로 스토어 리스트 내의 어플 하나 선택
+	private App selectApp(int appNo) {//어플의 고유 번호를 기준으로 스토어 리스트 내의 어플 하나 선택
 	    for (App a : instalableApps) {
 	        if (a.getAppNo() == appNo) {
+	        	System.out.println(a.getAppName()+"을 선택하셨습니다");
 	            return a;
 	        }
 	    }
 	    return null;
 	}
 	
-	public int makeAppStoreNo() { //구현중
-		
-		return 0;
-	}
+	
 }
