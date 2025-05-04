@@ -9,7 +9,7 @@ public class SettingService {
 		return settingService;
 	}
 	
-	public void settingMenu() {
+	public static void settingMenu() {
 		System.out.println("세팅 메뉴 호출 테스트");
 	}
 }
