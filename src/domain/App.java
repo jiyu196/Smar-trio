@@ -24,6 +24,13 @@ public abstract class App implements Serializable{
     // 앱 실행 메서드는 모든 앱이 구현해야 함
     public abstract void run();
 
+    
+    
+	@Override
+	public String toString() {
+		return "App [appNo=" + appNo + ", appName=" + appName + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(appNo);

@@ -13,7 +13,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 	}
 	
 	StoreService storeService = StoreService.getInstance();
-	
+	AppService appService = AppService.getInstance();
 	
 	public void mainMenu() {
 		while(true) {
@@ -30,6 +30,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 			}
 			case 2: {
 				System.out.println("앱 서랍 열기");
+				appService.showInstalledApps();
 				break;
 			}
 			case 3:{

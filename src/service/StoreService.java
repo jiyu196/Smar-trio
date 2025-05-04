@@ -14,8 +14,9 @@ public class StoreService { //스토어에 기능을 담당.
 		return storeService;
 	}
 	
+	AppService appService = AppService.getInstance();
 	
-	List<App> instalableApps = new ArrayList<>();  //스토어의 있는 어플 관리 리스트
+	public List<App> instalableApps = new ArrayList<>();  //스토어의 있는 어플 관리 리스트
 	
 	{// 이곳에 스토어에서 사용할 어플들 추가
 		int no = 1;
@@ -33,7 +34,8 @@ public class StoreService { //스토어에 기능을 담당.
 			System.out.println("취소하였습니다.");
 			return;
 		} else {
-			App app = selectApp(no);
+//			App app = selectApp(no);
+			appService.installApp(selectApp(no));
 		}
 		
 	}
