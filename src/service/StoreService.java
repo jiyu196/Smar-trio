@@ -34,19 +34,23 @@ public class StoreService { //스토어에 기능을 담당.
 			System.out.println("취소하였습니다.");
 			return;
 		} else {
-//			App app = selectApp(no);
-			appService.installApp(selectApp(no));
+			appService.installApp(selectStoreApp(no)); //installApp에 null 예외 처리
 		}
 		
 	}
 	
 	private void showStoreAppList() { // 스토어의 모든 리스트 확인
+		if(instalableApps.isEmpty()) {
+			System.out.println("스토어가 비어있습니다.");
+			return;
+		}
+		
 		for( App a : instalableApps ) {
 			System.out.println("("+a.getAppNo() +"), 앱의 고유 넘버, 어플이름 :" +a.getAppName());
 		}
 	}
 	
-	private App selectApp(int appNo) {//어플의 고유 번호를 기준으로 스토어 리스트 내의 어플 하나 선택
+	private App selectStoreApp(int appNo) {//어플의 고유 번호를 기준으로 스토어 리스트 내의 어플 하나 선택
 	    for (App a : instalableApps) {
 	        if (a.getAppNo() == appNo) {
 	        	System.out.println(a.getAppName()+"을 선택하셨습니다");

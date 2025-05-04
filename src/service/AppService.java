@@ -30,6 +30,12 @@ public class AppService { //앱의 설치와 삭제 관리
     }
 	
 	public void installApp(App app) {//앱 설치, 중복케스 할것.
+		
+		if(app == null) {
+			System.out.println("설치를 위해서는 어플을 선택해 주세요");
+			return;
+		}
+		
 		for(App a : installedApps) {
 			if( a.equals(app)) {
 				System.out.println("이미 설치된 어플입니다");
@@ -41,8 +47,18 @@ public class AppService { //앱의 설치와 삭제 관리
 	}
 	
 	
-	public void deteleApp() { // 앱 삭제
-		
+	public void deteleApp(App app) {// 앱 삭제
+		if(app == null) {
+			System.out.println("삭제를 위해서는 어플을 선택해 주세요");
+			return;
+		}
+		for(App a : installedApps) {
+			if( a.equals(app)) {
+				installedApps.remove(a);
+				return;
+			}
+		}
+		System.out.println("선택한 어플이 없습니다");
 	}
 	
 	
