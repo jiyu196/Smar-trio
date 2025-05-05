@@ -8,13 +8,12 @@ import domain.App;
 public class AppService { //앱의 설치와 삭제 관리
 	
 	private static AppService appService = new AppService();
+	public List<App> installedApps = new ArrayList<>();
+	
 	private AppService() {};
 	public static AppService getInstance() {
 		return appService;
 	}
-	
-	public List<App> installedApps = new ArrayList<>();
-
 	
 	public void showInstalledApps() {
         System.out.println("설치된 앱 목록:");
