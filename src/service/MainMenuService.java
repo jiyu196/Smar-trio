@@ -18,7 +18,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 
 	StoreService storeService = StoreService.getInstance();
 	AppService appService = AppService.getInstance();
-
+	SettingService settingService = SettingService.getInstance();
 	public void mainMenu() {
 		while (true) {
 			displayMainScreen(); // UI 나오기, 주석 하며는 해제.
@@ -26,6 +26,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 			switch (no) {
 			case 1: {
 //				System.out.println("설정 기능");
+				settingService.settingMenu();
 				break;
 			}
 			case 2: {
@@ -36,6 +37,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 			case 3: {
 //				System.out.println("앱 서랍 열기");
 				appService.showInstalledApps();
+				appService.runApp();
 				break;
 			}
 			case 4: {
