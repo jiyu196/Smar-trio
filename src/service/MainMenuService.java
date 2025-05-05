@@ -22,24 +22,24 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 	public void mainMenu() {
 		while (true) {
 			displayMainScreen(); // UI 나오기, 주석 하며는 해제.
-			int no = nextInt("사용할 기능들을 선택해주세요. 0.설정 1.앱스토어 2.앱 서랍 열기 3.종료하기");
+			int no = nextInt("실행할 기능 선택: ");
 			switch (no) {
-			case 0: {
-				System.out.println("설정 기능");
-				break;
-			}
 			case 1: {
-				System.out.println("앱스토어 오픈");
-				storeService.storeMenu();
+//				System.out.println("설정 기능");
 				break;
 			}
 			case 2: {
-				System.out.println("앱 서랍 열기");
-				appService.showInstalledApps();
+//				System.out.println("앱스토어 오픈");
+				storeService.storeMenu();
 				break;
 			}
 			case 3: {
-				System.out.println("기기를 종료합니다");
+//				System.out.println("앱 서랍 열기");
+				appService.showInstalledApps();
+				break;
+			}
+			case 4: {
+//				System.out.println("기기를 종료합니다");
 				return;
 			}
 			default:
@@ -48,13 +48,19 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 		}
 	}
 
-	private static final int frameWidth = 34;
+	private static final int frameWidth = 30; //넓이 조정
 
 	private void displayMainScreen() {
-		printTime();
-		String[] menuChoice = { "앱스토어 열기", "앱 서랍 열기", "설정", "종료" };
+		printTime();	
+		
+		System.out.println("+" + "-".repeat(frameWidth) + "+");
+		printPageName("매인 매뉴"); //나중에 각 패이지 마다 이름 지정후, 이렇게 출력.
+		System.out.println("+" + "-".repeat(frameWidth) + "+");
+		
+		String[] menuChoice = { "설정", "앱스토어 오픈", "앱 서랍 열기", "기기를 종료합니다" };
 		for (int i = 0; i < menuChoice.length; i++) {
 			printMenuLine(i, menuChoice[i]);
+			System.out.println("|" + " ".repeat(frameWidth) + "|"); // 빈칸 출력
 		}
 		System.out.println("+" + "-".repeat(frameWidth) + "+");
 	}
@@ -62,12 +68,20 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 	private void printTime() {
 		String currentTime = TimeService.getCurrentTime();
 
-		System.out.println("+" + "=".repeat(frameWidth) + "+");
+		System.out.println("+" + "-".repeat(frameWidth) + "+");
 		int textArea = (frameWidth - currentTime.length()) / 2;
 		String line = "|" + " ".repeat(Math.max(0, textArea)) + currentTime //시간 표시
 				+ " ".repeat(Math.max(0, frameWidth - currentTime.length() - textArea)) + "|";
 		System.out.println(line);
-		System.out.println("+" + "=".repeat(frameWidth) + "+");
+//		System.out.println("+" + "=".repeat(frameWidth) + "+");
+	}
+	
+	private void printPageName(String text) {
+		int textLength = getCharacterLength(text);
+		int textArea = (frameWidth - textLength) / 2;
+		String line = "|" + " ".repeat(Math.max(0, textArea)) + text
+                + " ".repeat(Math.max(0, frameWidth - textLength - textArea)) + "|";
+		System.out.println(line);
 	}
 
 	private void printMenuLine(int index, String item) {
