@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import java.util.Scanner;
 
@@ -31,14 +31,7 @@ public class TrioUtils {
 	}
 	
 	public static boolean nextConfirm(String msg) {
-	    String s = nextLine(msg).trim();
-	    if (s.equals("y") || s.equals("yes")) {
-	    	return true;
-	    } else if (s.equals("n") || s.equals("no")) {
-	    	return false;
-	    }
-	    return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");
+		String s = nextLine(msg);
+		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");		
 	}
-
-
 }
