@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
+import static utils.TrioUtils.*;
 
 import domain.App;
 
@@ -22,11 +23,26 @@ public class AppService { //앱의 설치와 삭제 관리
         }else {
         	for (App app : installedApps) {
             	int index = installedApps.indexOf(app);
-                System.out.println("실제 인덱스 : "+index+", 앱 이름:"+app.getAppNo() + ": 고유 앱 번호" + app.getAppName());
+                System.out.println("어플 번호 "+ (index+1) +", 앱 이름:" + app.getAppName());
+                runApp();
             }
         }
         
     }
+	
+	public void runApp() {
+		int no = nextInt("실행할 어플의 번호를 입력해주세요");
+		for(App app : installedApps) {
+			int index = installedApps.indexOf(app);
+			if(index == (no-1)) {
+				app.run();
+				return;
+			}
+		}
+		System.out.println("실행 할 수 있는 어플이 아닙니다.");
+		
+	}
+	
 	
 	public void installApp(App app) {//앱 설치, 중복케스 할것.
 		
@@ -45,6 +61,7 @@ public class AppService { //앱의 설치와 삭제 관리
 		System.out.println(app.getAppName()+"이 설치되었습니다.");
 	}
 	
+
 	
 	public void deleteApp(App app) {// 앱 삭제
 		if(app == null) {

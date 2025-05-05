@@ -9,6 +9,6 @@ public class TestappService {
 	}
 	
 	public void runAppTest() {
-		System.out.println("테스트어플이 실행되었습니다");
+		System.out.println("테스트어플의 실행을 확인했습니다");
 	}
 }
