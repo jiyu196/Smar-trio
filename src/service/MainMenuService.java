@@ -48,8 +48,10 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 		}
 	}
 
+	
+	
+	//------------------------------ 추후 ui 클래스를 만들고 옮겨야함
 	private static final int frameWidth = 30; //넓이 조정
-
 	private void displayMainScreen() {
 		printTime();	
 		
@@ -73,7 +75,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 		System.out.println("+" + "-".repeat(frameWidth) + "+");
 	}
 
-	private void printTime() {
+	private void printTime() { // 시간 출력
 		String currentTime = TimeService.getCurrentTime();
 
 		System.out.println("+" + "-".repeat(frameWidth) + "+");
@@ -84,7 +86,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 //		System.out.println("+" + "=".repeat(frameWidth) + "+");
 	}
 	
-	private void printPageName(String text) {
+	private void printPageName(String text) { // 페이지의 이름 출력
 		int textLength = getCharacterLength(text);
 		int textArea = (frameWidth - textLength) / 2;
 		String line = "|" + " ".repeat(Math.max(0, textArea)) + text
@@ -92,7 +94,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 		System.out.println(line);
 	}
 
-	private void printMenuLine(int index, String item) {
+	private void printMenuLine(int index, String item) { // ui 테두리 
 		String prefix = (index + 1) + ". ";
 		int textLength = prefix.length() + getCharacterLength(item); // 한글 넓이 처리
 		int textArea = frameWidth - textLength - 2;
@@ -100,7 +102,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 		System.out.println("| " + prefix + item + padding + " |");
 	}
 
-	private int getCharacterLength(String text) {
+	private int getCharacterLength(String text) { // 한글과 영어를 기준으로 줄 간격 체크
 		int length = 0;
 		for (int i = 0; i < text.length(); i++) {
 			char ch = text.charAt(i); // V 한글인지 확인
