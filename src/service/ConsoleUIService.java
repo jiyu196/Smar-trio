@@ -19,12 +19,23 @@ public class ConsoleUIService {
 
 	public static void printMenu(String title, List<String> menuItems) {
 		printTimeLine();
+		printWallpaper();
 		printBorder();
 		printLine(title);
 		for (int i = 0; i < menuItems.size(); i++) {
 			printIndexedLine(i + 1, menuItems.get(i));
 		}
 		printBorder();
+	}
+	
+	private static void printWallpaper() {
+		System.out.println(""				 
+				+ "|     *       .    *     .     |\n"
+				+ "|  .      *    .     *      .  |\n"
+				+ "|   *   .    *     .    *      |\n"
+				+ "|     *           *      .     |\n"
+				+ "|  .    *      .   *      .    |\n"
+				+ "|     *      .     *     .     |");
 	}
 
 	private static void printTimeLine() {
