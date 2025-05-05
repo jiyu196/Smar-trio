@@ -43,7 +43,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 				return;
 			}
 			default:
-				throw new IllegalArgumentException("Unexpected value: " + no);
+				throw new IllegalArgumentException("잘못된 입력: " + no);
 			}
 		}
 	}
