@@ -17,9 +17,11 @@ public class ConsoleUIService {
 		printBorder();
 	}
 
-	public static void printMenu(String title, List<String> menuItems) {
+	public static void printMenu(String title, List<String> menuItems, boolean showWallpaper) {
 		printTimeLine();
-		printWallpaper();
+		if (showWallpaper) {
+			printWallpaper();
+		}
 		printBorder();
 		printLine(title);
 		for (int i = 0; i < menuItems.size(); i++) {
