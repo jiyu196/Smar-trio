@@ -54,13 +54,21 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 		printTime();	
 		
 		System.out.println("+" + "-".repeat(frameWidth) + "+");
-		printPageName("매인 매뉴"); //나중에 각 패이지 마다 이름 지정후, 이렇게 출력.
+		System.out.println(""
+				+ "|     *       .    *     .     |\n"
+				+ "|  .      *    .     *      .  |\n"
+				+ "|   *   .    *     .    *      |\n"
+				+ "|     *           *      .     |\n"
+				+ "|  .    *      .   *      .    |\n"
+				+ "|     *      .     *     .     |");
 		System.out.println("+" + "-".repeat(frameWidth) + "+");
+		printPageName("< 매인 매뉴 >"); //나중에 각 패이지 마다 이름 지정후, 이렇게 출력.
+//		System.out.println("+" + "-".repeat(frameWidth) + "+");
 		
 		String[] menuChoice = { "설정", "앱스토어 오픈", "앱 서랍 열기", "기기를 종료합니다" };
 		for (int i = 0; i < menuChoice.length; i++) {
 			printMenuLine(i, menuChoice[i]);
-			System.out.println("|" + " ".repeat(frameWidth) + "|"); // 빈칸 출력
+//			System.out.println("|" + " ".repeat(frameWidth) + "|"); // 빈칸 출력
 		}
 		System.out.println("+" + "-".repeat(frameWidth) + "+");
 	}
