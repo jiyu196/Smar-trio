@@ -63,10 +63,15 @@ public class ContactList {
 
     private void addContact() {
         String name = TrioUtils.nextLine("이름: ");
+        
         String phone = TrioUtils.nextLine("전화번호: ");
+        if (!phone.matches("")) {
+			System.err.println("\n형식이 틀렸습니다 > ex. ex.(010-0000-0000)");
+			return;
+        }
         String email = TrioUtils.nextLine("이메일: ");
         if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
-			System.err.println("\nIncorrect Format > ex. (JohnSmith@Hotmail.com)");
+			System.err.println("\n형식이 틀렸습니다 > ex. (JohnSmith@Hotmail.com)");
 			return;
         }
         String nickname = TrioUtils.nextLine("별명: ");
@@ -133,8 +138,7 @@ public class ContactList {
 
         for (int i = 0; i < contacts.size(); i++) {
             Contact c = contacts.get(i);
-            System.out.printf("%d: %s\n", i, c.name);
-//            System.out.printf("%d: %s, %s, %s, %s%n", i, c.name, c.phone, c.email, c.nickname);
+            System.out.printf("%d: 이름: %s, 전화번호: %s, 이매일: %s, 별명: %s\n", i, c.name, c.phone, c.email, c.nickname);
         }
     }
 
