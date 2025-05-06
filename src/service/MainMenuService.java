@@ -55,7 +55,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 	//------------------------------ 추후 ui 클래스를 만들고 옮겨야함	
 	private void displayMainScreen() {
 		
-		ConsoleUIService.printMenu("< 매인 매뉴 >", List.of("설정", "앱스토어 오픈", "앱 서랍 열기", "기기를 종료합니다", "태스트", "TEST"), true);
+		ConsoleUIService.printMenu("< 메인 매뉴 >", List.of("설정", "앱스토어 오픈", "앱 서랍 열기", "기기를 종료합니다"), true);
 
 	}
 }

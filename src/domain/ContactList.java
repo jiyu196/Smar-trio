@@ -125,7 +125,8 @@ public class ContactList {
 
         for (int i = 0; i < contacts.size(); i++) {
             Contact c = contacts.get(i);
-            System.out.printf("%d: %s, %s, %s, %s%n", i, c.name, c.phone, c.email, c.nickname);
+            System.out.printf("%d: %s\n", i, c.name);
+//            System.out.printf("%d: %s, %s, %s, %s%n", i, c.name, c.phone, c.email, c.nickname);
         }
     }
 
