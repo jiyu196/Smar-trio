@@ -19,7 +19,7 @@ public class BlackJackApp {
 		while (true) {
 			ConsoleUIService.printMenu("< 블랙잭 >", List.of("게임 시작", "돌아가기"), true);
 			String str = TrioUtils.nextLine("");
-			if (str.equals("0")) {
+			if (str.equals("2")) {
 				System.out.println("돌아가기");
 	            return;
 	        } else if (str.equals("1")) {
@@ -66,9 +66,9 @@ public class BlackJackApp {
 
 	private boolean playerTurn() {
 		while (true) {
-			ConsoleUIService.printFrame("입력", List.of("'히트(hit)' 또는 '스탠드(stand)'를 입력하세요:"), UIStyle.Full, false);
+			ConsoleUIService.printFrame("입력", List.of("'히트(1)' 또는 '스탠드(2)'를 입력하세요:"), UIStyle.Full, false);
 			String move = TrioUtils.nextLine("> ").toLowerCase();
-			if (move.equals("hit") || move.equals("히트")) {
+			if (move.equals("hit") || move.equals("1")) {
 				playerHand.add(drawCard());
 				System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
 				if (handValue(playerHand) > 21) {
@@ -76,7 +76,7 @@ public class BlackJackApp {
 //                    System.out.println("버스트! 당신이 졌습니다.");
 					return false;
 				}
-			} else if (move.equals("stand") || move.equals("스탠드")) {
+			} else if (move.equals("stand") || move.equals("2")) {
 				return true;
 			} else {
 				ConsoleUIService.printFrame("입력 오류", List.of("잘못된 입력입니다. 다시 시도해주세요."), UIStyle.Full);
