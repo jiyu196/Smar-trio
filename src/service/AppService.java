@@ -72,6 +72,7 @@ public class AppService { //앱의 설치와 삭제 관리
 			if(index == (no-1)) {
 				System.out.println(app.getAppName()+"을 삭제하였습니다");
 				installedApps.remove(app);
+				return;
 			}
 		}
 		

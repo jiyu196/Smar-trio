@@ -25,6 +25,8 @@ public class SettingService {
 			}
 			case 2: {
 				System.out.println("어플삭제 기능");
+				appService.showInstalledApps();
+				appService.deleteApp();
 				return;
 			}
 			case 0: {

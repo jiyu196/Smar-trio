@@ -7,7 +7,6 @@ public class ConsoleUIService {
 
 	private static final int FrameWidth = 30;
 
-	//
 	public enum UIStyle {
 		Full, Top, Bottom, Sides, None
 	}
