@@ -25,7 +25,7 @@ public class BlackJackApp {
 
 	public void run() {
 		while (true) {
-			ConsoleUIService.printMenu("< 블랙잭 >", List.of("게임 시작", "돌아가기"), true);
+			ConsoleUIService.printMenu("< 블랙잭 >", List.of("게임 시작", "돌아가기"), false);
 			String str = TrioUtils.nextLine("");
 			if (str.equals("2")) {
 				System.out.println("돌아가기");

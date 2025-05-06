@@ -28,15 +28,15 @@ public class ConsoleUIService {
 			printBorder();
 		}
 
+		if (style == UIStyle.Full || style == UIStyle.Bottom) {
+			printBorder();
+		}
+		
 		if (style != UIStyle.None) {
 			printLine(title);
 			for (String line : bodyLines) {
 				printMenuLine(line);
 			}
-		}
-
-		if (style == UIStyle.Full || style == UIStyle.Bottom) {
-			printBorder();
 		}
 	}
 
@@ -76,8 +76,9 @@ public class ConsoleUIService {
 	private static void printLine(String text) {
 		int length = getDisplayLength(text);
 		int padding = (FrameWidth - length) / 2;
-		int right = Math.max(0, FrameWidth - length - padding);
+		int right = Math.max(0, FrameWidth - length - padding);		
 		String margin = text.length() > FrameWidth ? text.substring(0, FrameWidth) : text;
+		
 		String line = "|" + " ".repeat(padding) + margin + " ".repeat(right) + "|";
 		System.out.println(line);
 	}
