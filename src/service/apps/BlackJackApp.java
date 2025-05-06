@@ -1,7 +1,8 @@
 package service.apps;
 
 import java.util.*;
-
+import service.ConsoleUIService;
+import service.ConsoleUIService.UIStyle;
 import utils.TrioUtils;
 
 public class BlackJackApp {
@@ -26,13 +27,17 @@ public class BlackJackApp {
             playerHand.add(drawCard());
             dealerHand.add(drawCard());
 
-            System.out.println("딜러의 패: " + dealerHand.get(0) + " [?]");
-            System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
+            List<String> gameText = new ArrayList<>();
+//            System.out.println("딜러의 패: " + dealerHand.get(0) + " [?]");
+            gameText.add("딜러의 패: " + dealerHand.get(0) + " [?]");
+//            System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
+            gameText.add("당신의 패: " + playerHand + "     (총합: " + handValue(playerHand) + ")");
+            ConsoleUIService.printFrame("블랙잭" , gameText, UIStyle.Full);
 
             if (!playerTurn()) {
-                System.out.println("결과: 당신이 버스트하여 졌습니다.");
+                ConsoleUIService.printFrame("게임 결과", List.of("당신이 버스트하여 졌습니다."), UIStyle.Full);
                 if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n)")) {
-                    System.out.println("게임이 종료되었습니다.");
+                    ConsoleUIService.printFrame("종료", List.of("게임이 종료되었습니다."), UIStyle.Full);
                     return;
                 }
                 continue;
@@ -42,7 +47,7 @@ public class BlackJackApp {
             determineWinner();
 
             if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n)")) {
-                System.out.println("게임이 종료되었습니다.");
+                ConsoleUIService.printFrame("종료", List.of("게임이 종료되었습니다."), UIStyle.Full);
                 return;
             }
         }
@@ -55,42 +60,57 @@ public class BlackJackApp {
                 playerHand.add(drawCard());
                 System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
                 if (handValue(playerHand) > 21) {
-                    System.out.println("버스트! 당신이 졌습니다.");
+                	ConsoleUIService.printFrame("버스트!", List.of("당신이 졌습니다."), UIStyle.Full);
+//                    System.out.println("버스트! 당신이 졌습니다.");
                     return false;
                 }
             } else if (move.equals("stand") || move.equals("스탠드")) {
                 return true;
             } else {
-                System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
+            	ConsoleUIService.printFrame("입력 오류", List.of("잘못된 입력입니다. 다시 시도해주세요."), UIStyle.Full);
+//                System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
             }
         }
     }
 
     private void dealerTurn() {
-        System.out.println("딜러의 전체 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
+    	List<String> text = new ArrayList<>();
+    	text.add("딜러의 전체 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
+    	ConsoleUIService.printFrame("딜러 턴 시작", text, UIStyle.Full);
+//        System.out.println("딜러의 전체 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
         while (handValue(dealerHand) < 17) {
             Card newCard = drawCard();
             dealerHand.add(newCard);
-            System.out.println("딜러가 카드를 뽑았습니다: " + newCard);
-            System.out.println("딜러의 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
+            text = new ArrayList<>();
+            text.add("딜러가 카드를 뽑았습니다: " + newCard);
+            text.add("딜러의 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
+            ConsoleUIService.printFrame("딜러 HIT", text, UIStyle.Full);
+//            System.out.println("딜러가 카드를 뽑았습니다: " + newCard);
+//            System.out.println("딜러의 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
         }
     }
 
-    private void determineWinner() {
-        int playerTotal = handValue(playerHand);
-        int dealerTotal = handValue(dealerHand);
+	private void determineWinner() {
+		int playerTotal = handValue(playerHand);
+		int dealerTotal = handValue(dealerHand);
 
-        System.out.println("당신의 최종 패: " + playerHand + " (총합: " + playerTotal + ")");
-        System.out.println("딜러의 최종 패: " + dealerHand + " (총합: " + dealerTotal + ")");
+		List<String> resultLines = List.of("당신의 최종 패: " + playerHand + " (총합: " + playerTotal + ")",
+				"딜러의 최종 패: " + dealerHand + " (총합: " + dealerTotal + ")");
+//        System.out.println("당신의 최종 패: " + playerHand + " (총합: " + playerTotal + ")");
+//        System.out.println("딜러의 최종 패: " + dealerHand + " (총합: " + dealerTotal + ")");
+		ConsoleUIService.printFrame("최종 결과", resultLines, UIStyle.Full);
 
-        if (dealerTotal > 21 || playerTotal > dealerTotal) {
-            System.out.println("당신이 이겼습니다!");
-        } else if (dealerTotal == playerTotal) {
-            System.out.println("무승부입니다.");
-        } else {
-            System.out.println("딜러가 이겼습니다.");
-        }
-    }
+		if (dealerTotal > 21 || playerTotal > dealerTotal) {
+			ConsoleUIService.printFrame("승리!", List.of("당신이 이겼습니다!"), UIStyle.Full);
+//			System.out.println("당신이 이겼습니다!");
+		} else if (dealerTotal == playerTotal) {
+			ConsoleUIService.printFrame("무승부", List.of("무승부입니다."), UIStyle.Full);
+//			System.out.println("무승부입니다.");
+		} else {
+			ConsoleUIService.printFrame("패배", List.of("딜러가 이겼습니다."), UIStyle.Full);
+//			System.out.println("딜러가 이겼습니다.");
+		}
+	}
 
     private List<Card> createDeck() {
         List<Card> deck = new ArrayList<>();
