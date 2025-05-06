@@ -76,7 +76,9 @@ public class ConsoleUIService {
 	private static void printLine(String text) {
 		int length = getDisplayLength(text);
 		int padding = (FrameWidth - length) / 2;
-		String line = "|" + " ".repeat(padding) + text + " ".repeat(FrameWidth - length - padding) + "|";
+		int right = Math.max(0, FrameWidth - length - padding);
+		String margin = text.length() > FrameWidth ? text.substring(0, FrameWidth) : text;
+		String line = "|" + " ".repeat(padding) + margin + " ".repeat(right) + "|";
 		System.out.println(line);
 	}
 
