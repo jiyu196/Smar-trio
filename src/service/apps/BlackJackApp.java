@@ -1,6 +1,7 @@
 package service.apps;
 
 import java.util.*;
+
 import service.ConsoleUIService;
 import service.ConsoleUIService.UIStyle;
 import utils.TrioUtils;
@@ -9,6 +10,14 @@ public class BlackJackApp {
 	public static void main(String[] args) {
 		BlackJackApp app = new BlackJackApp();
 		app.run();
+	}
+	
+	private static BlackJackApp blackJackApp = new BlackJackApp();
+	
+	private BlackJackApp() {}
+	
+	public static BlackJackApp getInstance() {
+		return blackJackApp;
 	}
 
 	private List<Card> deck;
@@ -178,9 +187,5 @@ public class BlackJackApp {
 		public String toString() {
 			return "[" + Suits[suit] + Values[value] + "]";
 		}
-	}
-
-	public static Object getInstance() {
-		return new BlackJackApp();
 	}
 }

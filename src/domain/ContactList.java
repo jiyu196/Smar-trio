@@ -13,13 +13,20 @@ public class ContactList {
 		ContactList app = new ContactList();
 		app.run();
 	}
-
+	
 	private static final Path CONTACT_PATH = Path.of("storage", "contacts", "contacts.txt");
-    private List<Contact> contacts = new ArrayList<>();
 
-    public ContactList() {
-        loadContacts();
-    }
+	private static final ContactList contactList = new ContactList();
+	
+	public ContactList() {
+		loadContacts();
+	}
+	
+	public static ContactList getInstance() {
+		return contactList;
+	}
+
+    private List<Contact> contacts = new ArrayList<>();
 
     public void run() {
         while (true) {
@@ -190,8 +197,4 @@ public class ContactList {
             return null;
         }
     }
-
-	public static Object getInstance() {
-		return null;
-	}
 }
