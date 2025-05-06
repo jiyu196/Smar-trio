@@ -154,7 +154,6 @@ public class MemoApp extends MemoService {
 			String input = TrioUtils.nextLine("새로운"+field + "(" +current + "): ");
 			return input.isEmpty() ? current : input;
 		}
-	
 
 	private static class Memo {
 		String title;
