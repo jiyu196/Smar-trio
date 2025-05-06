@@ -2,6 +2,7 @@ package domain;
 
 import java.io.BufferedReader;
 
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,10 +33,9 @@ public class MemoApp extends MemoService {
 		System.out.println("메모 앱을 실행합니다");
 
 		while (true) {
-			String str = utils.TrioUtils.nextLine("1. 작성한 메모 전체보기  2. 메모 추가  3. 수정  4. 삭제  6. 종료");
-			int click = TrioUtils.nextInt("작업할 내용을 선택하세요");
-
-			switch (click) {
+//			String str = TrioUtils.nextLine("1. 작성한 메모 전체보기  \n2. 메모 추가  \n3. 수정  \n4. 삭제  \n6. 종료");
+			int chack = TrioUtils.nextInt("1. 작성한 메모 전체보기  \n2. 메모 추가  \n3. 수정  \n4. 삭제  \n6. 종료");
+			switch (chack) {
 			case 1:
 				history();
 				break;
