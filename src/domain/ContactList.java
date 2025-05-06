@@ -13,7 +13,7 @@ public class ContactList {
 		app.run();
 	}
 
-	private static final Path FILE_PATH = Path.of("storage", "contacts", "contacts.txt");
+	private static final Path CONTACT_PATH = Path.of("storage", "contacts", "contacts.txt");
     private List<Contact> contacts = new ArrayList<>();
 
     public ContactList() {
@@ -136,19 +136,19 @@ public class ContactList {
         }
 
         try {
-        	Files.createDirectories(FILE_PATH.getParent());
-        	Files.write(FILE_PATH, saveContact);
-            System.out.println("연락처가 저장되었습니다: " + FILE_PATH.toAbsolutePath());
+        	Files.createDirectories(CONTACT_PATH.getParent());
+        	Files.write(CONTACT_PATH, saveContact);
+            System.out.println("연락처가 저장되었습니다: " + CONTACT_PATH.toAbsolutePath());
         } catch (IOException e) {
             System.err.println("연락처 저장에 실패했습니다: " + e.getMessage());
         }
     }
 
     private void loadContacts() {
-        if (!Files.exists(FILE_PATH)) return;
+        if (!Files.exists(CONTACT_PATH)) return;
 
         try {
-            List<String> saveContact = Files.readAllLines(FILE_PATH);
+            List<String> saveContact = Files.readAllLines(CONTACT_PATH);
             for (String saveContacts : saveContact) {
                 Contact c = Contact.fromString(saveContacts);
                 if (c != null) contacts.add(c);

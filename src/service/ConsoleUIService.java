@@ -53,7 +53,7 @@ public class ConsoleUIService {
 		printBorder();
 	}
 
-	private static void printWallpaper() {
+	public static void printWallpaper() {
 		System.out.println("" 
 				+ "|     *       .    *     .     |\n" 
 				+ "|  .      *    .     *      .  |\n"
@@ -63,7 +63,7 @@ public class ConsoleUIService {
 				+ "|     *      .     *     .     |");
 	}
 
-	private static void printTimeLine() {
+	public static void printTimeLine() {
 		String currentTime = TimeService.getCurrentTime();
 		printBorder();
 		printLine(currentTime);

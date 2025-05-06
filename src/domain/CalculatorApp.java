@@ -20,7 +20,7 @@ public class CalculatorApp {
 
 
 	
-	private static final Path LOG_PATH = Path.of("storage", "calculator", "math_log.txt");
+	private static final Path CALC_PATH = Path.of("storage", "calculator", "math_log.txt");
 	public CalculatorApp() {}
 	public void run() {
 	    System.out.println("계산기 앱을 실행합니다.");
@@ -74,8 +74,8 @@ public class CalculatorApp {
 	            if (valid) {
 	                System.out.println("결과 : " + result);
 	                try {
-	                    Files.createDirectories(LOG_PATH.getParent());
-	                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_PATH.toFile(), true))) {
+	                    Files.createDirectories(CALC_PATH.getParent());
+	                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(CALC_PATH.toFile(), true))) {
 	                        writer.write(write);
 	                        writer.newLine();
 	                    }
@@ -98,12 +98,12 @@ public class CalculatorApp {
 	private void showHistory() {
         System.out.println("< 기록 >");
         try {
-            if (!Files.exists(LOG_PATH)) {
+            if (!Files.exists(CALC_PATH)) {
                 System.out.println("기록이 없습니다.");
                 return;
             }
 
-            try (BufferedReader reader = Files.newBufferedReader(LOG_PATH)) {
+            try (BufferedReader reader = Files.newBufferedReader(CALC_PATH)) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     System.out.println(line);

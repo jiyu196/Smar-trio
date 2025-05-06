@@ -32,7 +32,9 @@ public class BlackJackApp {
             gameText.add("딜러의 패: " + dealerHand.get(0) + " [?]");
 //            System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
             gameText.add("당신의 패: " + playerHand + "     (총합: " + handValue(playerHand) + ")");
-            ConsoleUIService.printFrame("블랙잭" , gameText, UIStyle.Full);
+            ConsoleUIService.printTimeLine();
+            ConsoleUIService.printWallpaper();
+            ConsoleUIService.printFrame("블랙잭", gameText, UIStyle.Top, false);
 
             if (!playerTurn()) {
                 ConsoleUIService.printFrame("게임 결과", List.of("당신이 버스트하여 졌습니다."), UIStyle.Full);
@@ -55,7 +57,8 @@ public class BlackJackApp {
 
     private boolean playerTurn() {
         while (true) {
-            String move = TrioUtils.nextLine("'히트(hit)' 또는 '스탠드(stand)'를 선택하세요: ").toLowerCase();
+        	ConsoleUIService.printFrame("입력", List.of("'히트(hit)' 또는 '스탠드(stand)'를 입력하세요:"), UIStyle.Full, false);
+        	String move = TrioUtils.nextLine("> ").toLowerCase();
             if (move.equals("hit") || move.equals("히트")) {
                 playerHand.add(drawCard());
                 System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
