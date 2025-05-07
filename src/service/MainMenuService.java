@@ -20,27 +20,27 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 	SettingService settingService = SettingService.getInstance();
 	public void mainMenu() {
 		while (true) {
-			displayMainScreen(); // UI 나오기, 주석 하며는 해제.
+//			displayMainScreen(); // UI 나오기, 주석 하며는 해제.
 			int no = nextInt("실행할 기능 선택: ");
 			switch (no) {
 			case 1: {
-//				System.out.println("설정 기능");
+				System.out.println("설정 기능");
 				settingService.settingMenu();
 				break;
 			}
 			case 2: {
-//				System.out.println("앱스토어 오픈");
+				System.out.println("앱스토어 오픈");
 				storeService.storeMenu();
 				break;
 			}
 			case 3: {
-//				System.out.println("앱 서랍 열기");
+				System.out.println("앱 서랍 열기");
 				appService.showInstalledApps();
 				appService.runApp();
 				break;
 			}
 			case 4: {
-//				System.out.println("기기를 종료합니다");
+				System.out.println("기기를 종료합니다");
 				return;
 			}
 			default:
@@ -52,9 +52,9 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 	
 	
 	//------------------------------ 추후 ui 클래스를 만들고 옮겨야함	
-	private void displayMainScreen() {
-		
-		ConsoleUIService.printMenu("< 메인 매뉴 >", List.of("설정", "앱스토어 오픈", "앱 서랍 열기", "기기를 종료합니다"), true);
-
-	}
+//	private void displayMainScreen() {
+//		
+//		ConsoleUIService.printMenu("< 메인 매뉴 >", List.of("설정", "앱스토어 오픈", "앱 서랍 열기", "기기를 종료합니다"), true);
+//
+//	}
 }

@@ -1,8 +1,6 @@
 package domain.Apps;
 
 import java.util.*;
-import service.ConsoleUIService;
-import service.ConsoleUIService.UIStyle;
 import utils.TrioUtils;
 
 public class BlackJackApp {
@@ -10,11 +8,12 @@ public class BlackJackApp {
 		BlackJackApp app = new BlackJackApp();
 		app.run();
 	}
-	
+
 	private static BlackJackApp blackJackApp = new BlackJackApp();
-	
-	private BlackJackApp() {}
-	
+
+	private BlackJackApp() {
+	}
+
 	public static BlackJackApp getInstance() {
 		return blackJackApp;
 	}
@@ -25,12 +24,14 @@ public class BlackJackApp {
 
 	public void run() {
 		while (true) {
-			ConsoleUIService.printMenu("< 블랙잭 >", List.of("게임 시작", "돌아가기"), false);
-			String str = TrioUtils.nextLine("");
+			System.out.println("\n< 블랙잭 >");
+			System.out.println("1. 게임 시작");
+			System.out.println("2. 돌아가기");
+			String str = TrioUtils.nextLine("선택: ");
 			if (str.equals("2")) {
 				System.out.println("돌아가기");
-	            return;
-	        } else if (str.equals("1")) {
+				return;
+			} else if (str.equals("1")) {
 				deck = createDeck();
 				Collections.shuffle(deck);
 				playerHand = new ArrayList<>();
@@ -41,19 +42,13 @@ public class BlackJackApp {
 				playerHand.add(drawCard());
 				dealerHand.add(drawCard());
 
-				List<String> gameText = new ArrayList<>();
-//            System.out.println("딜러의 패: " + dealerHand.get(0) + " [?]");
-				gameText.add("딜러의 패: " + dealerHand.get(0) + " [?]");
-//            System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
-				gameText.add("당신의 패: " + playerHand + "     (총합: " + handValue(playerHand) + ")");
-				ConsoleUIService.printTimeLine();
-				ConsoleUIService.printWallpaper();
-				ConsoleUIService.printFrame("< 블랙잭 >", gameText, UIStyle.TOP, false);
+				System.out.println("\n딜러의 패: " + dealerHand.get(0) + " [?]");
+				System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
 
 				if (!playerTurn()) {
-					ConsoleUIService.printFrame("게임 결과", List.of("당신이 버스트하여 졌습니다."), UIStyle.FULL);
-					if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n)")) {
-						ConsoleUIService.printFrame("종료", List.of("게임이 종료되었습니다."), UIStyle.FULL);
+					System.out.println("\n버스트! 당신이 졌습니다.");
+					if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n): ")) {
+						System.out.println("게임이 종료되었습니다.");
 						return;
 					}
 					continue;
@@ -62,51 +57,40 @@ public class BlackJackApp {
 				dealerTurn();
 				determineWinner();
 
-				if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n)")) {
-					ConsoleUIService.printFrame("종료", List.of("게임이 종료되었습니다."), UIStyle.FULL);
+				if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n): ")) {
+					System.out.println("게임이 종료되었습니다.");
 					return;
 				}
 			} else {
-	            System.out.println("잘못된 입력입니다.");
-	        }
+				System.out.println("잘못된 입력입니다.");
+			}
 		}
 	}
 
 	private boolean playerTurn() {
 		while (true) {
-			ConsoleUIService.printFrame("입력", List.of("'히트(1)' 또는 '스탠드(2)'를 입력하세요:"), UIStyle.FULL, false);
-			String move = TrioUtils.nextLine("> ").toLowerCase();
+			String move = TrioUtils.nextLine("히트(1) 또는 스탠드(2): ").toLowerCase();
 			if (move.equals("hit") || move.equals("1")) {
 				playerHand.add(drawCard());
 				System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
 				if (handValue(playerHand) > 21) {
-					ConsoleUIService.printFrame("버스트!", List.of("당신이 졌습니다."), UIStyle.FULL);
-//                    System.out.println("버스트! 당신이 졌습니다.");
 					return false;
 				}
 			} else if (move.equals("stand") || move.equals("2")) {
 				return true;
 			} else {
-				ConsoleUIService.printFrame("입력 오류", List.of("잘못된 입력입니다. 다시 시도해주세요."), UIStyle.FULL);
-//                System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
+				System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
 			}
 		}
 	}
 
 	private void dealerTurn() {
-		List<String> text = new ArrayList<>();
-		text.add("딜러의 전체 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
-		ConsoleUIService.printFrame("딜러 턴 시작", text, UIStyle.FULL);
-//        System.out.println("딜러의 전체 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
+		System.out.println("\n딜러의 전체 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
 		while (handValue(dealerHand) < 17) {
 			Card newCard = drawCard();
 			dealerHand.add(newCard);
-			text = new ArrayList<>();
-			text.add("딜러가 카드를 뽑았습니다: " + newCard);
-			text.add("딜러의 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
-			ConsoleUIService.printFrame("딜러 HIT", text, UIStyle.FULL);
-//            System.out.println("딜러가 카드를 뽑았습니다: " + newCard);
-//            System.out.println("딜러의 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
+			System.out.println("딜러가 카드를 뽑았습니다: " + newCard);
+			System.out.println("딜러의 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
 		}
 	}
 
@@ -114,21 +98,16 @@ public class BlackJackApp {
 		int playerTotal = handValue(playerHand);
 		int dealerTotal = handValue(dealerHand);
 
-		List<String> resultLines = List.of("당신의 최종 패: " + playerHand + " (총합: " + playerTotal + ")",
-				"딜러의 최종 패: " + dealerHand + " (총합: " + dealerTotal + ")");
-//        System.out.println("당신의 최종 패: " + playerHand + " (총합: " + playerTotal + ")");
-//        System.out.println("딜러의 최종 패: " + dealerHand + " (총합: " + dealerTotal + ")");
-		ConsoleUIService.printFrame("최종 결과", resultLines, UIStyle.FULL);
+		System.out.println("\n--- 최종 결과 ---");
+		System.out.println("당신의 최종 패: " + playerHand + " (총합: " + playerTotal + ")");
+		System.out.println("딜러의 최종 패: " + dealerHand + " (총합: " + dealerTotal + ")");
 
 		if (dealerTotal > 21 || playerTotal > dealerTotal) {
-			ConsoleUIService.printFrame("승리!", List.of("당신이 이겼습니다!"), UIStyle.FULL);
-//			System.out.println("당신이 이겼습니다!");
+			System.out.println("당신이 이겼습니다!");
 		} else if (dealerTotal == playerTotal) {
-			ConsoleUIService.printFrame("무승부", List.of("무승부입니다."), UIStyle.FULL);
-//			System.out.println("무승부입니다.");
+			System.out.println("무승부입니다.");
 		} else {
-			ConsoleUIService.printFrame("패배", List.of("딜러가 이겼습니다."), UIStyle.FULL);
-//			System.out.println("딜러가 이겼습니다.");
+			System.out.println("딜러가 이겼습니다.");
 		}
 	}
 
