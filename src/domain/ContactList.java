@@ -9,10 +9,10 @@ import java.util.List;
 import utils.TrioUtils;
 
 public class ContactList {
-	public static void main(String[] args) {
-		ContactList app = new ContactList();
-		app.run();
-	}
+//	public static void main(String[] args) {
+//		ContactList app = new ContactList();
+//		app.run();
+//	}
 	
 	private static final Path CONTACT_PATH = Path.of("storage", "contacts", "contacts.txt");
 

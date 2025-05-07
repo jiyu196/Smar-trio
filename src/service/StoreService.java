@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import domain.App;
 import domain.AppTest;
+import domain.ContactListApp;
 
 public class StoreService { //스토어에 기능을 담당.
 	
@@ -25,6 +26,7 @@ public class StoreService { //스토어에 기능을 담당.
 			no = instalableApps.get(instalableApps.size()-1).getAppNo()+1;
 		}
 		instalableApps.add(new AppTest(no));
+		instalableApps.add(new ContactListApp(no));
 	}
 	
 	public void storeMenu() {
