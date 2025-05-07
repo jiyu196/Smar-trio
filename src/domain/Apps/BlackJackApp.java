@@ -15,7 +15,7 @@ public class BlackJackApp {
 
 	public void run() {
 		while (true) {
-			System.out.println("\n< 블랙잭 >");
+			System.out.println("< 블랙잭 >");
 			System.out.println("1. 게임 시작");
 			System.out.println("2. 돌아가기");
 			String str = TrioUtils.nextLine("선택: ");
