@@ -1,4 +1,4 @@
-package service.apps;
+package domain.app;
 
 import java.util.*;
 import service.ConsoleUIService;

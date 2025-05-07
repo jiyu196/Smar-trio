@@ -1,4 +1,7 @@
-package domain;
+package domain.app;
+
+import domain.App;
+import domain.ContactList;
 
 public class ContactListApp extends App{
 

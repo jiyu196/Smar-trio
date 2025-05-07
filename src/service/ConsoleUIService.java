@@ -71,6 +71,8 @@ public class ConsoleUIService {
 
 	private static void printBorder() {
 		System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
+//		System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
+//		System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
 	}
 
 	private static void printLine(String text) {

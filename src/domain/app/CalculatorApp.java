@@ -1,4 +1,4 @@
-package domain;
+package domain.app;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
