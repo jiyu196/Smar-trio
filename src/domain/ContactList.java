@@ -9,11 +9,19 @@ import java.util.List;
 import utils.TrioUtils;
 
 public class ContactList {
+<<<<<<< HEAD
 //	public static void main(String[] args) {
 //		ContactList app = new ContactList();
 //		app.run();
 //	}
 
+=======
+	public static void main(String[] args) {
+		ContactList app = new ContactList();
+		app.run();
+	}
+	
+>>>>>>> branch 'master' of https://github.com/jiyu196/Smar-trio
 	private static final Path CONTACT_PATH = Path.of("storage", "contacts", "contacts.txt");
 
 	private static final ContactList contactList = new ContactList();
