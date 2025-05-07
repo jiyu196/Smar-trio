@@ -27,7 +27,17 @@ public class ContactList {
 	}
 
     private List<Contact> contacts = new ArrayList<>();
+    private int nextNo = 0;
 
+    public Contact findBy(int no) {
+        for (Contact c : contacts) {
+            if (c.getNo() == no) {
+                return c;
+            }
+        }
+        return null;
+    }
+    
     public void run() {
         while (true) {
             System.out.println("--- 연락처 메뉴 ---");
@@ -60,12 +70,25 @@ public class ContactList {
             }
         }
     }
+    
+    public void showContacts() {
+        if (contacts.isEmpty()) {
+            System.out.println("연락처가 없습니다.");
+            return;
+        }
+
+        for (int i = 0; i < contacts.size(); i++) {
+            Contact c = contacts.get(i);
+            System.out.printf("%d: 이름: %s, 전화번호: %s, 이매일: %s, 별명: %s\n", 
+                i, c.getName(), c.getPhone(), c.getEmail(), c.getNickname());
+        }
+    }
 
     private void addContact() {
         String name = TrioUtils.nextLine("이름: ");
         
         String phone = TrioUtils.nextLine("전화번호: ");
-        if (!phone.matches("")) {
+        if (!phone.matches("^01[0-9]{1}-[0-9]{3,4}-[0-9]{4}$")) {
 			System.err.println("\n형식이 틀렸습니다 > ex. ex.(010-0000-0000)");
 			return;
         }
@@ -76,7 +99,8 @@ public class ContactList {
         }
         String nickname = TrioUtils.nextLine("별명: ");
 
-        contacts.add(new Contact(name, phone, email, nickname));
+        int newNo = nextNo++;
+        contacts.add(new Contact(newNo, name, phone, email, nickname));
         saveContacts();
         System.out.println("연락처가 추가되고 저장되었습니다.");
     }
@@ -87,21 +111,24 @@ public class ContactList {
             return;
         }
 
-        showContacts();
-        int index = TrioUtils.nextInt("수정할 번호를 입력하세요:");
+        int no = TrioUtils.nextInt("수정할 연락처의 번호를 입력하세요:");
 
-        if (index < 0 || index >= contacts.size()) {
-            System.out.println("잘못된 번호입니다.");
+        Contact contactToModify = findBy(no);
+        if (contactToModify == null) {
+            System.out.println("해당 번호의 연락처를 찾을 수 없습니다.");
             return;
         }
 
-        Contact old = contacts.get(index);
-        String name = updateField("이름", old.name);
-        String phone = updateField("전화번호", old.phone);
-        String email = updateField("이메일", old.email);
-        String nickname = updateField("별명", old.nickname);
+        String name = updateField("이름", contactToModify.getName());
+        String phone = updateField("전화번호", contactToModify.getPhone());
+        String email = updateField("이메일", contactToModify.getEmail());
+        String nickname = updateField("별명", contactToModify.getNickname());
 
-        contacts.set(index, new Contact(name, phone, email, nickname));
+        contactToModify.setName(name);
+        contactToModify.setPhone(phone);
+        contactToModify.setEmail(email);
+        contactToModify.setNickname(nickname);
+
         saveContacts();
         System.out.println("연락처가 수정되고 저장되었습니다.");
     }
@@ -112,33 +139,21 @@ public class ContactList {
             return;
         }
 
-        showContacts();
-        int index = TrioUtils.nextInt("삭제할 번호를 입력하세요:");
+        int no = TrioUtils.nextInt("삭제할 연락처의 번호를 입력하세요:");
 
-        if (index < 0 || index >= contacts.size()) {
-            System.out.println("잘못된 번호입니다.");
+        Contact contactToDelete = findBy(no);
+        if (contactToDelete == null) {
+            System.out.println("해당 번호의 연락처를 찾을 수 없습니다.");
             return;
         }
 
         boolean confirm = TrioUtils.nextConfirm("이 연락처를 삭제하시겠습니까? (y/n)");
         if (confirm) {
-            contacts.remove(index);
+            contacts.remove(contactToDelete);
             saveContacts();
             System.out.println("연락처가 삭제되고 저장되었습니다.");
         } else {
             System.out.println("삭제가 취소되었습니다.");
-        }
-    }
-
-    private void showContacts() {
-        if (contacts.isEmpty()) {
-            System.out.println("연락처가 없습니다.");
-            return;
-        }
-
-        for (int i = 0; i < contacts.size(); i++) {
-            Contact c = contacts.get(i);
-            System.out.printf("%d: 이름: %s, 전화번호: %s, 이매일: %s, 별명: %s\n", i, c.name, c.phone, c.email, c.nickname);
         }
     }
 
@@ -164,39 +179,83 @@ public class ContactList {
             List<String> saveContact = Files.readAllLines(CONTACT_PATH);
             for (String saveContacts : saveContact) {
                 Contact c = Contact.fromString(saveContacts);
-                if (c != null) contacts.add(c);
+                if (c != null) {
+                    contacts.add(c);
+                    nextNo = Math.max(nextNo, c.getNo() + 1);
+                }
             }
         } catch (IOException e) {
             System.err.println("연락처를 불러올 수 없습니다: " + e.getMessage());
         }
     }
 
+    //to domain you go
     private String updateField(String field, String current) {
         String input = TrioUtils.nextLine("새로운 " + field + " (" + current + "): ");
         return input.isEmpty() ? current : input;
     }
 
     private static class Contact {
-        String name;
-        String phone;
-        String email;
-        String nickname;
+        private final int no;
+        private String name;
+        private String phone;
+        private String email;
+        private String nickname;
 
-        Contact(String name, String phone, String email, String nickname) {
+        public Contact(int no, String name, String phone, String email, String nickname) {
+            this.no = no;
             this.name = name;
             this.phone = phone;
             this.email = email;
             this.nickname = nickname;
         }
 
+        public int getNo() {
+            return no;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public void setPhone(String phone) {
+            this.phone = phone;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getNickname() {
+            return nickname;
+        }
+
+        public void setNickname(String nickname) {
+            this.nickname = nickname;
+        }
+
+        @Override
         public String toString() {
-            return String.join(";", name, phone, email, nickname);
+            return no + ";" + name + ";" + phone + ";" + email + ";" + nickname;
         }
 
         public static Contact fromString(String line) {
             String[] parts = line.split(";");
-            if (parts.length == 4) {
-                return new Contact(parts[0], parts[1], parts[2], parts[3]);
+            if (parts.length == 5) {
+                int no = Integer.parseInt(parts[0]);
+                return new Contact(no, parts[1], parts[2], parts[3], parts[4]);
             }
             return null;
         }
