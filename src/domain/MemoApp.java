@@ -23,9 +23,11 @@ public class MemoApp extends MemoService {
 	//여기 밑에 싱글턴 만들기
 	private static final MemoApp memoApp = new MemoApp();
 	
+	
 	private List<Memo> memos = new ArrayList<>();
+	private static MemoApp memo= new MemoApp();
 
-	public MemoApp() {
+	private MemoApp() {
 
 	}
 
@@ -79,7 +81,7 @@ public class MemoApp extends MemoService {
 		System.out.println("메모 추가 및 저장 완료");
 	}
 
-	// 수정
+	// 수정- 수정할 메모장을 입력했을 때 수정할수있게 만들어야함
 	private void modify() {
 		if (memos.isEmpty()) {
 			System.out.println("수정할 메모기록이 없습니다");
@@ -92,8 +94,11 @@ public class MemoApp extends MemoService {
 			return;
 		}
 		
-		Memo mo = memos.get(index);
-		String title;
+		Memo oldmemo = memos.get(index); //메모 적었던 index에서 oldmemo를 가져옴
+		String title = updateField("제목", oldmemo.title);
+		String content = updateField("내용", oldmemo.content);
+		
+		
 	}
 
 	// 삭제
@@ -163,6 +168,11 @@ public class MemoApp extends MemoService {
 			super();
 			this.title = title;
 			this.content = content;
+		}
+
+		@Override
+		public String toString() {
+			return "Memo [제목= " + title + ", 내용= " + content + "]";
 		}
 
 	}

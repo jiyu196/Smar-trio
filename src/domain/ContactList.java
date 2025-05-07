@@ -13,7 +13,7 @@ public class ContactList {
 //		ContactList app = new ContactList();
 //		app.run();
 //	}
-	
+
 	private static final Path CONTACT_PATH = Path.of("storage", "contacts", "contacts.txt");
 
 	private static final ContactList contactList = new ContactList();
