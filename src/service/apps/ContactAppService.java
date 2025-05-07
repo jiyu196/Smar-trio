@@ -1,11 +1,12 @@
 package service.apps;
 
-import domain.ContactApp;
 import utils.TrioUtils;
 
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
+
+import domain.Apps.ContactApp;
 
 public class ContactAppService {
 	public static void main(String[] args) {

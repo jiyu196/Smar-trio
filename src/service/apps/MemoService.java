@@ -1,11 +1,11 @@
-package service;
+package service.apps;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import domain.ContactList;
-import domain.MemoApp;
+import domain.Apps.MemoApp;
 import utils.TrioUtils;
 
 
