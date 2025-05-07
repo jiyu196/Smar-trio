@@ -2,6 +2,7 @@ package domain.Apps;
 
 public class MemoApp {
 	
+
 	private static class Memo {
 		private final int no;
 		private String title;
@@ -14,31 +15,30 @@ public class MemoApp {
 			this.title = title;
 			this.content = content;
 		}
+//		
+//		public int getNo() {
+//			return no;
+//		}
+////
+//		public String getTitle() {
+//			return title;
+//		}
+//
+//////
+//////		public void setTitle(String title) {
+//////			this.title = title;
+//////		}
+//////
+////
+//		public String getContent() {
+//			return content;
+//		}
 
-		public int getno() {
-			return no;
-		}
-
-		public String getTitle() {
-			return title;
-		}
-
-
-		public void setTitle(String title) {
-			this.title = title;
-		}
-
-
-		public String getContent() {
-			return content;
-		}
-
-
-		public void setContent(String content) {
-			this.content = content;
-		}
-
-
+////
+//		public void setContent(String content) {
+//			this.content = content;
+//		}
+//
 
 		@Override
 		public String toString() {
@@ -55,12 +55,37 @@ public class MemoApp {
         }
 
 	}
-
+	public MemoApp(int nextNo, String title, String content) {
+	
+	}
 	public int getNo() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+//	public Object getNo() {
+//		
+//		return null;
+//	}
+	public Object getTitle() {
 
+		return getTitle();
+	}
+	public Object getContent() {
+		
+		return getContent();
+	}
+	public void setTitle(String title) {
+		
+	}
+	public void setContent(String content) {
+	
+	}
+	public static MemoApp fromString(String line) {
+	
+		return null;
+	}
+
+	
 
 //	public static void main(String[] args) {
 //	MemoApp app = new MemoApp();
