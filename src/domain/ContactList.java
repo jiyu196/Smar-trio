@@ -60,6 +60,18 @@ public class ContactList {
             }
         }
     }
+    
+    public void showContacts() {
+    	if (contacts.isEmpty()) {
+    		System.out.println("연락처가 없습니다.");
+    		return;
+    	}
+    	
+    	for (int i = 0; i < contacts.size(); i++) {
+    		Contact c = contacts.get(i);
+    		System.out.printf("%d: 이름: %s, 전화번호: %s, 이매일: %s, 별명: %s\n", i, c.name, c.phone, c.email, c.nickname);
+    	}
+    }
 
     private void addContact() {
         String name = TrioUtils.nextLine("이름: ");
@@ -130,18 +142,6 @@ public class ContactList {
         }
     }
 
-    private void showContacts() {
-        if (contacts.isEmpty()) {
-            System.out.println("연락처가 없습니다.");
-            return;
-        }
-
-        for (int i = 0; i < contacts.size(); i++) {
-            Contact c = contacts.get(i);
-            System.out.printf("%d: 이름: %s, 전화번호: %s, 이매일: %s, 별명: %s\n", i, c.name, c.phone, c.email, c.nickname);
-        }
-    }
-
     private void saveContacts() {
         List<String> saveContact = new ArrayList<>();
         for (Contact c : contacts) {
@@ -171,6 +171,7 @@ public class ContactList {
         }
     }
 
+    //to domain you go
     private String updateField(String field, String current) {
         String input = TrioUtils.nextLine("새로운 " + field + " (" + current + "): ");
         return input.isEmpty() ? current : input;
