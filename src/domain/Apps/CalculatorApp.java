@@ -1,4 +1,4 @@
-package domain;
+package domain.Apps;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,7 +17,7 @@ public class CalculatorApp {
 
 	private static final Path CALC_PATH = Path.of("storage", "calculator", "math_log.txt");
 
-	private static CalculatorApp calculatorApp = new CalculatorApp();
+	private static final CalculatorApp calculatorApp = new CalculatorApp();
 
 	private CalculatorApp() {
 	}

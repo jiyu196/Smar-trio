@@ -5,14 +5,14 @@ import service.apps.TimeService;
 
 public class ConsoleUIService {
 
-	private static final int FrameWidth = 30;
+	private static final int FRAME_WIDTH = 30;
 
 	public enum UIStyle {
-		Full, Top, Bottom, Sides, None
+		FULL, TOP, BOTTOM, SIDE, NONE
 	}
 
 	public static void printFrame(String title, List<String> bodyLines) {
-		printFrame(title, bodyLines, UIStyle.Full, true);
+		printFrame(title, bodyLines, UIStyle.FULL, true);
 	}
 
 	public static void printFrame(String title, List<String> bodyLines, UIStyle style) {
@@ -24,19 +24,19 @@ public class ConsoleUIService {
 			printTimeLine();
 		}
 
-		if (style == UIStyle.Full || style == UIStyle.Top) {
+		if (style == UIStyle.FULL || style == UIStyle.TOP) {
 			printBorder();
 		}
 
-		if (style != UIStyle.None) {
+		if (style == UIStyle.FULL || style == UIStyle.BOTTOM) {
+			printBorder();
+		}
+		
+		if (style != UIStyle.FULL) {
 			printLine(title);
 			for (String line : bodyLines) {
 				printMenuLine(line);
 			}
-		}
-
-		if (style == UIStyle.Full || style == UIStyle.Bottom) {
-			printBorder();
 		}
 	}
 
@@ -70,30 +70,35 @@ public class ConsoleUIService {
 	}
 
 	private static void printBorder() {
-		System.out.println("+" + "-".repeat(FrameWidth) + "+");
+		System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
+//		System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
+//		System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
 	}
 
 	private static void printLine(String text) {
 		int length = getDisplayLength(text);
-		int padding = (FrameWidth - length) / 2;
-		String line = "|" + " ".repeat(padding) + text + " ".repeat(FrameWidth - length - padding) + "|";
+		int padding = (FRAME_WIDTH - length) / 2;
+		int right = Math.max(0, FRAME_WIDTH - length - padding);		
+		String margin = text.length() > FRAME_WIDTH ? text.substring(0, FRAME_WIDTH) : text;
+		
+		String line = "|" + " ".repeat(padding) + margin + " ".repeat(right) + "|";
 		System.out.println(line);
 	}
 
 //	private static void printMenuLine(String text) {
 //		int length = getDisplayLength(text);
-//		String line = "| " + text + " ".repeat(FrameWidth - 2 - length) + " |";
+//		String line = "| " + text + " ".repeat(FRAME_WIDTH - 2 - length) + " |";
 //		System.out.println(line);
 //	}
 	
 	private static void printMenuLine(String text) {
-		int maxLength = FrameWidth - 2;
+		int maxLength = FRAME_WIDTH - 2;
 		int textLength = getDisplayLength(text);
 //		String displayText = text;
 
 		if (textLength <= maxLength) {
 			System.out.println("| " + text + " ".repeat(maxLength - textLength) + " |");
-//			displayText = trimLine(text, FrameWidth - 5) + "...";
+//			displayText = trimLine(text, FRAME_WIDTH - 5) + "...";
 //			textLength = getDisplayLength(displayText);
 		} else {
 			// Split text into lines of maxLength width
@@ -116,14 +121,14 @@ public class ConsoleUIService {
 				System.out.println("| " + line + " ".repeat(maxLength - currentLength) + " |");
 			}
 		}
-//		String line = "| " + displayText + " ".repeat(Math.max(0, FrameWidth - 2 - textLength)) + " |";
+//		String line = "| " + displayText + " ".repeat(Math.max(0, FRAME_WIDTH - 2 - textLength)) + " |";
 //		System.out.println(line);
 	}
 
 	private static void printIndexedLine(int index, String text) {
 		String prefix = index + ". ";
 		int length = getDisplayLength(prefix + text);
-		String line = "| " + prefix + text + " ".repeat(FrameWidth - 2 - length) + " |";
+		String line = "| " + prefix + text + " ".repeat(FRAME_WIDTH - 2 - length) + " |";
 		System.out.println(line);
 	}
 
