@@ -2,6 +2,9 @@ package service.apps;
 
 import java.util.Scanner;
 
+import utils.DateTimeUtils;
+import utils.TrioUtils;
+
 public class UpAndDownAppService {
 	public static void main(String[] args) {
         
@@ -9,14 +12,13 @@ public class UpAndDownAppService {
 		int count = 0;
 		
 		int value = (int)(Math.random()*100+1);
-		Scanner scanner = new Scanner(System.in);
 		
 		do {
-			String currentTime = service.apps.TimeService.getCurrentTime();
+			String currentTime = DateTimeUtils.getCurrentDateTime("dd/MM/yyyy hh:mm a");
 			System.out.println(currentTime); //시간 뜨는부분
 			
-			System.out.println("1에서 100사이의 숫자를 입력하세요 >");
-			input = scanner.nextInt();
+//			System.out.println("1에서 100사이의 숫자를 입력하세요 >");
+			input = TrioUtils.nextInt("1에서 100사이의 숫자를 입력하세요 >");
 			if(value < input) {
 				System.out.println("다운입니다");
 			}

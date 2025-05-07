@@ -2,11 +2,13 @@ package service.apps;
 
 import java.util.Arrays;
 
+import utils.DateTimeUtils;
+
 public class LottoAppService {
 
 	// 25/04/30
 	public static void main(String[] args) {
-		String currentTime = service.apps.TimeService.getCurrentTime();
+		String currentTime = DateTimeUtils.getCurrentDateTime("dd/MM/yyyy hh:mm a");
 		System.out.println(currentTime);
 		
 		int[] lotto = new int[6];
