@@ -48,12 +48,12 @@ public class BlackJackApp {
 				gameText.add("당신의 패: " + playerHand + "     (총합: " + handValue(playerHand) + ")");
 				ConsoleUIService.printTimeLine();
 				ConsoleUIService.printWallpaper();
-				ConsoleUIService.printFrame("< 블랙잭 >", gameText, UIStyle.Top, false);
+				ConsoleUIService.printFrame("< 블랙잭 >", gameText, UIStyle.TOP, false);
 
 				if (!playerTurn()) {
-					ConsoleUIService.printFrame("게임 결과", List.of("당신이 버스트하여 졌습니다."), UIStyle.Full);
+					ConsoleUIService.printFrame("게임 결과", List.of("당신이 버스트하여 졌습니다."), UIStyle.FULL);
 					if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n)")) {
-						ConsoleUIService.printFrame("종료", List.of("게임이 종료되었습니다."), UIStyle.Full);
+						ConsoleUIService.printFrame("종료", List.of("게임이 종료되었습니다."), UIStyle.FULL);
 						return;
 					}
 					continue;
@@ -63,7 +63,7 @@ public class BlackJackApp {
 				determineWinner();
 
 				if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n)")) {
-					ConsoleUIService.printFrame("종료", List.of("게임이 종료되었습니다."), UIStyle.Full);
+					ConsoleUIService.printFrame("종료", List.of("게임이 종료되었습니다."), UIStyle.FULL);
 					return;
 				}
 			} else {
@@ -74,20 +74,20 @@ public class BlackJackApp {
 
 	private boolean playerTurn() {
 		while (true) {
-			ConsoleUIService.printFrame("입력", List.of("'히트(1)' 또는 '스탠드(2)'를 입력하세요:"), UIStyle.Full, false);
+			ConsoleUIService.printFrame("입력", List.of("'히트(1)' 또는 '스탠드(2)'를 입력하세요:"), UIStyle.FULL, false);
 			String move = TrioUtils.nextLine("> ").toLowerCase();
 			if (move.equals("hit") || move.equals("1")) {
 				playerHand.add(drawCard());
 				System.out.println("당신의 패: " + playerHand + " (총합: " + handValue(playerHand) + ")");
 				if (handValue(playerHand) > 21) {
-					ConsoleUIService.printFrame("버스트!", List.of("당신이 졌습니다."), UIStyle.Full);
+					ConsoleUIService.printFrame("버스트!", List.of("당신이 졌습니다."), UIStyle.FULL);
 //                    System.out.println("버스트! 당신이 졌습니다.");
 					return false;
 				}
 			} else if (move.equals("stand") || move.equals("2")) {
 				return true;
 			} else {
-				ConsoleUIService.printFrame("입력 오류", List.of("잘못된 입력입니다. 다시 시도해주세요."), UIStyle.Full);
+				ConsoleUIService.printFrame("입력 오류", List.of("잘못된 입력입니다. 다시 시도해주세요."), UIStyle.FULL);
 //                System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
 			}
 		}
@@ -96,7 +96,7 @@ public class BlackJackApp {
 	private void dealerTurn() {
 		List<String> text = new ArrayList<>();
 		text.add("딜러의 전체 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
-		ConsoleUIService.printFrame("딜러 턴 시작", text, UIStyle.Full);
+		ConsoleUIService.printFrame("딜러 턴 시작", text, UIStyle.FULL);
 //        System.out.println("딜러의 전체 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
 		while (handValue(dealerHand) < 17) {
 			Card newCard = drawCard();
@@ -104,7 +104,7 @@ public class BlackJackApp {
 			text = new ArrayList<>();
 			text.add("딜러가 카드를 뽑았습니다: " + newCard);
 			text.add("딜러의 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
-			ConsoleUIService.printFrame("딜러 HIT", text, UIStyle.Full);
+			ConsoleUIService.printFrame("딜러 HIT", text, UIStyle.FULL);
 //            System.out.println("딜러가 카드를 뽑았습니다: " + newCard);
 //            System.out.println("딜러의 패: " + dealerHand + " (총합: " + handValue(dealerHand) + ")");
 		}
@@ -118,16 +118,16 @@ public class BlackJackApp {
 				"딜러의 최종 패: " + dealerHand + " (총합: " + dealerTotal + ")");
 //        System.out.println("당신의 최종 패: " + playerHand + " (총합: " + playerTotal + ")");
 //        System.out.println("딜러의 최종 패: " + dealerHand + " (총합: " + dealerTotal + ")");
-		ConsoleUIService.printFrame("최종 결과", resultLines, UIStyle.Full);
+		ConsoleUIService.printFrame("최종 결과", resultLines, UIStyle.FULL);
 
 		if (dealerTotal > 21 || playerTotal > dealerTotal) {
-			ConsoleUIService.printFrame("승리!", List.of("당신이 이겼습니다!"), UIStyle.Full);
+			ConsoleUIService.printFrame("승리!", List.of("당신이 이겼습니다!"), UIStyle.FULL);
 //			System.out.println("당신이 이겼습니다!");
 		} else if (dealerTotal == playerTotal) {
-			ConsoleUIService.printFrame("무승부", List.of("무승부입니다."), UIStyle.Full);
+			ConsoleUIService.printFrame("무승부", List.of("무승부입니다."), UIStyle.FULL);
 //			System.out.println("무승부입니다.");
 		} else {
-			ConsoleUIService.printFrame("패배", List.of("딜러가 이겼습니다."), UIStyle.Full);
+			ConsoleUIService.printFrame("패배", List.of("딜러가 이겼습니다."), UIStyle.FULL);
 //			System.out.println("딜러가 이겼습니다.");
 		}
 	}
