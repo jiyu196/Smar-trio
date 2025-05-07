@@ -21,13 +21,18 @@ public class StoreService { //스토어에 기능을 담당.
 	public List<App> instalableApps = new ArrayList<>();  //스토어의 있는 어플 관리 리스트
 	
 	{// 이곳에 스토어에서 사용할 어플들 추가
+		instalableApps.add(new AppTest(setAppNo()));
+		instalableApps.add(new ContactListApp(setAppNo()));
+	}
+	
+	private int setAppNo() {
 		int no = 1;
 		if(!instalableApps.isEmpty()) {
 			no = instalableApps.get(instalableApps.size()-1).getAppNo()+1;
 		}
-		instalableApps.add(new AppTest(no));
-		instalableApps.add(new ContactListApp(no));
+		return no;
 	}
+	
 	
 	public void storeMenu() {
 		System.out.println("스토어의 어플 목록");
