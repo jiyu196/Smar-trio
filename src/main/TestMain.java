@@ -3,10 +3,11 @@ package main;
 import static utils.TrioUtils.nextInt;
 
 import java.util.List;
-import domain.CalculatorApp;
+
 import domain.ContactList;
+import domain.app.BlackJackApp;
+import domain.app.CalculatorApp;
 import service.ConsoleUIService;
-import service.apps.BlackJackApp;
 
 public class TestMain {
 	public static void main(String[] args) { // 각 어플들의 객체를호출해서 동작 확인 하는 메인입니다

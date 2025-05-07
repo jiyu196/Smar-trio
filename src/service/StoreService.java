@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import domain.App;
 import domain.AppTest;
-import domain.ContactListApp;
+import domain.app.ContactListApp;
 
 public class StoreService { //스토어에 기능을 담당.
 	
