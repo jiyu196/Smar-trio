@@ -1,4 +1,4 @@
-package domain.Apps;
+package domain.apps;
 
 public class MemoApp {
 
@@ -11,39 +11,41 @@ public class MemoApp {
 		this.title = title;
 		this.content = content;
 	}
-	
+
 	public int getNo() {
 		return no;
 	}
 
 	public Object getTitle() {
-
-		return getTitle();
-	}
-
-	public Object getContent() {
-
-		return getContent();
+		return title;
 	}
 
 	public void setTitle(String title) {
+		this.title = title;
+	}
 
+	public Object getContent() {
+		return content;
 	}
 
 	public void setContent(String content) {
-
+		this.content = content;
 	}
 
 	@Override
 	public String toString() {
-		return "메모 [no=" + no + ", title=" + title + ", content=" + content + "]";
+		return no + ";" + title + ";" + content;
 	}
 
 	public static MemoApp fromString(String line) {
 		String[] parts = line.split(";");
-		if (parts.length == 5) {
+		if (parts.length == 3) {
+			try {
 			int no = Integer.parseInt(parts[0]);
 			return new MemoApp(no, parts[1], parts[2]);
+			} catch (NumberFormatException e) {
+				return null;
+			}
 		}
 		return null;
 	}

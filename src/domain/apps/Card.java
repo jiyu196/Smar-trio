@@ -1,6 +1,7 @@
-package domain.Apps;
+package domain.apps;
 
-public class Card {
+
+public class Card{	
 	
     private int suit;
     private int value;
@@ -21,4 +22,5 @@ public class Card {
     public String toString() {
         return "[" + Suits[suit] + Values[value] + "]";
     }
+
 }

@@ -1,4 +1,4 @@
-package domain.Apps;
+package domain.apps;
 
 public class ContactApp {
 	private final int no;

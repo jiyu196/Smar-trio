@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 
-import domain.Apps.ContactApp;
+import domain.apps.ContactApp;
 
 public class ContactAppService {
 	public static void main(String[] args) {
-		new ContactAppService().run();
+		ContactAppService.getInstance().run();
 	}
 //  ContactAppService service = ContactAppService.getInstance();
 	private static final Path CONTACT_PATH = Path.of("storage", "contacts", "contacts.txt");
@@ -28,7 +28,6 @@ public class ContactAppService {
 	}
 
 	public void run() {
-		loadContacts();
 
 		while (true) {
 			System.out.println("--- 연락처 메뉴 ---");
@@ -73,6 +72,7 @@ public class ContactAppService {
 
 		contacts.add(new ContactApp(nextNo++, name, phone, email, nickname));
 		System.out.println("연락처가 추가되었습니다.");
+		saveContacts();
 	}
 
 	private void modifyContact() {
@@ -104,28 +104,7 @@ public class ContactAppService {
 			contact.setNickname(nickname);
 
 		System.out.println("연락처가 수정되었습니다.");
-	}
-
-	private void deleteContact() {
-		if (contacts.isEmpty()) {
-			System.out.println("삭제할 연락처가 없습니다.");
-			return;
-		}
-
-		showContacts();
-		int no = TrioUtils.nextInt("삭제할 연락처 번호: ");
-		ContactApp contact = findByNo(no);
-		if (contact == null) {
-			System.out.println("해당 번호의 연락처가 없습니다.");
-			return;
-		}
-
-		if (TrioUtils.nextConfirm("정말 삭제하시겠습니까? (y/n): ")) {
-			contacts.remove(contact);
-			System.out.println("연락처가 삭제되었습니다.");
-		} else {
-			System.out.println("삭제가 취소되었습니다.");
-		}
+		saveContacts();
 	}
 
 	private void showContacts() {
@@ -135,17 +114,22 @@ public class ContactAppService {
 		}
 
 		for (ContactApp c : contacts) {
-			System.out.printf("번호: %d | 이름: %s | 전화: %s | 이메일: %s | 별명: %s\n", c.getNo(), c.getName(), c.getPhone(),
+			System.out.printf("번호: %d | 이름: %s | 전화: %s | 이메일: %s | 별명: %s\n", 
+					c.getNo(), c.getName(), c.getPhone(),
 					c.getEmail(), c.getNickname());
 		}
 	}
 
 	private void loadContacts() {
-		if (!Files.exists(CONTACT_PATH))
+		contacts.clear();
+		if (!Files.exists(CONTACT_PATH)) {
+			System.out.println("메모 파일이 존재하지 않습니다: " + CONTACT_PATH);
 			return;
-
+		}
 		try {
-			for (String line : Files.readAllLines(CONTACT_PATH)) {
+			List<String> lines = Files.readAllLines(CONTACT_PATH);
+			System.out.println("로드한 연락처 수: " + lines.size());
+			for (String line : lines) {
 				ContactApp c = ContactApp.fromString(line);
 				if (c != null) {
 					contacts.add(c);
@@ -167,6 +151,28 @@ public class ContactAppService {
 			Files.write(CONTACT_PATH, lines);
 		} catch (IOException e) {
 			System.err.println("연락처 저장 실패: " + e.getMessage());
+		}
+	}
+	
+	private void deleteContact() {
+		if (contacts.isEmpty()) {
+			System.out.println("삭제할 연락처가 없습니다.");
+			return;
+		}
+		
+		showContacts();
+		int no = TrioUtils.nextInt("삭제할 연락처 번호: ");
+		ContactApp contact = findByNo(no);
+		if (contact == null) {
+			System.out.println("해당 번호의 연락처가 없습니다.");
+			return;
+		}
+		
+		if (TrioUtils.nextConfirm("정말 삭제하시겠습니까? (y/n): ")) {
+			contacts.remove(contact);
+			System.out.println("연락처가 삭제되었습니다.");
+		} else {
+			System.out.println("삭제가 취소되었습니다.");
 		}
 	}
 
