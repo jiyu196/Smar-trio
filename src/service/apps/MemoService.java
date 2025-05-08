@@ -20,9 +20,9 @@ public class MemoService {
 	private static final MemoService memoService = new MemoService();
 	private int nextNo = 0;
 
-	public MemoService() {
-		load();
-	}
+//	public MemoService() {
+//		load();
+//	}
 
 	public static MemoService getInstance() {
 		return memoService;
@@ -68,7 +68,7 @@ public class MemoService {
 
 	}
 
-	// 메모 수정
+	// 메모 수정 
 	private void modify() {
 		if (memos.isEmpty()) {
 			System.out.println("수정할 메모기록이 없습니다");
@@ -131,29 +131,29 @@ public class MemoService {
 		}
 	}
 
-	private void load() {
-	    memos.clear();
-	    if (!Files.exists(MEMO_PATH)) {
-	        System.out.println("메모 파일이 존재하지 않습니다: " + MEMO_PATH);
-	        return;
-	    }
+//	private void load() {
+//	    memos.clear();
+//	    if (!Files.exists(MEMO_PATH)) {
+//	        System.out.println("메모 파일이 존재하지 않습니다: " + MEMO_PATH);
+//	        return;
+//	    }
+//
+//	    try {
+//	        List<String> lines = Files.readAllLines(MEMO_PATH);
+//	        System.out.println("로드한 메모 수: " + lines.size());
+//	        for (String line : lines) {
+//	            MemoApp m = MemoApp.fromString(line);
+//	            if (m != null) {
+//	                memos.add(m);
+//	                nextNo = Math.max(nextNo, m.getNo() + 1);
+//	            }
+//	        }
+//	    } catch (IOException e) {
+//	        System.err.println("메모장 로드 실패: " + e.getMessage());
+//	    }
+//	}
 
-	    try {
-	        List<String> lines = Files.readAllLines(MEMO_PATH);
-	        System.out.println("로드한 메모 수: " + lines.size());
-	        for (String line : lines) {
-	            MemoApp m = MemoApp.fromString(line);
-	            if (m != null) {
-	                memos.add(m);
-	                nextNo = Math.max(nextNo, m.getNo() + 1);
-	            }
-	        }
-	    } catch (IOException e) {
-	        System.err.println("메모장 로드 실패: " + e.getMessage());
-	    }
-	}
-
-	// 메모 기록 보기
+	// 메모 기록 보기 -재실행 되어도 이전 작성 메모 유지
 	public void showMemo() {
 		if (memos.isEmpty()) {
 			System.out.println("메모가 비어있습니다");
