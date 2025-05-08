@@ -16,8 +16,9 @@ public class MemoService {
 	}
 
 	private static final Path MEMO_PATH = Path.of("storage", "memos", "memos.txt");
-	private static final MemoService memoService = new MemoService();
+	
 	private final List<MemoApp> memos = new ArrayList<>();
+	private static final MemoService memoService = new MemoService();
 	private int nextNo = 0;
 
 	public MemoService() {
