@@ -1,9 +1,10 @@
 package service.apps;
 
-import domain.Card;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import domain.Apps.Card;
 
 public class BlackjackService {
 	private List<Card> deck;

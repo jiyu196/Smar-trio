@@ -1,4 +1,4 @@
-package domain;
+package domain.Apps;
 
 public class Card {
 	
