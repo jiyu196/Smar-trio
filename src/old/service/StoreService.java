@@ -1,11 +1,12 @@
-package service;
+package old.service;
 
-import static utils.TrioUtils.*;
+import static old.utils.TrioUtils.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import domain.App;
-import domain.AppTest;
+
+import old.domain.App;
+import old.domain.AppTest;
 
 public class StoreService { //스토어에 기능을 담당.
 	

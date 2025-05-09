@@ -1,4 +1,4 @@
-package service.apps;
+package old.apps;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -6,24 +6,21 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.apps.MemoApp;
-import utils.TrioUtils;
+import old.domain.App;
+import old.domain.MemoApp;
+import old.utils.TrioUtils;
 
 @SuppressWarnings("unchecked")
-public class MemoService {
+public class MemoService extends App {
 
 	private static final Path MEMO_PATH = Path.of("storage", "memos", "memos.ser");
 
 	private final List<MemoApp> memos = new ArrayList<>();
-	private static final MemoService memoService = new MemoService();
+
 	private int nextNo = 0;
 
-	private MemoService() {
-		load();
-	}
-
-	public static MemoService getInstance() {
-		return memoService;
+	public MemoService(int no) {
+		super(no, "매모");
 	}
 
 	public void run() {

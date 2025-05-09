@@ -1,10 +1,11 @@
-package service;
+package old.service;
+
+import static old.utils.TrioUtils.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import static utils.TrioUtils.*;
 
-import domain.App;
+import old.domain.App;
 
 public class AppService { // 앱의 설치와 삭제 관리
 

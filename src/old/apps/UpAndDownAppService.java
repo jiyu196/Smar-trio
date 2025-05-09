@@ -1,9 +1,9 @@
-package service.apps;
+package old.apps;
 
 import java.util.Scanner;
 
-import utils.DateTimeUtils;
-import utils.TrioUtils;
+import old.utils.DateTimeUtils;
+import old.utils.TrioUtils;
 
 public class UpAndDownAppService {
 	public static void main(String[] args) {

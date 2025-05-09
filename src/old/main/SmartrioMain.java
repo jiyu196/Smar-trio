@@ -1,6 +1,6 @@
-package main;
+package old.main;
 
-import service.MainMenuService;
+import old.service.MainMenuService;
 
 public class SmartrioMain {
 	public static void main(String[] args) {

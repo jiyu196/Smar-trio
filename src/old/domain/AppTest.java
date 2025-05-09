@@ -1,6 +1,6 @@
-package domain;
+package old.domain;
 
-import service.TestappService;
+import old.service.TestappService;
 
 public class AppTest extends App {
 

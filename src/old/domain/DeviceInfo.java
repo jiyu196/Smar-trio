@@ -1,4 +1,4 @@
-package domain;
+package old.domain;
 
 public class DeviceInfo {
 

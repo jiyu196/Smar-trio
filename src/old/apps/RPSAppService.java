@@ -1,8 +1,8 @@
-package service.apps;
+package old.apps;
 
 import java.util.Scanner;
 
-import utils.DateTimeUtils;
+import old.utils.DateTimeUtils;
 
 public class RPSAppService {
 	public static void main(String[] args) {

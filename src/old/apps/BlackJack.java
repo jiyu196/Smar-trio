@@ -1,19 +1,21 @@
-package service.apps;
+package old.apps;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import domain.apps.Card;
-import utils.TrioUtils;
+import old.domain.App;
+import old.domain.Card;
+import old.utils.TrioUtils;
 
-public class BlackJackApp {
+public class BlackJack extends App {
 
 	private Hand playerHand;
 	private Hand dealerHand;
 	private List<Card> deck;
 
-	public BlackJackApp() {
+	public BlackJack(int no) {
+		super(no, "블랙잭");
 		deck = createDeck();
 		Collections.shuffle(deck);
 	}

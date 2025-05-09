@@ -1,6 +1,4 @@
-package service.apps;
-
-import utils.TrioUtils;
+package old.apps;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,7 +8,8 @@ import java.io.ObjectOutputStream;
 import java.nio.file.*;
 import java.util.*;
 
-import domain.apps.ContactApp;
+import old.domain.ContactApp;
+import old.utils.TrioUtils;
 
 @SuppressWarnings("unchecked")
 public class ContactAppService {

@@ -1,4 +1,4 @@
-package service.apps;
+package old.apps;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,20 +6,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import utils.TrioUtils;
+
+import old.domain.App;
+import old.utils.TrioUtils;
 
 //extends App
-public class CalculatorApp {
+public class Calculator extends App {
 
 	private static final Path CALC_PATH = Path.of("storage", "calculator", "math_log.txt");
 
-	private static final CalculatorApp calculatorApp = new CalculatorApp();
-
-	private CalculatorApp() {
-	}
-
-	public static CalculatorApp getInstance() {
-		return calculatorApp;
+	public Calculator(int no) {
+		super(no, "계산기");
 	}
 
 	public void run() {

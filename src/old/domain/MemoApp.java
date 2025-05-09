@@ -1,4 +1,4 @@
-package domain.apps;
+package old.domain;
 
 import java.io.Serializable;
 

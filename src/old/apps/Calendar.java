@@ -1,10 +1,9 @@
-package service.apps;
+package old.apps;
 
 import static java.util.Calendar.*;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-public class CalendarApp {
+public class Calendar {
 	public static void main(String[] args) {
 		//숫자 >> 무자열 : format
 		//문자열 >> 숫자 : parse
@@ -13,7 +12,7 @@ public class CalendarApp {
 		//문자열 >> 날자 : parse
 //		double d = 1e-3;
 		
-		Calendar cal = getInstance();
+		java.util.Calendar cal = getInstance();
 //		cal.set(DATE, 1);
 //		cal.add(MONTH, - 1);
 		int lastDate = cal.getActualMaximum(DATE);

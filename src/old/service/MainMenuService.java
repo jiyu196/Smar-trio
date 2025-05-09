@@ -1,6 +1,7 @@
-package service;
+package old.service;
 
-import static utils.TrioUtils.*;
+import static old.utils.TrioUtils.*;
+
 import java.util.List;
 
 public class MainMenuService { // 이 클래스를 호출하는 것으로 메인에 메뉴를 출력, 메뉴에 직접 기능 호출
