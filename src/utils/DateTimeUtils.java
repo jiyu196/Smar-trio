@@ -6,10 +6,10 @@ import java.util.Calendar;
 
 public class DateTimeUtils {
 
-	private static final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public static String getCurrentDateTime() {
-		return dateTimeFormat.format(new Date());
+		return DATE_TIME_FORMAT.format(new Date());
 	}
 
 	public static String getCurrentDateTime(String pattern) {
