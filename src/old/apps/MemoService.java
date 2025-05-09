@@ -8,7 +8,7 @@ import java.util.List;
 
 import old.domain.App;
 import old.domain.MemoApp;
-import old.utils.TrioUtils;
+import util.TrioUtils;
 
 @SuppressWarnings("unchecked")
 public class MemoService extends App {

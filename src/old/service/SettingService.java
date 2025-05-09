@@ -1,6 +1,6 @@
 package old.service;
 
-import static old.utils.TrioUtils.*;
+import static util.TrioUtils.*;
 
 public class SettingService {
 

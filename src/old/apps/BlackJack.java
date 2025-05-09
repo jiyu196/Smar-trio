@@ -6,7 +6,7 @@ import java.util.List;
 
 import old.domain.App;
 import old.domain.Card;
-import old.utils.TrioUtils;
+import util.TrioUtils;
 
 public class BlackJack extends App {
 

@@ -3,7 +3,7 @@ package old.apps;
 import java.util.Scanner;
 
 import old.utils.DateTimeUtils;
-import old.utils.TrioUtils;
+import util.TrioUtils;
 
 public class UpAndDownAppService {
 	public static void main(String[] args) {

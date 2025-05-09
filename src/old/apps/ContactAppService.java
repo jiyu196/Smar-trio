@@ -9,7 +9,7 @@ import java.nio.file.*;
 import java.util.*;
 
 import old.domain.ContactApp;
-import old.utils.TrioUtils;
+import util.TrioUtils;
 
 @SuppressWarnings("unchecked")
 public class ContactAppService {

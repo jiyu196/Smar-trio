@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import old.domain.App;
-import old.utils.TrioUtils;
+import util.TrioUtils;
 
 //extends App
 public class Calculator extends App {

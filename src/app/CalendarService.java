@@ -3,13 +3,18 @@ package app;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class CalendarService {
+public class CalendarService extends App{
 //	public static void main(String[] args) {
 //		CalendarService app = new CalendarService();
 //        app.run();
 //    }
 
-    public void run() {
+    public CalendarService(int appNo) {
+		super(appNo, "달력");
+		// TODO Auto-generated constructor stub
+	}
+
+	public void run() {
         Calendar cal = Calendar.getInstance();
         // 마지막 날자 (월당)
         int lastDate = cal.getActualMaximum(Calendar.DATE);
