@@ -1,6 +1,8 @@
 package domain.apps;
 
-public class MemoApp {
+import java.io.Serializable;
+
+public class MemoApp implements Serializable {
 
 	private int no;
 	private String title;

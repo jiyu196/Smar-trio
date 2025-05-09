@@ -2,18 +2,23 @@ package service.apps;
 
 import utils.TrioUtils;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.*;
 import java.util.*;
 
 import domain.apps.ContactApp;
 
+@SuppressWarnings("unchecked")
 public class ContactAppService {
 	public static void main(String[] args) {
 		ContactAppService.getInstance().run();
 	}
 //  ContactAppService service = ContactAppService.getInstance();
-	private static final Path CONTACT_PATH = Path.of("storage", "contacts", "contacts.txt");
+	private static final Path CONTACT_PATH = Path.of("storage", "contacts", "contacts.ser");
 
 	private final List<ContactApp> contacts = new ArrayList<>();
 	private static final ContactAppService contactAppService = new ContactAppService();
@@ -123,20 +128,23 @@ public class ContactAppService {
 	private void loadContacts() {
 		contacts.clear();
 		if (!Files.exists(CONTACT_PATH)) {
-			System.out.println("메모 파일이 존재하지 않습니다: " + CONTACT_PATH);
+			System.out.println("파일이 존재하지 않습니다: " + CONTACT_PATH);
 			return;
 		}
 		try {
-			List<String> lines = Files.readAllLines(CONTACT_PATH);
-			System.out.println("로드한 연락처 수: " + lines.size());
-			for (String line : lines) {
-				ContactApp c = ContactApp.fromString(line);
-				if (c != null) {
-					contacts.add(c);
-					nextNo = Math.max(nextNo, c.getNo() + 1);
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(CONTACT_PATH.toFile()));
+			List<ContactApp> loaded = (List<ContactApp>) ois.readObject();
+			ois.close();
+			
+			for (int i = 0; i < loaded.size(); i++) {
+				ContactApp m = loaded.get(i);
+				contacts.add(m);
+				if (m.getNo() >= nextNo) {
+					nextNo = m.getNo() + 1;
 				}
 			}
-		} catch (IOException e) {
+			System.out.println("메모 로드 완료 (" + contacts.size() + "개)");
+		} catch (IOException | ClassNotFoundException e) {
 			System.err.println("연락처 로드 실패: " + e.getMessage());
 		}
 	}
@@ -144,11 +152,9 @@ public class ContactAppService {
 	private void saveContacts() {
 		try {
 			Files.createDirectories(CONTACT_PATH.getParent());
-			List<String> lines = new ArrayList<>();
-			for (ContactApp c : contacts) {
-				lines.add(c.toString());
-			}
-			Files.write(CONTACT_PATH, lines);
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CONTACT_PATH.toFile()));
+			oos.writeObject(contacts);
+			oos.close();
 		} catch (IOException e) {
 			System.err.println("연락처 저장 실패: " + e.getMessage());
 		}

@@ -1,6 +1,8 @@
 package domain.apps;
 
-public class ContactApp {
+import java.io.Serializable;
+
+public class ContactApp implements Serializable {
 	private final int no;
 	private String name;
 	private String phone;
