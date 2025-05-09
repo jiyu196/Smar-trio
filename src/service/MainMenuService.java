@@ -21,7 +21,7 @@ public class MainMenuService { // 이 클래스를 호출하는 것으로 메인
 
 	public void mainMenu() {
 		while (true) {
-			int no = nextInt("실행할 기능 선택: ");
+			int no = nextInt("실행할 기능 선택: \n1. 설정 \n2. \n3. \n4.");
 			switch (no) {
 			case 1: {
 				System.out.println("설정 기능");
