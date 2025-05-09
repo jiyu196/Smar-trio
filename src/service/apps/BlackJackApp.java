@@ -8,10 +8,6 @@ import domain.apps.Card;
 import utils.TrioUtils;
 
 public class BlackJackApp {
-	public static void main(String[] args) {
-		BlackJackApp app = new BlackJackApp();
-		app.run();
-	}
 
 	private Hand playerHand;
 	private Hand dealerHand;

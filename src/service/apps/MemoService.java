@@ -11,9 +11,6 @@ import utils.TrioUtils;
 
 @SuppressWarnings("unchecked")
 public class MemoService {
-	public static void main(String[] args) {
-		MemoService.getInstance().run();
-	}
 
 	private static final Path MEMO_PATH = Path.of("storage", "memos", "memos.ser");
 

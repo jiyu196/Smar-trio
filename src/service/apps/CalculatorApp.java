@@ -10,10 +10,6 @@ import utils.TrioUtils;
 
 //extends App
 public class CalculatorApp {
-	public static void main(String[] args) {
-		CalculatorApp app = new CalculatorApp();
-		app.run();
-	}
 
 	private static final Path CALC_PATH = Path.of("storage", "calculator", "math_log.txt");
 

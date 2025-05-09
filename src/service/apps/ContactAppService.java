@@ -14,9 +14,7 @@ import domain.apps.ContactApp;
 
 @SuppressWarnings("unchecked")
 public class ContactAppService {
-	public static void main(String[] args) {
-		ContactAppService.getInstance().run();
-	}
+
 //  ContactAppService service = ContactAppService.getInstance();
 	private static final Path CONTACT_PATH = Path.of("storage", "contacts", "contacts.ser");
 
