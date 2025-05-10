@@ -23,15 +23,36 @@ public class TrioUtils {
 	}
 
 	public static int nextInt(String msg) {
-		return Integer.parseInt(nextLine(msg));
+		while (true) {
+			try {
+				String input = nextLine(msg);
+				return Integer.parseInt(input);
+			} catch (NumberFormatException e) {
+				System.out.println("유효한 숫자를 입력해주세요.");
+			}
+		}
 	}
 
 	public static double nextDouble(String msg) {
-		return Double.parseDouble(nextLine(msg));
+		while (true) {
+			try {
+				String input = nextLine(msg);
+				return Double.parseDouble(input);
+			} catch (NumberFormatException e) {
+				System.out.println("유효한 숫자를 입력해주세요.");
+			}
+		}
 	}
 
 	public static long nextLong(String msg) {
-		return Long.parseLong(nextLine(msg));
+		while (true) {
+			try {
+				String input = nextLine(msg);
+				return Long.parseLong(input);
+			} catch (NumberFormatException e) {
+				System.out.println("유효한 숫자를 입력해주세요.");
+			}
+		}
 	}
 
 	public static boolean nextConfirm(String msg) {
@@ -73,6 +94,7 @@ public class TrioUtils {
 			Files.createDirectories(logPath.getParent());
 			try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(logPath.toFile()))) {
 				oos.writeObject(content);
+				oos.close();
 			}
 		} catch (IOException e) {
 			System.out.println("기록 저장 실패: " + e.getMessage());

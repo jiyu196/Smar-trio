@@ -3,9 +3,9 @@ package app;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class CalendarService extends App{
+public class SimpleCalendar extends App{
 
-    public CalendarService(int no) {
+    public SimpleCalendar(int no) {
 		super(no, "달력");
 		// TODO Auto-generated constructor stub
 	}
