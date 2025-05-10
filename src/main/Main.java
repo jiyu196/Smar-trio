@@ -1,11 +1,13 @@
 package main;
 
-import static util.TrioUtils.nextInt;
+import static util.TrioUtils.*;
+
+
 
 public class Main {
 	public static void main(String[] args) {
 		
-		mainMenu();
+
 		
 	}
 	

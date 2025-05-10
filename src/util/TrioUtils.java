@@ -37,8 +37,8 @@ public class TrioUtils {
 		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");
 	}
 
+	private static int count = 1;
 	public static int getAppNo() {
-		int count = 1;
 		return count++;
 	}
 
