@@ -6,9 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import java.io.IOException;
-
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class TrioUtils {
@@ -23,11 +25,11 @@ public class TrioUtils {
 	public static int nextInt(String msg) {
 		return Integer.parseInt(nextLine(msg));
 	}
-	
+
 	public static double nextDouble(String msg) {
 		return Double.parseDouble(nextLine(msg));
 	}
-	
+
 	public static long nextLong(String msg) {
 		return Long.parseLong(nextLine(msg));
 	}
@@ -38,6 +40,7 @@ public class TrioUtils {
 	}
 
 	private static int count = 1;
+
 	public static int getAppNo() {
 		return count++;
 	}
@@ -53,16 +56,16 @@ public class TrioUtils {
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		return sdf.format(new Date());
 	}
-	
+
 	// 각 어플 기록 기능
-	
+
 	// 기록 하기
-	public static void writeLog(String appName, String fileName, String message) {
+	public static void writeLog(String appName, String fileName, Object content) {
 		Path logPath = Path.of("storage", appName, fileName); // 기본 폴더 + 서브 폴더 + 파일 이름
 		try {
 			Files.createDirectories(logPath.getParent());
-			try (FileOutputStream fos = new FileOutputStream(logPath.toFile(), true)) {
-				fos.write((message + System.lineSeparator()).getBytes("UTF-8"));
+			try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(logPath.toFile()))) {
+				oos.writeObject(content);
 			}
 		} catch (IOException e) {
 			System.out.println("기록 저장 실패: " + e.getMessage());
@@ -77,11 +80,17 @@ public class TrioUtils {
 			System.out.println("기록이 없습니다.");
 			return;
 		}
-		try (FileInputStream fis = new FileInputStream(logPath.toFile())) {
-			byte[] data = fis.readAllBytes();
-			String content = new String(data, "UTF-8"); // 표준
-			System.out.println(content);
-		} catch (IOException e) {
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(logPath.toFile()))) {
+			Object obj = ois.readObject();
+			if (obj instanceof List) {
+				List<?> history = (List<?>) obj;
+				for (Object item : history) {
+					System.out.println(item);
+				}
+			} else if (obj != null) {
+				System.out.println(obj);
+			}
+		} catch (IOException | ClassNotFoundException e) {
 			System.out.println("기록 읽기 실패: " + e.getMessage());
 		}
 	}
