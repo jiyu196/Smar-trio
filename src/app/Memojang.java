@@ -1,34 +1,37 @@
-package old.apps;
+package app;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import old.domain.App;
-import old.domain.MemoApp;
+import domain.Memo;
 import util.TrioUtils;
 
-@SuppressWarnings("unchecked")
-public class MemoService extends App {
+public class Memojang extends App{
 
-	private static final Path MEMO_PATH = Path.of("storage", "memos", "memos.ser");
-
-	private final List<MemoApp> memos = new ArrayList<>();
-
+	private final List<Memo> memos = new ArrayList<>();
+	
 	private int nextNo = 0;
 
-	public MemoService(int no) {
-		super(no, "매모");
+	public Memojang(int no) {
+		super(no, "메모");
 	}
 
+	public static void main(String[] args) {
+		Memojang app = new Memojang(1);
+		app.run();
+	}
+	
 	public void run() {
 		System.out.println("메모 앱을 실행합니다");
-
+		load();
 		while (true) {
-			int check = TrioUtils.nextInt("1. 메모 추가  \n2. 메모 수정  \n3. 메모 삭제  \n4. 작성한 메모보기  \n5. 돌아가기");
-
+			System.out.println("1. 메모 추가  \\n2. 메모 수정  \\n3. 메모 삭제  \\n4. 작성한 메모보기  \\n5. 돌아가기");
+			int check = TrioUtils.nextInt("옵션을 선택하세요:");
 			switch (check) {
 				case 1:
 					add();
@@ -51,15 +54,15 @@ public class MemoService extends App {
 			}
 		}
 	}
-
+	//메모 추가하기
 	private void add() {
 		String title = TrioUtils.nextLine("제목: ");
 		String content = TrioUtils.nextLine("내용: ");
-		memos.add(new MemoApp(nextNo++, title, content));
+		memos.add(new Memo(nextNo++, title, content));
 		System.out.println("메모 추가 및 저장 완료");
 		save();
 	}
-
+	//메모 수정하기
 	private void modify() {
 		if (memos.isEmpty()) {
 			System.out.println("수정할 메모기록이 없습니다");
@@ -68,7 +71,7 @@ public class MemoService extends App {
 
 		showMemo();
 		int no = TrioUtils.nextInt("수정할 메모장 번호를 입력하세요");
-		MemoApp memo = findBy(no);
+		Memo memo = findBy(no);
 		if (memo == null) {
 			System.out.println("해당 번호의 메모가 없습니다");
 			return;
@@ -87,7 +90,7 @@ public class MemoService extends App {
 		System.out.println("메모가 수정되었습니다.");
 		save();
 	}
-
+	//메모 삭제하기
 	private void delete() {
 		if (memos.isEmpty()) {
 			System.out.println("삭제할 메모가 없습니다");
@@ -96,7 +99,7 @@ public class MemoService extends App {
 
 		showMemo();
 		int no = TrioUtils.nextInt("삭제할 메모장 번호를 입력하세요: ");
-		MemoApp memo = findBy(no);
+		Memo memo = findBy(no);
 		if (memo == null) {
 			System.out.println("해당 번호의 메모가 없습니다");
 			return;
@@ -110,30 +113,26 @@ public class MemoService extends App {
 			System.out.println("메모장 삭제가 취소되었습니다");
 		}
 	}
-
+	//메모 저장하기
 	private void save() {
-		try {
-			Files.createDirectories(MEMO_PATH.getParent());
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(MEMO_PATH.toFile()));
-			oos.writeObject(memos);
-			oos.close();
-		} catch (IOException e) {
-			System.err.println("메모장 저장 실패: " + e.getMessage());
-		}
+		TrioUtils.writeLog("memos", "memos_log.ser", new ArrayList<>(memos));
 	}
-
+	
+	//메모 로드
 	private void load() {
-		if (!Files.exists(MEMO_PATH)) {
-			System.out.println("저장된 메모 파일이 없습니다: " + MEMO_PATH);
+		memos.clear();
+		Path logPath = Path.of("storage", "memos", "memos_log.ser");
+		if (!Files.exists(logPath)) {
+			System.out.println("저장된 메모 파일이 없습니다: " + logPath);
 			return;
 		}
 		try {
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(MEMO_PATH.toFile()));
-			List<MemoApp> loaded = (List<MemoApp>) ois.readObject();
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(logPath.toFile()));
+			List<Memo> loaded = (List<Memo>) ois.readObject();
 			ois.close();
 
 			for (int i = 0; i < loaded.size(); i++) {
-				MemoApp m = loaded.get(i);
+				Memo m = loaded.get(i);
 				memos.add(m);
 				if (m.getNo() >= nextNo) {
 					nextNo = m.getNo() + 1;
@@ -152,12 +151,12 @@ public class MemoService extends App {
 		}
 
 		for (int i = 0; i < memos.size(); i++) {
-			MemoApp m = memos.get(i);
+			Memo m = memos.get(i);
 			System.out.printf("번호: %d | 제목: %s | 내용: %s\n", m.getNo(), m.getTitle(), m.getContent());
 		}
 	}
 
-	private MemoApp findBy(int no) {
+	private Memo findBy(int no) {
 		for (int i = 0; i < memos.size(); i++) {
 			if (memos.get(i).getNo() == no) {
 				return memos.get(i);
