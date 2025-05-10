@@ -2,12 +2,12 @@ package old.apps;
 
 import java.util.Scanner;
 
-import old.utils.DateTimeUtils;
+//import old.utils.DateTimeUtils;
 
 public class RPSAppService {
 	public static void main(String[] args) {
-		String currentTime = DateTimeUtils.getCurrentDateTime("dd/MM/yyyy hh:mm a");
-		System.out.println(currentTime);
+//		String currentTime = DateTimeUtils.getCurrentDateTime("dd/MM/yyyy hh:mm a");
+//		System.out.println(currentTime);
 
 		System.out.print("가위(1), 바위(2), 보(3) 중 하나를 선택하세요 >");
 		Scanner scanner = new Scanner(System.in);
