@@ -7,10 +7,10 @@ import util.TrioUtils;
 
 public class Lotto extends App{
 	
-//	public static void main(String[] args) {
-//		Lotto app = new Lotto(1);
-//		app.run();
-//	}
+	public static void main(String[] args) {
+		Lotto app = new Lotto(1);
+		app.run();
+	}
 
 	public Lotto(int no) {
 		super(no, "로또");
@@ -59,7 +59,6 @@ public class Lotto extends App{
 				System.out.println("게임이 종료되었습니다.");
 				return;
 			}
-			continue;
 		}
 	}
 }

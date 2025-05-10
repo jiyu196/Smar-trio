@@ -35,8 +35,15 @@ public class TrioUtils {
 	}
 
 	public static boolean nextConfirm(String msg) {
-		String s = nextLine(msg + " [y/n]");
-		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");
+//		String s = nextLine(msg + " [y/n]");
+//		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");
+		while (true) {
+			String s = nextLine(msg + " [y/n]");
+			if (s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes"))
+				return true;
+			if (s.equalsIgnoreCase("n") || s.equalsIgnoreCase("no"))
+				return false;
+		}
 	}
 
 	private static int count = 1;

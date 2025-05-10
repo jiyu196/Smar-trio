@@ -50,10 +50,8 @@ public class BlackJack extends App {
 					}
 					continue;
 				}
-
 				dealerTurn();
 				determineWinner();
-
 				if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n): ")) {
 					System.out.println("게임이 종료되었습니다.");
 					return;
