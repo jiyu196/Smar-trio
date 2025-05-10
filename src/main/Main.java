@@ -24,27 +24,28 @@ public class Main {
 		installedApps.add(new Setting(getAppNo()));
 	}
 	
-	
-	
 	public static void Menu() {
 		while (true) {
 			appList();
-			
-			int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0 기기 종료");
-			if (no == 0) {
-				System.out.println("기기를 종료합니다");
-				return;
+			try {
+				int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
+				if (no == 0) {
+					System.out.println("기기를 종료합니다");
+					return;
+				}
+				runApp(no-1);
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-			runApp(no-1);
+
 		}
 	}
 	
 	public static void appList() {
 		for(App a : installedApps) {
-			System.out.println("실제 인덱스"+installedApps.indexOf(a)+"어플 번호" + a.getAppNo()+"어플 이름 : " + a.getAppName());
+			System.out.println("(" + (installedApps.indexOf(a)+1)+") " + a.getAppName());
 		}
 	}
-	
 	
 	public static void runApp(int no) {
 		List<App> tempList = new ArrayList<>(installedApps);
