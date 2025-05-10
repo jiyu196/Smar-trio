@@ -1,11 +1,21 @@
 package util;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import java.io.IOException;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class TrioUtils {
 	private static final Scanner scanner = new Scanner(System.in);
 
-	public static String nextLine(String msg) { // 값 입력시 사용
+	// 출/입력
+	public static String nextLine(String msg) {
 		System.out.println(msg);
 		return scanner.nextLine();
 	}
@@ -13,18 +23,66 @@ public class TrioUtils {
 	public static int nextInt(String msg) {
 		return Integer.parseInt(nextLine(msg));
 	}
-
+	
+	public static double nextDouble(String msg) {
+		return Double.parseDouble(nextLine(msg));
+	}
+	
 	public static long nextLong(String msg) {
 		return Long.parseLong(nextLine(msg));
 	}
 
-	public static boolean nextConfirm(String msg) { // y/n 선택 여부 질문
+	public static boolean nextConfirm(String msg) {
 		String s = nextLine(msg + " [y/n]");
-		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");// 문자열이 같은경우 true 리턴, 대소문 구별 안함
+		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");
 	}
 
-	public static int getAppNo() { // appNo 부여
+	public static int getAppNo() {
 		int count = 1;
 		return count++;
+	}
+
+	// 날짜, 시간
+	private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+	public static String getCurrentDateTime() {
+		return DATE_TIME_FORMAT.format(new Date());
+	}
+
+	public static String getCurrentDateTime(String pattern) {
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		return sdf.format(new Date());
+	}
+	
+	// 각 어플 기록 기능
+	
+	// 기록 하기
+	public static void writeLog(String appName, String fileName, String message) {
+		Path logPath = Path.of("storage", appName, fileName); // 기본 폴더 + 서브 폴더 + 파일 이름
+		try {
+			Files.createDirectories(logPath.getParent());
+			try (FileOutputStream fos = new FileOutputStream(logPath.toFile(), true)) {
+				fos.write((message + System.lineSeparator()).getBytes("UTF-8"));
+			}
+		} catch (IOException e) {
+			System.out.println("기록 저장 실패: " + e.getMessage());
+		}
+	}
+
+	// 기록 보기
+	public static void readLog(String appName, String fileName) {
+		Path logPath = Path.of("storage", appName, fileName); // 기본 폴더 + 서브 폴더 + 파일 이름
+		System.out.println("< 기록 보기 >");
+		if (!Files.exists(logPath)) {
+			System.out.println("기록이 없습니다.");
+			return;
+		}
+		try (FileInputStream fis = new FileInputStream(logPath.toFile())) {
+			byte[] data = fis.readAllBytes();
+			String content = new String(data, "UTF-8"); // 표준
+			System.out.println(content);
+		} catch (IOException e) {
+			System.out.println("기록 읽기 실패: " + e.getMessage());
+		}
 	}
 }

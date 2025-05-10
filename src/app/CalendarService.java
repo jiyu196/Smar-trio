@@ -4,10 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class CalendarService extends App{
-//	public static void main(String[] args) {
-//		CalendarService app = new CalendarService();
-//        app.run();
-//    }
 
     public CalendarService(int appNo) {
 		super(appNo, "달력");

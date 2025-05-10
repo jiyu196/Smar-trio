@@ -1,4 +1,4 @@
-package old.domain;
+package domain;
 
 
 public class Card{	

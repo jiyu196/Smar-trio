@@ -1,11 +1,11 @@
-package old.apps;
+package app;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import domain.Card;
 import old.domain.App;
-import old.domain.Card;
 import util.TrioUtils;
 
 public class BlackJack extends App {
