@@ -5,8 +5,8 @@ import java.util.Calendar;
 
 public class CalendarService extends App{
 
-    public CalendarService(int appNo) {
-		super(appNo, "달력");
+    public CalendarService(int no) {
+		super(no, "달력");
 		// TODO Auto-generated constructor stub
 	}
 

@@ -7,7 +7,7 @@ public abstract class App implements Serializable {
 	private final int appNo;
 	private final String appName;
 	private final boolean systemApp;
-
+	
 	public App(int appNo, String appName) {
 		this(appNo, appName, false);
 	}
@@ -30,6 +30,8 @@ public abstract class App implements Serializable {
 	public boolean isSystemApp() {
 		return systemApp;
 	}
+	
+	public abstract void run();
 	
 	
 }
