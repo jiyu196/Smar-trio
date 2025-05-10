@@ -69,7 +69,7 @@ public class TrioUtils {
 
 	private static int count = 1;
 
-	public static int getAppNo() {
+	public static int generateAppNo() {
 		return count++;
 	}
 

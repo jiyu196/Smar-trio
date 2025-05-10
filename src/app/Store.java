@@ -1,10 +1,9 @@
 package app;
 
+import static util.TrioUtils.*;
 import java.util.ArrayList;
 import java.util.List;
 import main.Main;
-
-import static util.TrioUtils.*;
 
 public class Store extends App{
 
@@ -15,7 +14,16 @@ public class Store extends App{
 	public static List<App> store = new ArrayList<App>();
 	
 	{
-		store.add(new Calculator(getAppNo()));
+		store.add(new Calculator(generateAppNo()));
+		store.add(new BlackJack(generateAppNo()));
+		store.add(new ContactList(generateAppNo()));
+		store.add(new Memojang(generateAppNo()));
+		store.add(new Lotto(generateAppNo()));
+		store.add(new RSP(generateAppNo()));
+		store.add(new SimpleCalendar(generateAppNo()));
+		store.add(new UpandDown(generateAppNo()));
+	
+		
 	}
 	
 	@Override
@@ -33,7 +41,7 @@ public class Store extends App{
 	
 	private void appList() {
 		for(App a: store) {
-			System.out.println("(" + a.getAppNo()+") " + a.getAppName());
+			System.out.println("(" +(store.indexOf(a)+1)+") " + a.getAppName());
 		}
 	}
 

@@ -20,8 +20,8 @@ public class Main {
 	public static List<App> installedApps = new ArrayList<App>();
 	
 	static{
-		installedApps.add(new Store(getAppNo()));
-		installedApps.add(new Setting(getAppNo()));
+		installedApps.add(new Store(generateAppNo()));
+		installedApps.add(new Setting(generateAppNo()));
 	}
 	
 	public static void Menu() {
