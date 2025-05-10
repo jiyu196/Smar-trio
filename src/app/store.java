@@ -17,7 +17,7 @@ public class store extends App{
 		
 		install();
 		while(true) {
-			int no = nextInt(getCurrentDateTime());
+			int no = nextInt("실행하고싶은 기능의 번호를 입력해주세요");
 		}
 		
 		
