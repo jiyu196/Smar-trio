@@ -1,15 +1,27 @@
-package old.apps;
+package app;
 
 import java.util.Arrays;
 
-//import old.utils.DateTimeUtils;
+import util.TrioUtils;
 
-public class LottoAppService {
 
+public class Lotto extends App{
+	
+//	public static void main(String[] args) {
+//		Lotto app = new Lotto(1);
+//		app.run();
+//	}
+	
+	 public Lotto(int no) {
+	        super(no, "로또");
+	    }
+	 
 	public void run() {
-//		String currentTime = DateTimeUtils.getCurrentDateTime("dd/MM/yyyy hh:mm a");
-//		System.out.println(currentTime);
-
+		System.out.println("로또 앱을 실행합니다");
+		if (!TrioUtils.nextConfirm("로또 번호를 뽑으시겠습니까? ")) {
+			return;
+	}
+		while(true) {
 		int[] lotto = new int[6];
 		int idx = 0;
 		while (true) {
@@ -40,6 +52,13 @@ public class LottoAppService {
 				}
 			}
 		}
-		System.out.println(Arrays.toString(arr));
+		System.out.println("이번 랜덤 번호는 "+ Arrays.toString(arr)+ "입니다");
+		
+			if (!TrioUtils.nextConfirm("로또 번호를 다시 뽑으시겠습니까? ")) {
+			System.out.println("게임이 종료되었습니다.");
+			return;
+			}
+			continue;
+		}
 	}
 }
