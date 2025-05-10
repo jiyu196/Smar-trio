@@ -1,7 +1,6 @@
 package app;
 
 import domain.Calculation;
-import old.domain.App;
 import util.TrioUtils;
 
 public class Calculator extends App {

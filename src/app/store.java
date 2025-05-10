@@ -12,6 +12,10 @@ public class store extends App{
 
 	List<App> store = new ArrayList<App>();
 	
+	{
+		store.add(new Calculator(getAppNo()));
+	}
+	
 	@Override
 	public void run() {
 		

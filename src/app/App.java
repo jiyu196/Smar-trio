@@ -32,6 +32,11 @@ public abstract class App implements Serializable {
 	}
 	
 	public abstract void run();
+
+	@Override
+	public String toString() {
+		return "App [appNo=" + appNo + ", appName=" + appName + ", systemApp=" + systemApp + "]";
+	}
 	
 	
 }
