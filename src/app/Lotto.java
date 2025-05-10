@@ -7,10 +7,10 @@ import util.TrioUtils;
 
 public class Lotto extends App{
 	
-	public static void main(String[] args) {
-		Lotto app = new Lotto(1);
-		app.run();
-	}
+//	public static void main(String[] args) {
+//		Lotto app = new Lotto(1);
+//		app.run();
+//	}
 
 	public Lotto(int no) {
 		super(no, "로또");
@@ -19,7 +19,7 @@ public class Lotto extends App{
 	public void run() {
 		System.out.println("로또 앱을 실행합니다");
 		if (!TrioUtils.nextConfirm("로또 번호를 뽑으시겠습니까? ")) {
-			System.out.println("게임이 종료되었습니다.");
+			System.out.println("로또 앱이 종료되었습니다.");
 			return;
 		}
 		while (true) {
@@ -53,10 +53,12 @@ public class Lotto extends App{
 					}
 				}
 			}
-			System.out.println("이번 랜덤 번호는 " + Arrays.toString(arr) + "입니다");
-
+			System.out.println("-------------------------------------------------");
+			System.out.println("이번 랜덤 번호는 " + Arrays.toString(arr) + " 입니다");
+			System.out.println("-------------------------------------------------");
+			
 			if (!TrioUtils.nextConfirm("로또 번호를 다시 뽑으시겠습니까? ")) {
-				System.out.println("게임이 종료되었습니다.");
+				System.out.println("로또 앱이 종료되었습니다.");
 				return;
 			}
 		}

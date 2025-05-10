@@ -15,8 +15,8 @@ public class UpandDown extends App{
 
 	public void run() {
 		System.out.println("업앤다운 앱을 실행합니다");
-		if (!TrioUtils.nextConfirm("게임을 시작하시겠습니까? ")) {
-			System.out.println("게임이 종료되었습니다.");
+		if (!TrioUtils.nextConfirm("업앤다운 게임을 시작하시겠습니까? ")) {
+			System.out.println("업앤다운 앱이 종료되었습니다.");
 			return;
 		}
 		while (true) {
@@ -26,19 +26,22 @@ public class UpandDown extends App{
 			int value = (int) (Math.random() * 100 + 1);
 
 			do {
+				System.out.println("-------------------------------------------------");
 				input = TrioUtils.nextInt("1에서 100사이의 숫자를 입력하세요 >");
+				
 				if (value < input) {
-					System.out.println("다운입니다");
+					System.out.println("<다운>입니다");
 				} else if (value > input) {
-					System.out.println("업입니다");
+					System.out.println("<업>입니다");
 				}
 				count++;
 			} while (value != input);
 
 			System.out.println(count + "번째에 당첨! 축하합니다");
+			System.out.println("=================================================");
 
 			if (!TrioUtils.nextConfirm("게임을 다시 시작하시겠습니까? ")) {
-				System.out.println("게임이 종료되었습니다.");
+				System.out.println("업앤다운 앱이 종료되었습니다.");
 				return;
 			}
 			continue;
