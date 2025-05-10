@@ -45,8 +45,10 @@ public class Main {
 		}
 	}
 	
+	
 	public static void runApp(int no) {
-		for(App a: installedApps) {
+		List<App> tempList = new ArrayList<>(installedApps);
+		for(App a: tempList) {
 			if(installedApps.indexOf(a) == no) {
 				a.run();
 			}

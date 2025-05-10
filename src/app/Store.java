@@ -20,16 +20,14 @@ public class Store extends App{
 	
 	@Override
 	public void run() {
-		
-		
 		while(true) {
-			int no = nextInt("설치하고 싶은 어플의 번호를 입력해주세요. 0은 종료");
 			appList();
+			int no = nextInt("설치하고 싶은 어플의 번호를 입력해주세요. 0은 종료");
 			if(no == 0) {
 				System.out.println("설치를 취소하고 스토어로 되돌아갑니다");
 				return;
 			}
-			no = no -1;
+			install(no -1);
 		}
 		
 		
@@ -40,25 +38,19 @@ public class Store extends App{
 			System.out.println("인덱스 번호 : "+store.indexOf(a)+a.toString());
 		}
 	}
-	
-	
-	private void install(App app) {
-		if(app == null) {
-			System.out.println("선택한 어플이 없습니다");
-			return;
-		}
-		Main.installedApps.add(app);
-		System.out.println(app.getAppName() + "을 설치하였습니다");
-	}
-	
-	private App findby(int no) {
-		for(App a : store) {
-			if(store.indexOf(a) == no) {
-				return a;
+
+	//   ConcurrentModificationException 의 발생, 리스트의 순회중 run 메소드를 실행중에 리스으틔 내용을 바꾼것으로 취급하여 예외가 발생
+	private void install(int no) {
+		List<App> tempList = new ArrayList<>(store);
+		for(App a : tempList) {
+			if(store.indexOf(a)== no) {
+				Main.installedApps.add(a);
+				System.out.println(a.getAppName()+"을 설치했습니다");
 			}
 		}
-		return null;
+
 	}
+
 	
 	
 }
