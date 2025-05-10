@@ -1,12 +1,8 @@
 package app;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.*;
+import java.io.*;
 import java.util.*;
+import java.nio.file.*;
 
 import domain.Contacts;
 import util.TrioUtils;
@@ -15,21 +11,17 @@ import util.TrioUtils;
 public class ContactList extends App {
 
 	private final List<Contacts> contacts = new ArrayList<>();
-//	private static final ContactAppService contactAppService = new ContactAppService();
+
 	private int nextNo = 0;
 
 	public ContactList(int no) {
 		super(no, "주소록");
-//		loadContacts();
 	}
 
-//	public static ContactAppService getInstance() {
-//		return contactAppService;
+//	public static void main(String[] args) {
+//		ContactList app = new ContactList(1);
+//		app.run();
 //	}
-	public static void main(String[] args) {
-		ContactList app = new ContactList(1);
-		app.run();
-	}
 
 	public void run() {
 		loadContacts();
@@ -60,7 +52,7 @@ public class ContactList extends App {
 		}
 	}
 
-	private void addContact() {
+	private void addContact() { // 주소록 추가
 		String name = TrioUtils.nextLine("이름: ");
 		String phone = TrioUtils.nextLine("전화번호 (010-1234-5678): ");
 		if (!phone.matches("^01[0-9]-\\d{3,4}-\\d{4}$")) {
@@ -79,7 +71,7 @@ public class ContactList extends App {
 		saveContacts();
 	}
 
-	private void modifyContact() {
+	private void modifyContact() { // 주소록 수정
 		if (contacts.isEmpty()) {
 			System.out.println("수정할 연락처가 없습니다.");
 			return;
@@ -111,7 +103,7 @@ public class ContactList extends App {
 		saveContacts();
 	}
 
-	private void showContacts() {
+	private void showContacts() { // 주소록 보기
 		if (contacts.isEmpty()) {
 			System.out.println("등록된 연락처가 없습니다.");
 			return;
@@ -123,11 +115,11 @@ public class ContactList extends App {
 		}
 	}
 
-	private void saveContacts() {
+	private void saveContacts() { // 주소록 저장
 		TrioUtils.writeLog("contacts", "contacts_log.ser", new ArrayList<>(contacts));
 	}
 
-	private void loadContacts() {
+	private void loadContacts() { // 주소록 조회
 		contacts.clear();
 		Path logPath = Path.of("storage", "contacts", "contacts_log.ser");
 		if (!Files.exists(logPath)) {
@@ -151,7 +143,7 @@ public class ContactList extends App {
 		}
 	}
 
-	private void deleteContact() {
+	private void deleteContact() { // 주소록 삭제
 		try {
 			if (contacts.isEmpty()) {
 				System.out.println("삭제할 연락처가 없습니다.");
@@ -172,8 +164,10 @@ public class ContactList extends App {
 				} else {
 					System.out.println("삭제가 취소되었습니다.");
 				}
-			} catch (NumberFormatException e) {}			
-		} catch (Exception e) {}
+			} catch (NumberFormatException e) {
+			}
+		} catch (Exception e) {
+		}
 	}
 
 	private Contacts findByNo(int no) {

@@ -74,7 +74,7 @@ public class Calculator extends App {
 			Calculation calc = new Calculation(number1, number2, operation, result);
             System.out.println("결과 : " + result);
             calculationHistory.add(calc);
-            TrioUtils.writeLog("calculator", "math_log.ser", calculationHistory);
+            TrioUtils.writeLog("calculator", "math_log.ser", calculationHistory); //calculationHistory = 내용
             break;
 		}
 	}

@@ -88,7 +88,7 @@ public class TrioUtils {
 	// 각 어플 기록 기능
 
 	// 기록 하기
-	public static void writeLog(String appName, String fileName, Object content) {
+	public static void writeLog(String appName, String fileName, Object content) { // Object content = 내용
 		Path logPath = Path.of("storage", appName, fileName); // 기본 폴더 + 서브 폴더 + 파일 이름
 		try {
 			Files.createDirectories(logPath.getParent());
