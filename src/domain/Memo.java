@@ -46,7 +46,6 @@ public class Memo implements Serializable{
 	public String toString() {
 		return "MemoApp [no=" + no + ", title=" + title + ", content=" + content + "]";
 	}
-	
 
 
 
