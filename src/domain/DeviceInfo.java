@@ -8,18 +8,22 @@ public class DeviceInfo implements Serializable{
 	private String userName;
 	private String deivcePw;
 	private String userEmail;
+	private String tel;
 	
+	public DeviceInfo() {}
 	
-	public DeviceInfo(String userName, String userEmail) {
+	public DeviceInfo(String userName, String userEmail, String tel) {
 		this.userName = userName;
 		this.userEmail = userEmail;
+		this.tel = tel;
 	}
 	
-	public DeviceInfo(String userName, String deivcePw, String userEmail) {
+	public DeviceInfo(String userName, String deivcePw, String userEmail ,String tel) {
 		super();
 		this.userName = userName;
 		this.deivcePw = deivcePw;
 		this.userEmail = userEmail;
+		this.tel = tel;
 	}
 
 	public String getUserName() {
@@ -50,6 +54,25 @@ public class DeviceInfo implements Serializable{
 		return DEVICENAME;
 	}
 
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	@Override
+	public String toString() {
+		return "DeviceInfo [ 기기 이름 = "+DEVICENAME+"사용자 이름 :" + userName + ", 사용자 이메일=" + userEmail + ", 사용자 전화번="
+				+ tel + "]";
+	}
+	
+	
+	
+	
+
+	
 
 	
 	

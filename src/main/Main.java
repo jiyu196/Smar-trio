@@ -4,6 +4,7 @@ import static util.TrioUtils.*;
 import java.util.ArrayList;
 import java.util.List;
 import app.App;
+import app.Info;
 import app.Setting;
 import app.Store;
 
@@ -12,7 +13,21 @@ import app.Store;
 public class Main {
 	public static void main(String[] args) {
 		
-		Menu();
+		Info info = Info.getInstance();
+		try {
+//			if(!info.isRegistInfo()) {
+//				System.out.println("등록된 사용자가 없습니다 가입하시겠습니까?");
+//				info.register();
+//			}
+//			if(!info.isLoginInfo()) {
+//				System.out.println("비밀번호를 입력해주세요");
+//				info.logIn();
+//			}
+			Menu();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		
 	}
 	
