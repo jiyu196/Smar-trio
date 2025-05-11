@@ -42,8 +42,8 @@ public class BlackJack extends App {
 				System.out.println("당신의 패: " + playerHand);
 
 				if (!playerTurn()) {
-					System.out.println("\n버스트! 당신이 졌습니다.");
-					if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? (y/n): ")) {
+//					System.out.println("\n버스트! 당신이 졌습니다.");
+					if (!TrioUtils.nextConfirm("게임을 다시 하시겠습니까? : ")) {
 						System.out.println("게임이 종료되었습니다.");
 						return;
 					}
