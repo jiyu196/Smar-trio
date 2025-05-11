@@ -21,16 +21,17 @@ public class Memojang extends App{
 		super(no, "메모");
 	}
 
-	public static void main(String[] args) {
-		Memojang app = new Memojang(1);
-		app.run();
-	}
+//	public static void main(String[] args) {
+//		Memojang app = new Memojang(1);
+//		app.run();
+//	}
 	
 	public void run() {
 		System.out.println("메모 앱을 실행합니다");
 		load();
 		while (true) {
-			System.out.println("1. 메모 추가  \\n2. 메모 수정  \\n3. 메모 삭제  \\n4. 작성한 메모보기  \\n5. 돌아가기");
+			System.out.println("1. 메모 추가  \n2. 메모 수정  \n3. 메모 삭제  \n4. 작성한 메모보기  \n5. 돌아가기");
+			System.out.println("-------------------------------------------------");
 			int check = TrioUtils.nextInt("옵션을 선택하세요:");
 			switch (check) {
 				case 1:
@@ -60,6 +61,7 @@ public class Memojang extends App{
 		String content = TrioUtils.nextLine("내용: ");
 		memos.add(new Memo(nextNo++, title, content));
 		System.out.println("메모 추가 및 저장 완료");
+		System.out.println("-------------------------------------------------");
 		save();
 	}
 	//메모 수정하기
@@ -73,7 +75,7 @@ public class Memojang extends App{
 		int no = TrioUtils.nextInt("수정할 메모장 번호를 입력하세요");
 		Memo memo = findBy(no);
 		if (memo == null) {
-			System.out.println("해당 번호의 메모가 없습니다");
+			System.out.println("해당 번호의 메모장이 없습니다");
 			return;
 		}
 
@@ -87,13 +89,13 @@ public class Memojang extends App{
 			memo.setContent(content);
 		}
 
-		System.out.println("메모가 수정되었습니다.");
+		System.out.println("메모 기록이 수정되었습니다.");
 		save();
 	}
 	//메모 삭제하기
 	private void delete() {
 		if (memos.isEmpty()) {
-			System.out.println("삭제할 메모가 없습니다");
+			System.out.println("삭제할 메모기록이 없습니다");
 			return;
 		}
 
@@ -101,11 +103,11 @@ public class Memojang extends App{
 		int no = TrioUtils.nextInt("삭제할 메모장 번호를 입력하세요: ");
 		Memo memo = findBy(no);
 		if (memo == null) {
-			System.out.println("해당 번호의 메모가 없습니다");
+			System.out.println("해당 번호의 메모장이 없습니다");
 			return;
 		}
 
-		if (TrioUtils.nextConfirm("정말 삭제하시겠습니까? (y/n): ")) {
+		if (TrioUtils.nextConfirm("정말 삭제하시겠습니까? ")) {
 			memos.remove(memo);
 			System.out.println("메모장이 삭제되었습니다");
 			save();
@@ -123,7 +125,7 @@ public class Memojang extends App{
 		memos.clear();
 		Path logPath = Path.of("storage", "memos", "memos_log.ser");
 		if (!Files.exists(logPath)) {
-			System.out.println("저장된 메모 파일이 없습니다: " + logPath);
+			System.out.println("저장된 메모기록이 없습니다: ");
 			return;
 		}
 		try {
@@ -138,7 +140,8 @@ public class Memojang extends App{
 					nextNo = m.getNo() + 1;
 				}
 			}
-			System.out.println("메모 로드 완료 (" + memos.size() + "개)");
+			System.out.println("저장된 메모 (" + memos.size() + "개)");
+			System.out.println("-------------------------------------------------");
 		} catch (IOException | ClassNotFoundException e) {
 			System.err.println("메모장 로드 실패: " + e.getMessage());
 		}
@@ -152,7 +155,7 @@ public class Memojang extends App{
 
 		for (int i = 0; i < memos.size(); i++) {
 			Memo m = memos.get(i);
-			System.out.printf("번호: %d | 제목: %s | 내용: %s\n", m.getNo(), m.getTitle(), m.getContent());
+			System.out.printf("<메모장 번호>  %d | <제목>  %s | <내용>  %s\n", m.getNo(), m.getTitle(), m.getContent());
 		}
 	}
 
