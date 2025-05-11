@@ -11,15 +11,17 @@ public class SimpleCalendar extends App{
 	}
 
 	public void run() {
-        Calendar cal = Calendar.getInstance();
+        
+    }
+	
+	private void displayCalendar() {
+		Calendar cal = Calendar.getInstance();
         // 마지막 날자 (월당)
-        int lastDate = cal.getActualMaximum(Calendar.DATE);
+		int lastDate = cal.getActualMaximum(Calendar.DATE);
         // 시작 날자
         int startDate = cal.get(Calendar.DAY_OF_WEEK);
         int weekEndSet = startDate - 1;
-
-        // 날자 출력
-        System.out.println(new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
+		System.out.println(new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
         // 주일 출력
         System.out.println("Su Mo Tu We Th Fr Sa");
         // 빈공간 출력
@@ -36,5 +38,5 @@ public class SimpleCalendar extends App{
                 System.out.println();
             }
         }
-    }
+	}
 }

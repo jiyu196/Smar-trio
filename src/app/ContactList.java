@@ -24,6 +24,7 @@ public class ContactList extends App {
 //	}
 
 	public void run() {
+		System.out.println("연락처 앱을 실행합니다");
 		loadContacts();
 		while (true) {
 			System.out.println("--- 연락처 메뉴 ---");
@@ -116,12 +117,12 @@ public class ContactList extends App {
 	}
 
 	private void saveContacts() { // 주소록 저장
-		TrioUtils.writeLog("contacts", "contacts_log.ser", new ArrayList<>(contacts));
+		TrioUtils.writeLog("contacts", "contacts_log.ser", new ArrayList<>(contacts)); //Array List로 저장
 	}
 
 	private void loadContacts() { // 주소록 조회
-		contacts.clear();
-		Path logPath = Path.of("storage", "contacts", "contacts_log.ser");
+		contacts.clear(); //
+		Path logPath = Path.of("storage", "contacts", "contacts_log.ser"); // 저장위치 불러오기
 		if (!Files.exists(logPath)) {
 			System.out.println("저장된 연락처가 없습니다.");
 			return;

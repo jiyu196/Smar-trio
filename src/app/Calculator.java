@@ -10,10 +10,10 @@ public class Calculator extends App {
 	
 	private List<Calculation> calculationHistory = new ArrayList<>();
 	
-	public static void main(String[] args) {
-		Calculator app = new Calculator(1);
-		app.run();
-	}
+//	public static void main(String[] args) {
+//		Calculator app = new Calculator(1);
+//		app.run();
+//	}
 
 	public Calculator(int no) {
 		super(no, "계산기");
