@@ -3,10 +3,13 @@ package app;
 import static util.TrioUtils.*;
 import java.util.ArrayList;
 import java.util.List;
-import main.Main;
+
 
 public class Store extends App{
 
+	main.Main.
+	
+	
 	public Store(int no) {
 		super(no, "스토어", true);
 		}
@@ -50,7 +53,7 @@ public class Store extends App{
 
 		for(App a : tempList) {
 			if(store.indexOf(a) == no) {
-				if(Main.installedApps.contains(a)) {
+				if(installedApps.contains(a)) {
 					System.out.println("이미"+ a.getAppName()+ "은 설치되어있습니다");
 					return;
 				}else {

@@ -3,7 +3,6 @@ package main;
 import static util.TrioUtils.*;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,20 +19,22 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		Menu();
-
+		main.menu();
 	}
+	
+	static Main main = new Main();
 
-	public static List<App> installedApps = new ArrayList<App>();
+	
+	public List<App> installedApps = new ArrayList<App>();
 
-	static {
+	{
 		
 		installedApps.add(new Store(generateAppNo()));
 		installedApps.add(new Setting(generateAppNo()));
 
 	}
 
-	public static void Menu() {
+	public void menu() {
 
 		Info info = Info.getInstance();
 
@@ -68,7 +69,7 @@ public class Main {
 		}
 	}
 
-	public static void appList() {
+	public void appList() {
 //		for (App a : installedApps) {
 //			System.out.println(
 //					"("+ (installedApps.indexOf(a) + 1) + ") " + a.getAppName());
@@ -80,7 +81,7 @@ public class Main {
 		}
 	}
 
-	public static void runApp(int no) {
+	public void runApp(int no) {
 		List<App> tempList = new ArrayList<>(installedApps);
 		for (App a : tempList) {
 			if (installedApps.indexOf(a) == no) {
@@ -89,11 +90,11 @@ public class Main {
 		}
 	}
 	
-	public static void saveInstalledApps() {
+	public void saveInstalledApps() {
         save("storage", "system", "installed_apps.ser", installedApps); // 파일료 저장
     }
 	
-	public static void loadInstalledApps() {
+	public void loadInstalledApps() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/system/installed_apps.ser"))) {
             List<App> loadedApps = (List<App>) ois.readObject(); // Read installed apps from file
             installedApps.clear();

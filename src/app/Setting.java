@@ -2,8 +2,6 @@ package app;
 
 import static util.TrioUtils.*;
 
-import static main.Main.installedApps;
-
 public class Setting extends App {
 
 	public Setting(int appNo) {
