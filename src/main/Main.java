@@ -69,7 +69,7 @@ public class Main {
 	public static void appList() {
 		for (App a : installedApps) {
 			System.out.println(
-					"( appno" + a.getAppNo() + "  인덱스" + (installedApps.indexOf(a) + 1) + ") " + a.getAppName());
+					"("+ (installedApps.indexOf(a) + 1) + ") " + a.getAppName());
 		}
 	}
 

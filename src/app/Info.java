@@ -1,5 +1,6 @@
 package app;
 
+import static util.TrioUtils.nextConfirm;
 import static util.TrioUtils.nextInt;
 import static util.TrioUtils.nextLine;
 
@@ -114,8 +115,9 @@ public class Info {
 			System.out.println("이미 로그아웃중입니다");
 			return;
 		}
-		setLoginInfo(false);
-		
+		if(nextConfirm("로그아웃 하시겠습니까 삭제시겠습니까? y/n")) {
+			setLoginInfo(false);
+		}
 	}
 
 	public void deleteInfo() {
@@ -123,14 +125,15 @@ public class Info {
 			System.out.println("가입된 계정이 없습니다");
 			return;
 		}
-		
-		Info.setUserName(null);
-		Info.setDeivcePw(null);
-		Info.setTel(null);
-		System.out.println("사용자 정보가 제거 되었습니다");
-		setLoginInfo(false);
-		setRegistInfo(false);
-		return;	
+		if(nextConfirm("사용자를 정말 삭제시겠습니까? y/n")) {
+			Info.setUserName(null);
+			Info.setDeivcePw(null);
+			Info.setTel(null);
+			System.out.println("사용자 정보가 제거 되었습니다");
+			setLoginInfo(false);
+			setRegistInfo(false);
+			return;	
+		}
 	}
 
 	private void checkTel(String tel) {
