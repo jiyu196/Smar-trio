@@ -37,11 +37,8 @@ public class Info {
 				deleteInfo();
 				return;
 			case 0:
-				System.out.println("1 번");
+				System.out.println("종료합니다");
 				break;
-
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + no);
 			}
 		}
 	}
@@ -139,21 +136,21 @@ public class Info {
 	private void checkTel(String tel) {
 		String s = "01[0-9]-[0-9]{3,4}-[0-9]{4}";
 		if (!tel.matches(s)) {
-			throw new IllegalArgumentException("옳바른 전화번호를 입력해주세요");
+			throw new IllegalArgumentException("옳바른 전화번호를 입력해주세요 \n 처음부터 다시 시도해주세요");
 		}
 	}
 
 	private void checkEmail(String email) {
 		String s = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
 		if (!email.matches(s)) {
-			throw new IllegalArgumentException("옳바른 형식의 이메일을 입력해주세요");
+			throw new IllegalArgumentException("옳바른 형식의 이메일을 입력해주세요 \n 처음부터 다시 시도해주세요");
 		}
 	}
 
 	private void checkPw(String pw) {
 		String s = "^\\S{4,}$";
 		if (!pw.matches(s)) {
-			throw new IllegalArgumentException("비밀번호는 공백을 포함하지 않은 4글자 이상이어야합니다");
+			throw new IllegalArgumentException("비밀번호는 공백을 포함하지 않은 4글자 이상이어야합니다\n 처음부터 다시 시도해주세요");
 		}
 	}
 	

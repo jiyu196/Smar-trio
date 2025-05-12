@@ -2,8 +2,6 @@ package app;
 
 import static util.TrioUtils.*;
 
-import domain.DeviceInfo;
-
 import static main.Main.installedApps;
 
 public class Setting extends App {
@@ -22,6 +20,9 @@ public class Setting extends App {
 			switch (no) {
 			case 1:
 				Info.getInstance().accountMenu();
+				if(!Info.getInstance().isLoginInfo()) {
+					return;
+				}
 				break;
 			case 2:
 				deletApp();

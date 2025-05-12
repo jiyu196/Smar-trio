@@ -8,73 +8,74 @@ import app.Info;
 import app.Setting;
 import app.Store;
 
-
-
-
 public class Main {
-	
+
 	{
-		
+
 	}
-	
+
 	public static void main(String[] args) {
 
-//			if(!info.isRegistInfo()) {
-//				System.out.println("등록된 사용자가 없습니다 가입하시겠습니까?");
-//				info.register();
-//			}
 		Menu();
-		
-		
-		
+
 	}
-	
-	
+
 	public static List<App> installedApps = new ArrayList<App>();
-	
-	static{
+
+	static {
 		installedApps.add(new Store(generateAppNo()));
 		installedApps.add(new Setting(generateAppNo()));
 	}
-	
+
 	public static void Menu() {
-		
+
 		Info info = Info.getInstance();
-		
+
 		while (true) {
-//			if(!info.isLoginInfo()) {
-//				System.out.println("비밀번호를 입력해주세요");
-//				info.logIn();
-//			}else {
-				appList();
-				try {
+
+			try {
+
+				if (!info.isRegistInfo()) {
+					System.out.println("등록된 사용자가 없습니다 가입하시겠습니까?");
+					info.register();
+				}
+
+				if (!info.isLoginInfo()) {
+					info.logIn();
+				} else {
+					appList();
 					int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
 					if (no == 0) {
 						System.out.println("기기를 종료합니다");
 						return;
 					}
-					runApp(no-1);
-				} catch (Exception e) {
-					// TODO: handle exception
+					
+					runApp(no - 1);
 				}
-//			}
+			} catch (NumberFormatException e) {
+				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			} catch (NullPointerException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
-	
+
 	public static void appList() {
-		for(App a : installedApps) {
-			System.out.println("( appno" + a.getAppNo()+"  인덱스" +(installedApps.indexOf(a)+1)+") " + a.getAppName());
+		for (App a : installedApps) {
+			System.out.println(
+					"( appno" + a.getAppNo() + "  인덱스" + (installedApps.indexOf(a) + 1) + ") " + a.getAppName());
 		}
 	}
-	
+
 	public static void runApp(int no) {
 		List<App> tempList = new ArrayList<>(installedApps);
-		for(App a: tempList) {
-			if(installedApps.indexOf(a) == no) {
+		for (App a : tempList) {
+			if (installedApps.indexOf(a) == no) {
 				a.run();
 			}
 		}
 	}
-	
-	
+
 }
