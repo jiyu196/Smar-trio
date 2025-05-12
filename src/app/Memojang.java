@@ -33,7 +33,7 @@ public class Memojang extends App{
 		load();
 		while (true) {
 			System.out.println("1. 메모 추가  \n2. 메모 수정  \n3. 메모 삭제  \n4. 작성한 메모보기  \n5. 돌아가기");
-			System.out.println("-------------------------------------------------");
+			System.out.println("==============================================");
 			int check = TrioUtils.nextInt("옵션을 선택하세요:");
 			switch (check) {
 				case 1:
@@ -63,7 +63,7 @@ public class Memojang extends App{
 		String content = TrioUtils.nextLine("내용: ");
 		memos.add(new Memo(nextNo++, title, content)); 
 		System.out.println("메모 추가 및 저장 완료");
-		System.out.println("-------------------------------------------------");
+		System.out.println("==============================================");
 		save();
 	}
 	//메모 수정하기
@@ -119,7 +119,9 @@ public class Memojang extends App{
 	}
 	//메모 저장하기
 	private void save() {
+		
 		TrioUtils.writeLog("memos", "memos_log.ser", new ArrayList<>(memos));
+		System.out.println("메모장 앱이 종료되었습니다");
 	}
 	
 	//메모 로드
@@ -143,7 +145,7 @@ public class Memojang extends App{
 				}
 			}
 			System.out.println("저장된 메모 (" + memos.size() + "개)");
-			System.out.println("-------------------------------------------------");
+			System.out.println("==============================================");
 		} catch (IOException | ClassNotFoundException e) {
 			System.err.println("메모장 로드 실패: " + e.getMessage());
 		}
@@ -151,13 +153,14 @@ public class Memojang extends App{
 
 	public void showMemo() {
 		if (memos.isEmpty()) {
-			System.out.println("메모가 비어있습니다");
+			System.out.println("메모장이 비어있습니다");
 			return;
 		}
 
-		for (int i = 0; i < memos.size(); i++) {
+		for (int i = 1; i < memos.size(); i++) {
 			Memo m = memos.get(i);
-			System.out.printf("<메모장 번호>  %d | <제목>  %s | <내용>  %s | <작성 날짜> %\n", m.getNo(), m.getTitle(), m.getContent(), m.getDate());
+			System.out.printf("%d번 메모장 | <제목>  %s | <내용>  %s\n  <작성 날짜> %s\n", m.getNo(), m.getTitle(), m.getContent(), m.getDate());
+			System.out.println("-------------------------------------------------");
 		}
 	}
 
