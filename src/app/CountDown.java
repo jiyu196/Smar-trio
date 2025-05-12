@@ -6,10 +6,10 @@ import java.util.stream.IntStream;
 import util.TrioUtils;
 public class CountDown extends App{
 
-	public static void main(String[] args) throws Exception{
-		CountDown app = new CountDown(1);
-		app.run();
-	}
+//	public static void main(String[] args) throws Exception{
+//		CountDown app = new CountDown(1);
+//		app.run();
+//	}
 	
 	public CountDown(int no) {
 		super(no, "카운트다운");
