@@ -1,6 +1,8 @@
 package app;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import domain.Calculation;
@@ -71,7 +73,8 @@ public class Calculator extends App {
 			case "/": // 나눗셈
 				result = number1 / number2;
 			}
-			Calculation calc = new Calculation(number1, number2, operation, result);
+			String date = TrioUtils.getCurrentDateTime();
+			Calculation calc = new Calculation(number1, number2, operation, result, date);
             System.out.println("결과 : " + result);
             calculationHistory.add(calc);
             TrioUtils.writeLog("calculator", "math_log.ser", calculationHistory); //calculationHistory = 내용
