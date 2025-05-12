@@ -2,7 +2,9 @@ package main;
 
 import static util.TrioUtils.*;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import app.App;
@@ -67,9 +69,14 @@ public class Main {
 	}
 
 	public static void appList() {
+//		for (App a : installedApps) {
+//			System.out.println(
+//					"("+ (installedApps.indexOf(a) + 1) + ") " + a.getAppName());
+//		}
+		int index = 1;
 		for (App a : installedApps) {
-			System.out.println(
-					"("+ (installedApps.indexOf(a) + 1) + ") " + a.getAppName());
+			System.out.println("(" + index + ") " + a.getAppName());
+			index++;
 		}
 	}
 
@@ -83,10 +90,18 @@ public class Main {
 	}
 	
 	public static void saveInstalledApps() {
-	    TrioUtils.save("storage", "system", "installed_apps.ser", installedApps);
-	}
+        save("storage", "system", "installed_apps.ser", installedApps); // 파일료 저장
+    }
 	
 	public static void loadInstalledApps() {
-
-	}
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/system/installed_apps.ser"))) {
+            List<App> loadedApps = (List<App>) ois.readObject(); // Read installed apps from file
+            installedApps.clear();
+            installedApps.addAll(loadedApps);
+            System.out.println("앱 목록을 성공적으로 불러왔습니다.");
+        } catch (Exception e) {
+            System.out.println("앱 목록을 불러오는 데 실패했습니다.");
+            e.printStackTrace();
+        }
+    }
 }
