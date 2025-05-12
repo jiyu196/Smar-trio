@@ -5,8 +5,6 @@ import java.io.ObjectInputStream;
 import java.util.*;
 
 import domain.Contacts;
-import util.TrioUtils;
-
 import static util.TrioUtils.*;
 
 @SuppressWarnings("unchecked")
