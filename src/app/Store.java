@@ -22,6 +22,7 @@ public class Store extends App{
 		store.add(new RSP(generateAppNo()));
 		store.add(new SimpleCalendar(generateAppNo()));
 		store.add(new UpandDown(generateAppNo()));
+		store.add(new CountDown(generateAppNo()));
 	}
 	
 	@Override
