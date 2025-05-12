@@ -119,35 +119,26 @@ public class Memojang extends App{
 	}
 	//메모 저장하기
 	private void save() {
-		TrioUtils.writeLog("memos", "memos_log.ser", new ArrayList<>(memos));
+		TrioUtils.save("storage", "memos", "memos_log.ser", memos);
 	}
 	
 	//메모 로드
 	private void load() {
-		memos.clear();
-		Path logPath = Path.of("storage", "memos", "memos_log.ser");
-		if (!Files.exists(logPath)) {
-			System.out.println("저장된 메모기록이 없습니다: ");
-			return;
-		}
-		try {
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(logPath.toFile()));
-			List<Memo> loaded = (List<Memo>) ois.readObject();
-			ois.close();
-
-			for (int i = 0; i < loaded.size(); i++) {
-				Memo m = loaded.get(i);
-				memos.add(m);
-				if (m.getNo() >= nextNo) {
-					nextNo = m.getNo() + 1;
-				}
-			}
-			System.out.println("저장된 메모 (" + memos.size() + "개)");
-			System.out.println("-------------------------------------------------");
-		} catch (IOException | ClassNotFoundException e) {
-			System.err.println("메모장 로드 실패: " + e.getMessage());
-		}
+	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/memos/memos_log.ser"))) {
+	        List<Memo> loadedMemos = (List<Memo>) ois.readObject(); // 파일에서 메모 목록을 읽어옴
+	        memos.clear(); // 기존 메모 목록을 초기화한 후 불러온 목록을 추가
+	        memos.addAll(loadedMemos);
+	        if (!memos.isEmpty()) { // 메모가 하나 이상 있을 경우 다음 메모 번호 설정
+	            nextNo = memos.get(memos.size() - 1).getNo() + 1;
+	        }
+	        System.out.println("저장된 메모 (" + memos.size() + "개)를 성공적으로 불러왔습니다.");
+	        System.out.println("-------------------------------------------------");
+	    } catch (Exception e) { // 예외 발생 시 오류 메시지 출력
+	        System.out.println("메모장 로드 실패: " + e.getMessage());
+	        e.printStackTrace();
+	    }
 	}
+
 
 	public void showMemo() {
 		if (memos.isEmpty()) {
@@ -157,7 +148,7 @@ public class Memojang extends App{
 
 		for (int i = 0; i < memos.size(); i++) {
 			Memo m = memos.get(i);
-			System.out.printf("<메모장 번호>  %d | <제목>  %s | <내용>  %s | <작성 날짜> %\n", m.getNo(), m.getTitle(), m.getContent(), m.getDate());
+			System.out.printf("<메모장 번호>  %d | <제목>  %s | <내용>  %s | <작성 날짜> %s\n", m.getNo(), m.getTitle(), m.getContent(), m.getDate());
 		}
 	}
 

@@ -17,6 +17,6 @@ public class Calculation implements Serializable {
 
     @Override
     public String toString() {
-        return num1 + " " + operator + " " + num2 + " = " + result + " : " + date;
+        return String.format("%f %s %f = %f (%s)", num1, operator, num2, result, date);
     }
 }
