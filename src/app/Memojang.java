@@ -1,11 +1,13 @@
 package app;
 
 import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import domain.Memo;
@@ -59,7 +61,7 @@ public class Memojang extends App{
 	private void add() {
 		String title = TrioUtils.nextLine("제목: ");
 		String content = TrioUtils.nextLine("내용: ");
-		memos.add(new Memo(nextNo++, title, content));
+		memos.add(new Memo(nextNo++, title, content)); 
 		System.out.println("메모 추가 및 저장 완료");
 		System.out.println("-------------------------------------------------");
 		save();
@@ -155,7 +157,7 @@ public class Memojang extends App{
 
 		for (int i = 0; i < memos.size(); i++) {
 			Memo m = memos.get(i);
-			System.out.printf("<메모장 번호>  %d | <제목>  %s | <내용>  %s\n", m.getNo(), m.getTitle(), m.getContent());
+			System.out.printf("<메모장 번호>  %d | <제목>  %s | <내용>  %s | <작성 날짜> %\n", m.getNo(), m.getTitle(), m.getContent(), m.getDate());
 		}
 	}
 
