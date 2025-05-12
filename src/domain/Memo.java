@@ -1,11 +1,13 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Memo implements Serializable{
 	private int no;
 	private String title;
 	private String content;
+	private Date date = new Date();
 
 	public Memo() {
 		// TODO Auto-generated constructor stub
@@ -40,6 +42,15 @@ public class Memo implements Serializable{
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Override
