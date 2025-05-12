@@ -39,7 +39,7 @@ public class Store extends App{
 	
 	private void appList() {
 		for(App a: store) {
-			System.out.println("( appno" + a.getAppNo()+"  인덱스" +(store.indexOf(a)+1)+") " + a.getAppName());
+			System.out.println("("+(store.indexOf(a)+1)+") " + a.getAppName());
 		}
 	}
 

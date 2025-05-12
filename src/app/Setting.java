@@ -49,13 +49,16 @@ public class Setting extends App {
 			System.out.println("삭제를 취소합니다");
 			return;
 		}
+		
 		App app = installedApps.get(no - 1);
 		if (app.isSystemApp()) {
 			System.out.println("시스템앱은 삭제할수없습니다");
 			return;
 		}
-
-		System.out.println(app.getAppName() + "을 삭제했습니다");
-		installedApps.remove(app);
+		if(nextConfirm(app.getAppName()+"을 정말 삭제시겠습니까? y/n")) {
+			System.out.println(app.getAppName() + "을 삭제했습니다");
+			installedApps.remove(app);
+		}
+		
 	}
 }

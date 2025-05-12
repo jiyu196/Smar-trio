@@ -35,14 +35,14 @@ public class Main {
 
 			try {
 
-				if (!info.isRegistInfo()) {
-					System.out.println("등록된 사용자가 없습니다 가입하시겠습니까?");
-					info.register();
-				}
-
-				if (!info.isLoginInfo()) {
-					info.logIn();
-				} else {
+//				if (!info.isRegistInfo()) {
+//					System.out.println("등록된 사용자가 없습니다 가입하시겠습니까?");
+//					info.register();
+//				}
+//
+//				if (!info.isLoginInfo()) {
+//					info.logIn();
+//				} else {
 					appList();
 					int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
 					if (no == 0) {
@@ -51,7 +51,7 @@ public class Main {
 					}
 					
 					runApp(no - 1);
-				}
+//				}
 			} catch (NumberFormatException e) {
 				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
 			} catch (IllegalArgumentException e) {
@@ -65,7 +65,7 @@ public class Main {
 	public static void appList() {
 		for (App a : installedApps) {
 			System.out.println(
-					"( appno" + a.getAppNo() + "  인덱스" + (installedApps.indexOf(a) + 1) + ") " + a.getAppName());
+					"("+ (installedApps.indexOf(a) + 1) + ") " + a.getAppName());
 		}
 	}
 
