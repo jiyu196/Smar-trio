@@ -19,7 +19,7 @@ public class Store extends App {
 	static {
 		store.add(new Calculator(generateAppNo()));
 		store.add(new BlackJack(generateAppNo()));
-		store.add(new ContactList(generateAppNo()));
+		store.add(ContactList.getInstance());
 		store.add(new Memojang(generateAppNo()));
 		store.add(new Lotto(generateAppNo()));
 		store.add(new RSP(generateAppNo()));

@@ -15,8 +15,17 @@ public class ContactList extends App {
 	private int nextNo = 0; // 다음 연락처 번호
 
 	// 생성자, 주소록의 번호를 받아서 App 클래스의 생성자를 호출
+	private static ContactList contactList;
+
 	public ContactList(int no) {
 		super(no, "주소록");
+	}
+
+	public static ContactList getInstance() {
+		if (contactList == null) {
+			contactList = new ContactList(generateAppNo());
+		}
+		return contactList;
 	}
 
 	// 연락처 앱을 실행하는 메소드
@@ -25,7 +34,7 @@ public class ContactList extends App {
 
 		// 저장된 연락처 목록을 로드
 		loadContacts();
-		
+
 		while (true) {
 			System.out.println("--- 연락처 메뉴 ---");
 			System.out.println("1. 연락처 추가\n2. 연락처 수정\n3. 연락처 삭제\n4. 연락처 보기\n5. 돌아가기");
@@ -78,7 +87,7 @@ public class ContactList extends App {
 //			System.out.println("연락처 저장 실패: " + e.getMessage());
 //		}
 //	}
-	
+
 	private void saveContacts() {
 		saveData(contacts, "storage/contacts/contacts_log.ser");
 	}
@@ -88,27 +97,16 @@ public class ContactList extends App {
 
 		if (loadcontacts != null) {
 			this.contacts = loadcontacts;
-	        if (!contacts.isEmpty()) { // 연락처가 하나 이상 있을 경우 다음 연락처 번호 설정
-            nextNo = contacts.get(contacts.size() - 1).getNo() + 1;
-        }
-        System.out.println("연락처를 성공적으로 불러왔습니다.");
+			if (!contacts.isEmpty()) { // 연락처가 하나 이상 있을 경우 다음 연락처 번호 설정
+				nextNo = contacts.get(contacts.size() - 1).getNo() + 1;
+			}
+			System.out.println("연락처를 성공적으로 불러왔습니다.");
 
-		}else {
+		} else {
 			this.contacts = new ArrayList<>(); // 파일이 없거나 실패한 경우에도 빈 리스트로 초기화
 			System.out.println("기록을 불러오는 데 실패했습니다.");
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	// 새 연락처 추가
 	private void addContact() {
@@ -186,7 +184,12 @@ public class ContactList extends App {
 
 	// 번호로 연락처 찾기
 	private Contacts findByNo(int no) {
-		return contacts.stream().filter(c -> c.getNo() == no).findFirst().orElse(null);
+		for (Contacts contact : contacts) {
+			if (contact.getNo() == no) {
+				return contact;
+			}
+		}
+		return null;
 	}
 
 	// 연락처 삭제
