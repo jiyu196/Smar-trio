@@ -17,15 +17,16 @@ public class Store extends App {
 	public static List<App> store = new ArrayList<App>();
 
 	static {
-		store.add(new Calculator(generateAppNo()));
-		store.add(new BlackJack(generateAppNo()));
 		store.add(ContactList.getInstance());
 		store.add(new Memojang(generateAppNo()));
+		store.add(new Calculator(generateAppNo()));
+		store.add(new SimpleCalendar(generateAppNo()));
+		store.add(new WeatherNow(generateAppNo()));
+		store.add(new CountDown(generateAppNo()));
+		store.add(new UpandDown(generateAppNo()));
+		store.add(new BlackJack(generateAppNo()));
 		store.add(new Lotto(generateAppNo()));
 		store.add(new RSP(generateAppNo()));
-		store.add(new SimpleCalendar(generateAppNo()));
-		store.add(new UpandDown(generateAppNo()));
-		store.add(new CountDown(generateAppNo()));
 	}
 
 	@Override
