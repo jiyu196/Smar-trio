@@ -87,18 +87,56 @@ public class TrioUtils {
 	// 각 어플 기록 기능
 
 	// 기록 하기
-	public static void save(String dirName, String subDirName, String fileName, Object content) {
-		try {
-			File dir = new File(dirName, subDirName);
-			if (!dir.exists()) {
-				dir.mkdirs();
-			}
-			File file = new File(dir, fileName);
-			try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-				oos.writeObject(content);
-			}
-		} catch (IOException e) {
-			System.out.println("파일 저장 실패: " + e.getMessage());
-		}
+	// 이전 세이브 코드
+//	public static void save(String dirName, String subDirName, String fileName, Object content) {
+//		try {
+//			File dir = new File(dirName, subDirName);
+//			if (!dir.exists()) {
+//				dir.mkdirs();
+//			}
+//			File file = new File(dir, fileName);
+//			try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+//				oos.writeObject(content);
+//			}
+//		} catch (IOException e) {
+//			System.out.println("파일 저장 실패: " + e.getMessage());
+//		}
+//	}
+	
+	public static <T> void saveData(List<T> list, String filePath) {
+		File file = new File(filePath);
+		File dir = file.getParentFile();
+		
+		if (dir != null && !dir.exists()) {
+            if (dir.mkdirs()) {
+                System.out.println("디렉토리 생성 완료: " + dir.getPath());
+            } else {
+                System.out.println("디렉토리 생성 실패: " + dir.getPath());
+            }
+        }
+		
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(list);
+            System.out.println("저장 완료: " + file.getPath());
+        } catch (IOException e) {
+            System.out.println("저장 실패: " + e.getMessage());
+        }
 	}
+	
+	public static <T> List<T> loadData(String filepath) {
+	    File file = new File(filepath);
+
+	    if (!file.exists()) {
+	        System.out.println("불러올 파일이 없습니다: " + filepath);
+	        return null; // 실패 시 null 반환
+	    }
+
+	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+	        return (List<T>) ois.readObject();
+	    } catch (IOException | ClassNotFoundException e) {
+	        System.out.println("불러오기 실패: " + e.getMessage());
+	        return null;
+	    }
+	}
+	
 }

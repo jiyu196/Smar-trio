@@ -2,8 +2,12 @@ package app;
 
 import static util.TrioUtils.*;
 
+import main.Main;
+
 public class Setting extends App {
 
+	
+	
 	public Setting(int appNo) {
 		super(appNo, "설정", true);
 		// TODO Auto-generated constructor stub
@@ -36,9 +40,10 @@ public class Setting extends App {
 	}
 
 	public void deletApp() {
+		Main main = Main.getInstance();
 //		List<App> tempList = new ArrayList<>(installedApps);
-		for (App a : installedApps) {
-			System.out.println("(" + (installedApps.indexOf(a) + 1) + ")" + a.getAppName());
+		for (App a : main.installedApps) {
+			System.out.println("(" + (main.installedApps.indexOf(a) + 1) + ")" + a.getAppName());
 		}
 
 		int no = nextInt("삭제할 어플을 골라주세요");
@@ -48,14 +53,14 @@ public class Setting extends App {
 			return;
 		}
 		
-		App app = installedApps.get(no - 1);
+		App app = main.installedApps.get(no - 1);
 		if (app.isSystemApp()) {
 			System.out.println("시스템앱은 삭제할수없습니다");
 			return;
 		}
 		if(nextConfirm(app.getAppName()+"을 정말 삭제시겠습니까? y/n")) {
 			System.out.println(app.getAppName() + "을 삭제했습니다");
-			installedApps.remove(app);
+			main.installedApps.remove(app);
 		}
 		
 	}

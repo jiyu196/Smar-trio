@@ -4,19 +4,19 @@ import static util.TrioUtils.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.Main;
 
-public class Store extends App{
+public class Store extends App {
 
-	main.Main.
 	
-	
-	public Store(int no) {
+
+	public  Store(int no) {	
 		super(no, "스토어", true);
-		}
+	}
 
 	public static List<App> store = new ArrayList<App>();
-	
-	{
+
+	static {
 		store.add(new Calculator(generateAppNo()));
 		store.add(new BlackJack(generateAppNo()));
 		store.add(new ContactList(generateAppNo()));
@@ -27,43 +27,49 @@ public class Store extends App{
 		store.add(new UpandDown(generateAppNo()));
 		store.add(new CountDown(generateAppNo()));
 	}
-	
+
 	@Override
 	public void run() {
-		while(true) {
+		while (true) {
 			appList();
 			int no = nextInt("설치하고 싶은 어플의 번호를 입력해주세요. 0. 종료");
-			if(no == 0) {
+			if (no == 0) {
 				System.out.println("설치를 취소하고 스토어로 되돌아갑니다");
 				return;
 			}
-			install(no -1);
+			install(no - 1);
+		}
+	}
+
+	private void appList() {
+		for (App a : store) {
+			System.out.println("(" + (store.indexOf(a) + 1) + ") " + a.getAppName());
 		}
 	}
 	
-	private void appList() {
-		for(App a: store) {
-			System.out.println("("+(store.indexOf(a)+1)+") " + a.getAppName());
-		}
-	}
 
-	//   ConcurrentModificationException 의 발생, 리스트의 순회중 run 메소드를 실행중에 리스으틔 내용을 바꾼것으로 취급하여 예외가 발생
+	// ConcurrentModificationException 의 발생, 리스트의 순회중 run 메소드를 실행중에 리스으틔 내용을 바꾼것으로
+	// 취급하여 예외가 발생
 	private void install(int no) {
+		Main main = Main.getInstance();
 		List<App> tempList = new ArrayList<>(store);
 
-		for(App a : tempList) {
-			if(store.indexOf(a) == no) {
-				if(installedApps.contains(a)) {
-					System.out.println("이미"+ a.getAppName()+ "은 설치되어있습니다");
+		for (App a : tempList) {
+			if (store.indexOf(a) == no) {
+				if (main.installedApps.contains(a)) {
+					System.out.println("이미" + a.getAppName() + "은 설치되어있습니다");
 					return;
-				}else {
-				Main.installedApps.add(a);
-				System.out.println(a.getAppName()+"을 설치했습니다");
-				Main.saveInstalledApps();
-				return;
+				} else {
+					main.installedApps.add(a);
+					System.out.println(a.getAppName() + "을 설치했습니다");
+					saveData(main.installedApps , "storage/system/Appdata");
+//					main.saveInstalledApps();
+					return;
 				}
 			}
 		}
+		
+
 // 밑의 코드는 문제가 있지만 공부를 위해 주석처리
 //		for(App a : tempList) { //스토어의 있는 모든 내용을 순회
 //			if(Main.installedApps.contains(a)) { //설치 여부
@@ -78,7 +84,8 @@ public class Store extends App{
 //				return;
 //			}
 //		}
-		
 
 	}
+	
+	
 }

@@ -10,29 +10,27 @@ import app.App;
 import app.Info;
 import app.Setting;
 import app.Store;
+import domain.Contacts;
+import domain.Memo;
 import util.TrioUtils;
 
 public class Main {
 
-	{
-
-	}
-
 	public static void main(String[] args) {
 		main.menu();
 	}
-	
-	static Main main = new Main();
 
-	
-	public List<App> installedApps = new ArrayList<App>();
+	private static Main main = new Main();
 
-	{
-		
-		installedApps.add(new Store(generateAppNo()));
-		installedApps.add(new Setting(generateAppNo()));
-
+	private Main() {
+		loadApp();
 	}
+
+	public static Main getInstance() {
+		return main;
+	}
+
+	public List<App> installedApps;
 
 	public void menu() {
 
@@ -50,14 +48,14 @@ public class Main {
 //				if (!info.isLoginInfo()) {
 //					info.logIn();
 //				} else {
-					appList();
-					int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
-					if (no == 0) {
-						System.out.println("기기를 종료합니다");
-						return;
-					}
-					
-					runApp(no - 1);
+				appList();
+				int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
+				if (no == 0) {
+					System.out.println("기기를 종료합니다");
+					return;
+				}
+
+				runApp(no - 1);
 //				}
 			} catch (NumberFormatException e) {
 				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
@@ -89,20 +87,37 @@ public class Main {
 			}
 		}
 	}
-	
-	public void saveInstalledApps() {
-        save("storage", "system", "installed_apps.ser", installedApps); // 파일료 저장
-    }
-	
-	public void loadInstalledApps() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/system/installed_apps.ser"))) {
-            List<App> loadedApps = (List<App>) ois.readObject(); // Read installed apps from file
-            installedApps.clear();
-            installedApps.addAll(loadedApps);
-            System.out.println("앱 목록을 성공적으로 불러왔습니다.");
-        } catch (Exception e) {
-            System.out.println("앱 목록을 불러오는 데 실패했습니다.");
-            e.printStackTrace();
-        }
-    }
+
+//	public void saveInstalledApps() {
+//        save("storage", "system", "installed_apps.ser", installedApps); // 파일료 저장
+//    }
+
+//	public void loadInstalledApps() {
+//        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/system/installed_apps.ser"))) {
+//            List<App> loadedApps = (List<App>) ois.readObject(); // Read installed apps from file
+//            installedApps.clear();
+//            installedApps.addAll(loadedApps);
+//            System.out.println("앱 목록을 성공적으로 불러왔습니다.");
+//        } catch (Exception e) {
+//            System.out.println("앱 목록을 불러오는 데 실패했습니다.");
+//            e.printStackTrace();
+//        }
+//    }
+
+	private void loadApp() {
+		List<App> loadApp = loadData("storage/system/Appdata");
+
+		if (loadApp != null) {
+			this.installedApps = loadApp;
+		} else {
+			this.installedApps = new ArrayList<>(); // 파일이 없거나 실패한 경우에도 빈 리스트로 초기화
+			System.out.println("기록을 불러오는 데 실패했습니다.");
+		}
+
+		if (installedApps.isEmpty()) {
+			installedApps.add(new Store(generateAppNo()));
+			installedApps.add(new Setting(generateAppNo()));
+		}
+	}
+
 }

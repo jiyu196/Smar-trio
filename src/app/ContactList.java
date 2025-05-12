@@ -4,12 +4,14 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.*;
 
+import domain.Calculation;
 import domain.Contacts;
 import static util.TrioUtils.*;
 
 @SuppressWarnings("unchecked")
 public class ContactList extends App {
-	private final List<Contacts> contacts = new ArrayList<>(); // 연락처를 저장할 리스트
+//	private final List<Contacts> contacts = new ArrayList<>(); // 연락처를 저장할 리스트
+	private List<Contacts> contacts; // 연락처를 저장할 리스트
 	private int nextNo = 0; // 다음 연락처 번호
 
 	// 생성자, 주소록의 번호를 받아서 App 클래스의 생성자를 호출
@@ -23,6 +25,7 @@ public class ContactList extends App {
 
 		// 저장된 연락처 목록을 로드
 		loadContacts();
+		
 		while (true) {
 			System.out.println("--- 연락처 메뉴 ---");
 			System.out.println("1. 연락처 추가\n2. 연락처 수정\n3. 연락처 삭제\n4. 연락처 보기\n5. 돌아가기");
@@ -50,31 +53,62 @@ public class ContactList extends App {
 		}
 	}
 
-	// 연락처 목록 로드
-	private void loadContacts() {
-	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/contacts/contacts_log.ser"))) {
-	        List<Contacts> loadedContacts = (List<Contacts>) ois.readObject();// 파일에서 연락처 목록을 읽어옴
-	        contacts.clear();  // 기존 연락처 목록을 초기화한 후 불러온 목록을 추가
-	        contacts.addAll(loadedContacts);
-	        if (!contacts.isEmpty()) { // 연락처가 하나 이상 있을 경우 다음 연락처 번호 설정
-	            nextNo = contacts.get(contacts.size() - 1).getNo() + 1;
-	        }
-	        System.out.println("연락처를 성공적으로 불러왔습니다.");
-	    } catch (Exception e) { // 예외 발생 시 오류 메시지 출력
-	        System.out.println("연락처를 불러오는 데 실패했습니다.");
-	        e.printStackTrace();
-	    }
+//	// 연락처 목록 로드
+//	private void loadContacts() {
+//	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/contacts/contacts_log.ser"))) {
+//	        List<Contacts> loadedContacts = (List<Contacts>) ois.readObject();// 파일에서 연락처 목록을 읽어옴
+//	        contacts.clear();  // 기존 연락처 목록을 초기화한 후 불러온 목록을 추가
+//	        contacts.addAll(loadedContacts);
+//	        if (!contacts.isEmpty()) { // 연락처가 하나 이상 있을 경우 다음 연락처 번호 설정
+//	            nextNo = contacts.get(contacts.size() - 1).getNo() + 1;
+//	        }
+//	        System.out.println("연락처를 성공적으로 불러왔습니다.");
+//	    } catch (Exception e) { // 예외 발생 시 오류 메시지 출력
+//	        System.out.println("연락처를 불러오는 데 실패했습니다.");
+//	        e.printStackTrace();
+//	    }
+//	}
+//
+//	// 연락처 저장
+//	private void saveContacts() {
+//		try {
+////			save("storage", "contacts", "contacts_log.ser", contacts);
+//			System.out.println("연락처가 성공적으로 저장되었습니다.");
+//		} catch (Exception e) {
+//			System.out.println("연락처 저장 실패: " + e.getMessage());
+//		}
+//	}
+	
+	private void saveContacts() {
+		saveData(contacts, "storage/contacts/contacts_log.ser");
 	}
 
-	// 연락처 저장
-	private void saveContacts() {
-		try {
-			save("storage", "contacts", "contacts_log.ser", contacts);
-			System.out.println("연락처가 성공적으로 저장되었습니다.");
-		} catch (Exception e) {
-			System.out.println("연락처 저장 실패: " + e.getMessage());
+	private void loadContacts() {
+		List<Contacts> loadcontacts = loadData("storage/contacts/contacts_log.ser");
+
+		if (loadcontacts != null) {
+			this.contacts = loadcontacts;
+	        if (!contacts.isEmpty()) { // 연락처가 하나 이상 있을 경우 다음 연락처 번호 설정
+            nextNo = contacts.get(contacts.size() - 1).getNo() + 1;
+        }
+        System.out.println("연락처를 성공적으로 불러왔습니다.");
+
+		}else {
+			this.contacts = new ArrayList<>(); // 파일이 없거나 실패한 경우에도 빈 리스트로 초기화
+			System.out.println("기록을 불러오는 데 실패했습니다.");
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 새 연락처 추가
 	private void addContact() {

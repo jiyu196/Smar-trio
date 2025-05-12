@@ -1,7 +1,8 @@
 package domain;
 
+import java.io.Serializable;
 
-public class Card{	
+public class Card implements Serializable{	
 	
     private int suit;
     private int value;
