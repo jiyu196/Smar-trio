@@ -56,6 +56,7 @@ public class Store extends App{
 				}else {
 				Main.installedApps.add(a);
 				System.out.println(a.getAppName()+"을 설치했습니다");
+				Main.saveInstalledApps();
 				return;
 				}
 			}

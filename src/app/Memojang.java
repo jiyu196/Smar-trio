@@ -148,7 +148,7 @@ public class Memojang extends App{
 
 		for (int i = 0; i < memos.size(); i++) {
 			Memo m = memos.get(i);
-			System.out.printf("<메모장 번호>  %d | <제목>  %s | <내용>  %s | <작성 날짜> %s\n", m.getNo(), m.getTitle(), m.getContent(), m.getDate());
+			System.out.printf(" %d번 메모장 | <제목>  %s | <내용>  %s\n <작성 날짜> %s\n", m.getNo(), m.getTitle(), m.getContent(), m.getDate());
 		}
 	}
 
