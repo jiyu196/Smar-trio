@@ -22,8 +22,6 @@ public class Store extends App{
 		store.add(new RSP(generateAppNo()));
 		store.add(new SimpleCalendar(generateAppNo()));
 		store.add(new UpandDown(generateAppNo()));
-	
-		
 	}
 	
 	@Override
@@ -41,23 +39,44 @@ public class Store extends App{
 	
 	private void appList() {
 		for(App a: store) {
-			System.out.println("(" +(store.indexOf(a)+1)+") " + a.getAppName());
+			System.out.println("( appno" + a.getAppNo()+"  인덱스" +(store.indexOf(a)+1)+") " + a.getAppName());
 		}
 	}
 
 	//   ConcurrentModificationException 의 발생, 리스트의 순회중 run 메소드를 실행중에 리스으틔 내용을 바꾼것으로 취급하여 예외가 발생
 	private void install(int no) {
 		List<App> tempList = new ArrayList<>(store);
+
 		for(App a : tempList) {
-			if(Main.installedApps.contains(a)) {
-				System.out.println("이미"+ a.getAppName()+ "은 설치되어있습니다");
-				return;
-			}
-			if(store.indexOf(a)== no) {
+			if(store.indexOf(a) == no) {
+				if(Main.installedApps.contains(a)) {
+					System.out.println("이미"+ a.getAppName()+ "은 설치되어있습니다");
+					return;
+				}else {
 				Main.installedApps.add(a);
 				System.out.println(a.getAppName()+"을 설치했습니다");
+				return;
+				}
 			}
 		}
+		
+		
+		
+		
+		
+//		for(App a : tempList) { //스토어의 있는 모든 내용을 순회
+//			if(Main.installedApps.contains(a)) { //설치 여부
+//				System.out.println("이미"+ a.getAppName()+ "은 설치되어있습니다");
+//				return;
+//			}
+//			
+//			
+//			if(store.indexOf(a) == no) {
+//				Main.installedApps.add(a);
+//				System.out.println(a.getAppName()+"을 설치했습니다");
+//				return;
+//			}
+//		}
 
 	}
 

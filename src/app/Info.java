@@ -15,7 +15,7 @@ public class Info {
 	private static final Info INSTANCE = new Info();
 	private Info() {} // 외부에서 생성 불가
 
-	public static Info getInstance() {
+	public static Info getInstance() { //유일한 객체
 		return INSTANCE;
 	}
 	

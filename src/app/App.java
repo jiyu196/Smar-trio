@@ -37,6 +37,21 @@ public abstract class App implements Serializable {
 	public String toString() {
 		return "App [appNo=" + appNo + ", appName=" + appName + ", systemApp=" + systemApp + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(appNo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj)
+	        return true;
+	    if (!(obj instanceof App))
+	        return false;
+	    App other = (App) obj;
+	    return this.appNo == other.appNo;
+	}
 	
 	
 }
