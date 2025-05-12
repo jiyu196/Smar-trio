@@ -25,8 +25,7 @@ public class WeatherNow extends App {
     public void run() {
         while (true) {
             System.out.println("< 날씨 앱 >");
-            System.out.println("1. 날씨 조회");
-            System.out.println("2. 종료");
+            System.out.println("1. 날씨 조회\n2. 종료");
 
             String choice = TrioUtils.nextLine("선택: ");
             if (choice.equals("2")) {
@@ -44,14 +43,16 @@ public class WeatherNow extends App {
         System.out.println("< 날씨 정보 조회 >");
         System.out.println("날씨를 조회할 도시를 선택하세요:");
 
+        // 도시 목록 출력
         int index = 1;
         for (WeatherInfo weather : weatherData) {
             System.out.println(index++ + ". " + weather.getName() + ", " + weather.getCountry());
         }
 
         int cityChoice = TrioUtils.nextInt("도시 번호 선택: ");
+        
         if (cityChoice > 0 && cityChoice <= weatherData.size()) {
-            WeatherInfo weather = weatherData.get(cityChoice - 1);
+            WeatherInfo weather = weatherData.get(cityChoice - 1); // 입력 번호 - 1
             System.out.println("선택한 도시: " + weather.getName() + ", " + weather.getCountry());
             System.out.println("기온: " + weather.getTemperature() + "°C");
             System.out.println("습도: " + weather.getHumidity() + "%");
