@@ -59,11 +59,7 @@ public class Store extends App{
 				}
 			}
 		}
-		
-		
-		
-		
-		
+// 밑의 코드는 문제가 있지만 공부를 위해 주석처리
 //		for(App a : tempList) { //스토어의 있는 모든 내용을 순회
 //			if(Main.installedApps.contains(a)) { //설치 여부
 //				System.out.println("이미"+ a.getAppName()+ "은 설치되어있습니다");
