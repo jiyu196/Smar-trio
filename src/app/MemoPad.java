@@ -10,7 +10,6 @@ import domain.Memo;
 import static util.TrioUtils.*;
 
 public class MemoPad extends App {
-
 	private List<Memo> memos;
 	private int nextNo = 0;
 
@@ -28,8 +27,13 @@ public class MemoPad extends App {
 //		load();
 		loadMemo();
 		while (true) {
-			System.out.println("1. 메모 추가  \n2. 메모 수정  \n3. 메모 삭제  \n4. 작성한 메모보기  \n5. 돌아가기");
-			System.out.println("-------------------------------------------------");
+			System.out.println(""
+					+ " (1) 메모 추가\n"
+					+ " (2) 메모 수정\n"
+					+ " (3) 메모 삭제\n"
+					+ " (4) 메모 보기\n"
+					+ " (0) 돌아가기");
+			System.out.println("-".repeat(30));
 			int check = nextInt("옵션을 선택하세요:");
 			switch (check) {
 			case 1:
@@ -44,8 +48,7 @@ public class MemoPad extends App {
 			case 4:
 				showMemo();
 				break;
-			case 5:
-//					save();
+			case 0:
 				saveMemo();
 				return;	
 			default:
@@ -61,8 +64,7 @@ public class MemoPad extends App {
 		String content = nextLine("내용: ");
 		memos.add(new Memo(nextNo++, title, content));
 		System.out.println("메모 추가 및 저장 완료");
-		System.out.println("-------------------------------------------------");
-//		save();
+		System.out.println("-".repeat(30));
 		saveMemo();
 	}
 
@@ -92,7 +94,6 @@ public class MemoPad extends App {
 		}
 
 		System.out.println("메모 기록이 수정되었습니다.");
-//		save();
 		saveMemo();
 	}
 
@@ -114,7 +115,6 @@ public class MemoPad extends App {
 		if (nextConfirm("정말 삭제하시겠습니까? ")) {
 			memos.remove(memo);
 			System.out.println("메모장이 삭제되었습니다");
-//			save();
 			saveMemo();
 		} else {
 			System.out.println("메모장 삭제가 취소되었습니다");
