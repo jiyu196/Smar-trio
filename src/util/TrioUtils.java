@@ -156,4 +156,18 @@ public class TrioUtils {
 	    }
 	}
 	
+	public static void deleteInfo(String filePath) {
+	    File file = new File(filePath);
+
+	    if (!file.exists()) {
+	        System.out.println("삭제할 파일이 없습니다: " + filePath);
+	    }
+
+	    if (file.delete()) {
+	        System.out.println("파일 삭제 완료: " + filePath);
+	    } else {
+	        System.out.println("파일 삭제 실패: " + filePath);
+	    }
+	}
+	
 }
