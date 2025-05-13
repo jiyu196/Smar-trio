@@ -47,7 +47,7 @@ public class Memojang extends App {
 			case 5:
 //					save();
 				saveMemo();
-				return;
+				return;	
 			default:
 				System.out.println("잘못된 입력입니다.");
 				break;

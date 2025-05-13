@@ -75,7 +75,7 @@ public class Main {
 //		}
 		int index = 1;
 		for (App a : installedApps) {
-			System.out.println("(" + index + ") " + a.getAppName());
+			System.out.println(" (" + index + ") " + a.getAppName());
 			index++;
 		}
 	}

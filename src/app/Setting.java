@@ -17,6 +17,7 @@ public class Setting extends App {
 	public void run() {
 
 		while (true) {
+			
 			int no = nextInt("실행할 설정을 골라주세요 1.계정설정 2.어플 삭제 3 0.종료");
 
 			switch (no) {
@@ -41,13 +42,14 @@ public class Setting extends App {
 
 	public void deletApp() {
 		Main main = Main.getInstance();
-//		List<App> tempList = new ArrayList<>(installedApps);
 		for (App a : main.installedApps) {
 			System.out.println("(" + (main.installedApps.indexOf(a) + 1) + ")" + a.getAppName());
 		}
 
 		int no = nextInt("삭제할 어플을 골라주세요");
-
+		if(!(no>=0 && no<=main.installedApps.size())) {
+			throw new IllegalArgumentException("표기된 번호만 입력해주세요");
+		}
 		if (no == 0) {
 			System.out.println("삭제를 취소합니다");
 			return;
@@ -61,6 +63,7 @@ public class Setting extends App {
 		if(nextConfirm(app.getAppName()+"을 정말 삭제시겠습니까?")) {
 			System.out.println(app.getAppName() + "을 삭제했습니다");
 			main.installedApps.remove(app);
+			return;
 		}
 		
 	}
