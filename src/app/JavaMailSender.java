@@ -44,7 +44,7 @@ public class JavaMailSender extends App{
 		
 		Message message = new MimeMessage(session);
 		message.setFrom(new InternetAddress(id));
-		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("tiger2ys98@gmail.com"));
+		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("imtaehoonkim@gmail.com"));
 		
 		message.setSubject("자바 메일 발송 테스트");
 		message.setText("java mail 1.6기반 내용");
