@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Memo;
+import util.TrioUtils;
+
 import static util.TrioUtils.*;
 
-public class Memojang extends App {
-
-//	private List<Memo> memos = new ArrayList<>(); // 지속적으로 수정이 예상되는 리스트이기 때문에 final를 옳바르지 않아보입니다
+public class MemoPad extends App {
 	private List<Memo> memos;
 	private int nextNo = 0;
 
-	public Memojang(int no) {
+	public MemoPad(int no) {
 		super(no, "메모");
 	}
 
@@ -29,8 +29,13 @@ public class Memojang extends App {
 //		load();
 		loadMemo();
 		while (true) {
-			System.out.println("1. 메모 추가  \n2. 메모 수정  \n3. 메모 삭제  \n4. 작성한 메모보기  \n5. 돌아가기");
-			System.out.println("-------------------------------------------------");
+			System.out.println(""
+					+ " (1) 메모 추가\n"
+					+ " (2) 메모 수정\n"
+					+ " (3) 메모 삭제\n"
+					+ " (4) 메모 보기\n"
+					+ " (0) 돌아가기");
+			System.out.println("-".repeat(30));
 			int check = nextInt("옵션을 선택하세요:");
 			switch (check) {
 			case 1:
@@ -45,8 +50,7 @@ public class Memojang extends App {
 			case 4:
 				showMemo();
 				break;
-			case 5:
-//					save();
+			case 0:
 				saveMemo();
 				return;	
 			default:
@@ -60,10 +64,10 @@ public class Memojang extends App {
 	private void add() {
 		String title = nextLine("제목: ");
 		String content = nextLine("내용: ");
-		memos.add(new Memo(nextNo++, title, content));
+		String date = TrioUtils.getCurrentDateTime("yyyy-MM-dd");
+		memos.add(new Memo(nextNo++, title, content,date));
 		System.out.println("메모 추가 및 저장 완료");
-		System.out.println("-------------------------------------------------");
-//		save();
+		System.out.println("-".repeat(30));
 		saveMemo();
 	}
 
@@ -93,7 +97,6 @@ public class Memojang extends App {
 		}
 
 		System.out.println("메모 기록이 수정되었습니다.");
-//		save();
 		saveMemo();
 	}
 
@@ -115,33 +118,11 @@ public class Memojang extends App {
 		if (nextConfirm("정말 삭제하시겠습니까? ")) {
 			memos.remove(memo);
 			System.out.println("메모장이 삭제되었습니다");
-//			save();
 			saveMemo();
 		} else {
 			System.out.println("메모장 삭제가 취소되었습니다");
 		}
 	}
-	// 메모 저장하기
-//	private void save() {
-//		TrioUtils.save("storage", "memos", "memos_log.ser", memos);
-//	}
-
-	// 메모 로드
-//	private void load() {
-//	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/memos/memos_log.ser"))) {
-//	        List<Memo> loadedMemos = (List<Memo>) ois.readObject(); // 파일에서 메모 목록을 읽어옴
-//	        memos.clear(); // 기존 메모 목록을 초기화한 후 불러온 목록을 추가
-//	        memos.addAll(loadedMemos);
-//	        if (!memos.isEmpty()) { // 메모가 하나 이상 있을 경우 다음 메모 번호 설정
-//	            nextNo = memos.get(memos.size() - 1).getNo() + 1;
-//	        }
-//	        System.out.println("저장된 메모 (" + memos.size() + "개)를 성공적으로 불러왔습니다.");
-//	        System.out.println("-------------------------------------------------");
-//	    } catch (Exception e) { // 예외 발생 시 오류 메시지 출력
-//	        System.out.println("메모장 로드 실패: " + e.getMessage());
-//	        e.printStackTrace();
-//	    }
-//	}
 
 	private void saveMemo() {
 		saveData(memos, "storage/memos/memos_log.ser");
@@ -163,7 +144,7 @@ public class Memojang extends App {
 		}
 
 	}
-
+	
 	public void showMemo() {
 		if (memos.isEmpty()) {
 			System.out.println("메모가 비어있습니다");
@@ -178,7 +159,7 @@ public class Memojang extends App {
 	}
 
 	private Memo findBy(int no) {
-		for (int i = 0; i < memos.size(); i++) {
+		for (int i = 1; i < memos.size(); i++) {
 			if (memos.get(i).getNo() == no) {
 				return memos.get(i);
 			}

@@ -58,7 +58,6 @@ public class Main {
 				}
 				if (no == 0) {
 					System.out.println("기기를 종료합니다");
-					saveData(main.installedApps, "storage/system/Appdata");
 					return;
 				}
 				runApp(no - 1);

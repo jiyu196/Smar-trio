@@ -16,13 +16,13 @@ public class Store extends App {
 
 	static {
 		store.add(ContactList.getInstance());
-		store.add(new Memojang(generateAppNo()));
+		store.add(new MemoPad(generateAppNo()));
 		store.add(new Calculator(generateAppNo()));
 		store.add(new SimpleCalendar(generateAppNo()));
 		store.add(new WeatherNow(generateAppNo()));
 		store.add(new CountDown(generateAppNo()));
 		store.add(new UpandDown(generateAppNo()));
-		store.add(new BlackJack(generateAppNo()));
+//		store.add(new BlackJack(generateAppNo()));
 		store.add(new HighLow(generateAppNo()));
 		store.add(new Lotto(generateAppNo()));
 		store.add(new RSP(generateAppNo()));
@@ -49,13 +49,13 @@ public class Store extends App {
 
 	private void storeApps() {
 		store.add(ContactList.getInstance());
-		store.add(new Memojang(generateAppNo()));
+		store.add(new MemoPad(generateAppNo()));
 		store.add(new Calculator(generateAppNo()));
 		store.add(new SimpleCalendar(generateAppNo()));
 		store.add(new WeatherNow(generateAppNo()));
 		store.add(new CountDown(generateAppNo()));
 		store.add(new UpandDown(generateAppNo()));
-		store.add(new BlackJack(generateAppNo()));
+//		store.add(new BlackJack(generateAppNo()));
 		store.add(new HighLow(generateAppNo()));
 		store.add(new Lotto(generateAppNo()));
 		store.add(new RSP(generateAppNo()));

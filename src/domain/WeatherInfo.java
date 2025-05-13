@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 
+
 public class WeatherInfo implements Serializable {
 	private String city, country, microDust;
 	private double temperature;
