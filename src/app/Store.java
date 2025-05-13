@@ -71,6 +71,8 @@ public class Store extends App {
 
 					return;
 				}
+			}else {
+				throw new NullPointerException("없는 어플입니다");
 			}
 		}
 	}

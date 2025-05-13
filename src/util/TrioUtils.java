@@ -55,8 +55,6 @@ public class TrioUtils {
 	}
 
 	public static boolean nextConfirm(String msg) {
-//		String s = nextLine(msg + " [y/n]");
-//		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");
 		while (true) {
 			String s = nextLine(msg + " [y/n]");
 			if (s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes"))
@@ -85,23 +83,6 @@ public class TrioUtils {
 	}
 
 	// 각 어플 기록 기능
-
-	// 기록 하기
-	// 이전 세이브 코드
-//	public static void save(String dirName, String subDirName, String fileName, Object content) {
-//		try {
-//			File dir = new File(dirName, subDirName);
-//			if (!dir.exists()) {
-//				dir.mkdirs();
-//			}
-//			File file = new File(dir, fileName);
-//			try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-//				oos.writeObject(content);
-//			}
-//		} catch (IOException e) {
-//			System.out.println("파일 저장 실패: " + e.getMessage());
-//		}
-//	}
 	
 	public static <T> void saveData(List<T> list, String filePath) {
 		File file = new File(filePath);
