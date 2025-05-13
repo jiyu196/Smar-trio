@@ -141,7 +141,7 @@ public class Memojang extends App {
 		}
 
 	}
-
+	
 	public void showMemo() {
 		if (memos.isEmpty()) {
 			System.out.println("메모가 비어있습니다");
@@ -156,7 +156,7 @@ public class Memojang extends App {
 	}
 
 	private Memo findBy(int no) {
-		for (int i = 0; i < memos.size(); i++) {
+		for (int i = 1; i < memos.size(); i++) {
 			if (memos.get(i).getNo() == no) {
 				return memos.get(i);
 			}
