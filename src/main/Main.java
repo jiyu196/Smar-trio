@@ -29,14 +29,14 @@ public class Main {
 		return main;
 	}
 
-	public List<App> installedApps;
+	public List<App> installedApps = new ArrayList<>();
 	Info info = Info.getInstance();
 	
 	public void menu() {
 
 		while (true) {
 
-			try {
+//			try {
 
 //				if (info.getloginInfo() == null) {
 //					guestMenu();
@@ -52,13 +52,13 @@ public class Main {
 					}
 					runApp(no - 1);
 //				}
-			} catch (NumberFormatException e) {
-				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			} catch (NullPointerException e) {
-				System.out.println(e.getMessage());
-			}
+//			} catch (NumberFormatException e) {
+//				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
+//			} catch (IllegalArgumentException e) {
+//				System.out.println(e.getMessage());
+//			} catch (NullPointerException e) {
+//				System.out.println(e.getMessage());
+//			}
 		}
 	}
 
@@ -108,7 +108,7 @@ public class Main {
 		if (loadApp != null) {
 			this.installedApps = loadApp;
 		} else {
-			this.installedApps = new ArrayList<>(); // 파일이 없거나 실패한 경우에도 빈 리스트로 초기화
+//			this.installedApps = new ArrayList<>(); // 파일이 없거나 실패한 경우에도 빈 리스트로 초기화
 			System.out.println(" 앱  기록을 불러오는 데 실패했습니다.");
 		}
 

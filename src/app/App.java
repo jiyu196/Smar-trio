@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public abstract class App implements Serializable {
-	private final int appNo;
-	private final String appName;
-	private final boolean systemApp;
+	private int appNo;
+	private String appName;
+	private boolean systemApp;
 	
+
 	public App(int appNo, String appName) {
 		this(appNo, appName, false);
 	}

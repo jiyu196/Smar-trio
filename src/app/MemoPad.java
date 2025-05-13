@@ -17,12 +17,8 @@ public class MemoPad extends App {
 
 	public MemoPad(int no) {
 		super(no, "메모");
+		this.memos = new ArrayList<>();
 	}
-
-//	public static void main(String[] args) {
-//		Memojang app = new Memojang(1);
-//		app.run();
-//	}
 
 	public void run() {
 		System.out.println("메모 앱을 실행합니다");

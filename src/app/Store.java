@@ -10,22 +10,10 @@ public class Store extends App {
 
 	public Store(int no) {
 		super(no, "스토어", true);
+		storeApps();
 	}
 
-	public static List<App> store = new ArrayList<App>();
-
-	static {
-		store.add(ContactList.getInstance());
-		store.add(new MemoPad(generateAppNo()));
-		store.add(new Calculator(generateAppNo()));
-		store.add(new SimpleCalendar(generateAppNo()));
-		store.add(new CountDown(generateAppNo()));
-		store.add(new UpandDown(generateAppNo()));
-		store.add(new BlackJack(generateAppNo()));
-		store.add(new HighLow(generateAppNo()));
-		store.add(new Lotto(generateAppNo()));
-		store.add(new RSP(generateAppNo()));
-	}
+	public List<App> store = new ArrayList<App>();
 
 	@Override
 	public void run() {
@@ -59,9 +47,18 @@ public class Store extends App {
 		store.add(new RSP(generateAppNo()));
 	}
 	
+	
 	private void showAppList() {
+//		for (App a : store) {
+//			System.out.println(" (" + (store.indexOf(a) + 1) + ") " + a.getAppName());
+//		}
+		
 		for (App a : store) {
-			System.out.println(" (" + (store.indexOf(a) + 1) + ") " + a.getAppName());
+			if (a != null) {
+				System.out.println(" (" + (store.indexOf(a) + 1) + ") " + a.getAppName());
+			} else {
+				System.out.println(" ⚠️ null 객체 감지됨 - 어플 생성 실패");
+			}
 		}
 	}
 
@@ -69,23 +66,46 @@ public class Store extends App {
 	// 취급하여 예외가 발생
 	private void install(int no) {
 		Main main = Main.getInstance();
-		List<App> tempList = new ArrayList<>(store);
+		
+		if (no < 0 || no >= store.size()) {
+	        System.out.println("❌ 없는 번호입니다.");
+	        return;
+	    }
 
-		for (App a : tempList) {
-			if (store.indexOf(a) == no) {
-				if (main.installedApps.contains(a)) {
-					System.out.println("이미" + a.getAppName() + "은 설치되어있습니다");
-					return;
-				} else {
-					main.installedApps.add(a);
-					System.out.println(a.getAppName() + "을 설치했습니다");
-					saveData(main.installedApps, "storage/system/Appdata");
+	    App a = store.get(no);
+	    if (a == null) {
+	        System.out.println("⚠️ 선택된 앱이 null입니다.");
+	        return;
+	    }
 
-					return;
-				}
-			}else {
-				throw new NullPointerException("없는 어플입니다");
-			}
-		}
+	    if (main.installedApps.contains(a)) {
+	        System.out.println("이미 설치되어 있습니다.");
+	        return;
+	    }
+
+	    main.installedApps.add(a);
+	    System.out.println("✅ 설치 완료: " + a.getAppName());
+	    saveData(main.installedApps, "storage/system/Appdata");
+		
+		
+		
+//		List<App> tempList = new ArrayList<>(store);
+
+//		for (App a : tempList) {
+//			if (store.indexOf(a) == no) {
+//				if (main.installedApps.contains(a)) {
+//					System.out.println("이미" + a.getAppName() + "은 설치되어있습니다");
+//					return;
+//				} else {
+//					main.installedApps.add(a);
+//					System.out.println(a.getAppName() + "을 설치했습니다");
+//					saveData(main.installedApps, "storage/system/Appdata");
+//
+//					return;
+//				}
+//			}else {
+//				throw new NullPointerException();
+//			}
+//		}
 	}
 }

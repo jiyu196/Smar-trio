@@ -1,5 +1,6 @@
 package app;
 
+import static util.TrioUtils.generateAppNo;
 import static util.TrioUtils.loadData;
 import static util.TrioUtils.nextInt;
 import static util.TrioUtils.saveData;
@@ -19,7 +20,9 @@ public class Calculator extends App {
 
 	public Calculator(int no) {
 		super(no, "계산기");
+		this.calculationHistory = new ArrayList<>();
 	}
+
 
 	public void run() {
 		loadHistory();

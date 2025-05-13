@@ -2,10 +2,12 @@ package app;
 
 import static util.TrioUtils.*;
 
+import java.io.Serializable;
+
 import domain.DeviceInfo;
 import main.Main;
 
-public class Info {
+public class Info implements Serializable{
 
 	private DeviceInfo loginInfo = null; // 비 로그인시 null
 

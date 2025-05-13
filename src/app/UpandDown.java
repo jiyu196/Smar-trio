@@ -1,5 +1,7 @@
 package app;
 
+import static util.TrioUtils.generateAppNo;
+
 import util.TrioUtils;
 
 public class UpandDown extends App{
@@ -12,6 +14,7 @@ public class UpandDown extends App{
 	public UpandDown(int no) {
 		super(no, "업앤다운");
 	}
+
 
 	public void run() {
 		System.out.println("업앤다운 앱을 실행합니다");

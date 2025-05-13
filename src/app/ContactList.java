@@ -17,7 +17,7 @@ public class ContactList extends App {
 	// 생성자, 주소록의 번호를 받아서 App 클래스의 생성자를 호출
 	private static ContactList contactList;
 
-	public ContactList(int no) {
+	private ContactList(int no) {
 		super(no, "주소록");
 	}
 

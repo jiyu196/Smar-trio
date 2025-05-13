@@ -1,5 +1,7 @@
 package app;
 
+import static util.TrioUtils.generateAppNo;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -7,10 +9,10 @@ import util.TrioUtils;
 
 public class SimpleCalendar extends App{
 
-    public SimpleCalendar(int no) {
+	 public SimpleCalendar(int no) {
 		super(no, "달력");
-		// TODO Auto-generated constructor stub
 	}
+    
     
     Calendar cal = Calendar.getInstance();
 
