@@ -32,7 +32,6 @@ public class HighLow extends App {
 
 			Card player = drawCard();
 			Card dealer = drawCard();
-
 			System.out.println("당신의 카드: " + player);
 			System.out.println("딜러의 카드: " + dealer);
 

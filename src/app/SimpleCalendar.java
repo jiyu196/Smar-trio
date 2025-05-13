@@ -47,7 +47,7 @@ public class SimpleCalendar extends App{
         // 시작 날자
 		System.out.println(new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
         // 주일 출력
-        System.out.println("Su Mo Tu We Th Fr Sa");
+        System.out.println(" 일 월 화 수 목 금 토");
         int firstDayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1 (Sun) to 7 (Sat)
         int lastDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH); // 마지막 날자 (월당)
 
@@ -58,7 +58,7 @@ public class SimpleCalendar extends App{
                 System.out.print("   ");
             } else {
                 // 날자 출력
-                System.out.printf("%2d ", i);
+                System.out.printf("%3d", i);
             }
             // 화요일 이면 다음줄 바꾸기
             if(i % 7 == ((7 - firstDayOfWeek) % 7)) {
