@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Memo;
+import util.TrioUtils;
+
 import static util.TrioUtils.*;
 
 public class MemoPad extends App {
@@ -62,7 +64,8 @@ public class MemoPad extends App {
 	private void add() {
 		String title = nextLine("제목: ");
 		String content = nextLine("내용: ");
-		memos.add(new Memo(nextNo++, title, content));
+		String date = TrioUtils.getCurrentDateTime("yyyy-MM-dd");
+		memos.add(new Memo(nextNo++, title, content,date));
 		System.out.println("메모 추가 및 저장 완료");
 		System.out.println("-".repeat(30));
 		saveMemo();
