@@ -1,6 +1,7 @@
 package app;
 
 import static util.TrioUtils.loadData;
+import static util.TrioUtils.nextInt;
 import static util.TrioUtils.saveData;
 
 import java.io.FileInputStream;
@@ -27,27 +28,23 @@ public class Calculator extends App {
 	}
 
 	public void run() {
-		System.out.println("계산기 앱을 실행합니다.");
 		loadHistory();
-		boolean running = true;
-		while (running) {
-			String choice = TrioUtils.nextLine("1: 계산 \n2: 기록 보기 \n0: 종료");
-
-			switch (choice) {
-			case "1":
-				calculate();
-				break;
-			case "2":
-				showHistory();
-				break;
-			case "0":
-				System.out.println("종료");
-				saveHistory(); // return 시키는것이 편할거라 생각합니다.
-				running = false;
-				break;
-			default:
-				System.out.println("잘못된 입력입니다.");
-			}
+		System.out.println("< 계산기 앱을 실행합니다 >");
+		System.out.println("1: 계산 \n2: 기록 보기 \n0: 종료");
+		int choice = nextInt("옵션을 선택하세요:");
+		switch (choice) {
+		case 1:
+			calculate();
+			break;
+		case 2:
+			showHistory();
+			break;
+		case 0:
+			System.out.println("종료");
+			saveHistory(); // return 시키는것이 편할거라 생각합니다.
+			return;
+		default:
+			System.out.println("잘못된 입력입니다.");
 		}
 	}
 
@@ -109,8 +106,7 @@ public class Calculator extends App {
 //	    }
 //	    return calculationHistory;
 //	}
-	
-	
+
 	private void saveHistory() {
 		saveData(calculationHistory, "storage/calculator/math_log.ser");
 	}
@@ -121,19 +117,20 @@ public class Calculator extends App {
 		if (loadHistory != null) {
 			this.calculationHistory = loadHistory;
 
-		}else {
+		} else {
 			this.calculationHistory = new ArrayList<>(); // 파일이 없거나 실패한 경우에도 빈 리스트로 초기화
 			System.out.println("기록을 불러오는 데 실패했습니다.");
 		}
 	}
+
 	private void showHistory() {
-	if (!calculationHistory.isEmpty()) {
-		System.out.println("계산 기록:");
-        for (Calculation calc : calculationHistory) {
-            System.out.println(calc);
-        }
-	}else {
-        System.out.println("기록이 없습니다.");
-    }
+		if (!calculationHistory.isEmpty()) {
+			System.out.println("계산 기록:");
+			for (Calculation calc : calculationHistory) {
+				System.out.println(calc);
+			}
+		} else {
+			System.out.println("기록이 없습니다.");
+		}
 	}
 }

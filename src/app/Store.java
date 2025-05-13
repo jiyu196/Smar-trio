@@ -25,6 +25,7 @@ public class Store extends App {
 		store.add(new CountDown(generateAppNo()));
 		store.add(new UpandDown(generateAppNo()));
 		store.add(new BlackJack(generateAppNo()));
+		store.add(new HighLow(generateAppNo()));
 		store.add(new Lotto(generateAppNo()));
 		store.add(new RSP(generateAppNo()));
 	}

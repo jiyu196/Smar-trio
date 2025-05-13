@@ -15,9 +15,8 @@ public class WeatherNow extends App {
         super(no, "날씨 앱");
         this.weatherData = new ArrayList<>();
         this.random = new Random();
-
-        // 도시 데이터 생성
-        weatherData.add(new WeatherInfo("서울", "대한민국", generateRandomTemperature(), generateRandomHumidity(), "매우 나쁨"));
+     // 도시 데이터 생성
+        weatherData.add(new WeatherInfo("서울", "대한민국", generateRandomTemperature(), generateRandomHumidity(), generateRandomMicroDust()));
         weatherData.add(new WeatherInfo("부산", "대한민국", generateRandomTemperature(), generateRandomHumidity(), generateRandomMicroDust()));
         weatherData.add(new WeatherInfo("뉴욕", "미국", generateRandomTemperature(), generateRandomHumidity(), generateRandomMicroDust()));
     }
@@ -46,14 +45,14 @@ public class WeatherNow extends App {
         // 도시 목록 출력
         int index = 1;
         for (WeatherInfo weather : weatherData) {
-            System.out.println(index++ + ". " + weather.getName() + ", " + weather.getCountry());
+            System.out.println(index++ + ". " + weather.getCity() + ", " + weather.getCountry());
         }
 
         int cityChoice = TrioUtils.nextInt("도시 번호 선택: ");
         
         if (cityChoice > 0 && cityChoice <= weatherData.size()) {
             WeatherInfo weather = weatherData.get(cityChoice - 1); // 입력 번호 - 1
-            System.out.println("선택한 도시: " + weather.getName() + ", " + weather.getCountry());
+            System.out.println("선택한 도시: " + weather.getCity() + ", " + weather.getCountry());
             System.out.println("기온: " + weather.getTemperature() + "°C");
             System.out.println("습도: " + weather.getHumidity() + "%");
             System.out.println("미세먼지: " + weather.getMicroDust());
