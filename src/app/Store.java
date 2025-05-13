@@ -42,7 +42,7 @@ public class Store extends App {
 				System.out.println("설치를 취소하고 스토어로 되돌아갑니다");
 				return;
 			} else {
-				install(no);
+				install(no - 1);
 			}
 		}
 	}
