@@ -32,25 +32,20 @@ public class Main {
 	}
 
 	public List<App> installedApps;
-
+	Info info = Info.getInstance();
+	
+	
 	public void menu() {
 
-		Info info = Info.getInstance();
+		
 
 		while (true) {
 
 			try {
 				
-//				if (!info.isRegistInfo()) {
-//					if(nextConfirm("등록된 사용자가 없습니다 가입하시겠습니까?")){
-//						info.register();
-//					}else {
-//						System.out.println("가입후 사용가능합니다");
-//					}
-//				}
-//				if (!info.isLoginInfo()) {
-//					info.logIn();
-//				} else {
+				if (info.getloginInfo() == null ) {
+					guestMenu();
+				}else{
 				appList();
 				int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
 				if (!(no >= 0 && no <= main.installedApps.size())) {
@@ -61,7 +56,7 @@ public class Main {
 					return;
 				}
 				runApp(no - 1);
-//				}
+				}
 			} catch (NumberFormatException e) {
 				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
 			} catch (IllegalArgumentException e) {
@@ -69,6 +64,23 @@ public class Main {
 			} catch (NullPointerException e) {
 				System.out.println(e.getMessage());
 			}
+		}
+	}
+	
+	public void guestMenu() {
+		int no = nextInt("다음중 선택해주세요. 1. 비밀번호 입력 2. 사용자 정보 입력 0.종료");
+		switch (no) {
+		case 1: 
+			info.logIn();
+			break;
+		case 2: 
+			info.register();
+			break;
+		case 0: 
+			System.out.println("기기를 종료합니다");
+			return;
+		default:
+			throw new IllegalArgumentException("정해진 번호를 입력해주세요");
 		}
 	}
 

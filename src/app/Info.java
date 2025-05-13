@@ -122,14 +122,15 @@ public class Info {
 		checkPw(pw); // null 예외처리
 
 		if (Info.getDeivcePw().equals(pw)) {
+			this.loginInfo =Info;
 			return;
 		}
 	}
 
 	public void logOut() {
 
-		if (nextConfirm("로그아웃 하시겠습니까 삭제시겠습니까? y/n")) {
-
+		if (nextConfirm("로그아웃 하시겠습니까 y/n")) {
+			this.loginInfo =null;
 		}
 	}
 
