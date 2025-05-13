@@ -159,7 +159,7 @@ public class MemoPad extends App {
 	}
 
 	private Memo findBy(int no) {
-		for (int i = 1; i < memos.size(); i++) {
+		for (int i = 0; i < memos.size(); i++) {
 			if (memos.get(i).getNo() == no) {
 				return memos.get(i);
 			}
