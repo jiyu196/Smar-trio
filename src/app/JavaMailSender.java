@@ -13,10 +13,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
-public class JavaMailSender {
+public class JavaMailSender extends App{
+	
+	
+	public JavaMailSender(int appNo) {
+		super(appNo, "메일 발송", true);
+	}
+
 	public static void main(String[] args) throws AddressException, MessagingException {
-		String id = "tiger2ys98@gmail.com";
-		String pw = "httyqnfhvnpepmvi";
+		
+		
+		
+
+		final String id = "tiger2ys98@gmail.com";
+		final String pw = "httyqnfhvnpepmvi";
 		
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -43,4 +53,16 @@ public class JavaMailSender {
 		System.out.println("done.");
 		
 	}
+
+	@Override
+	public void run() {
+		while(true) {
+			
+		}
+	}
+	
+	public void viewList() {
+		
+	}
+	
 }
