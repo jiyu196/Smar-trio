@@ -61,7 +61,10 @@ public class JavaMailSender extends App{
 	public void run() {
 		while(true) {
 			
-			int no = nextInt("사용할 기능을 선택해주세요. 1. 주소록에서 메모 선택 2.메모직접 입력 0.되돌아가기");
+			int no = nextInt("사용할 기능을 선택해주세요.\n"
+					+ " (1) 주소록에서 메모 선택\n"
+					+ " (2) 메모직접 입력\n"
+					+ " (0) 되돌아가기");
 			switch (no) {
 			case 1: 
 				

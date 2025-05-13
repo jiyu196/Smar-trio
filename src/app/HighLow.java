@@ -19,7 +19,7 @@ public class HighLow extends App {
 	public void run() {
 		System.out.println("< 하이로우 >");
 		while (true) {
-			boolean input = nextConfirm("게임을 시작하시겠습니까?");
+			boolean input = nextConfirm("게임을 시작하시겠습니까? ");
 			if (!input) {
 				System.out.println("게임을 종료합니다.");
 				break;

@@ -37,7 +37,12 @@ public class ContactList extends App {
 
 		while (true) {
 			System.out.println("--- 연락처 메뉴 ---");
-			System.out.println(" 1. 연락처 추가\n 2. 연락처 수정\n 3. 연락처 삭제\n 4. 연락처 보기\n 5. 돌아가기");
+			System.out.println(""
+					+ " (1) 연락처 추가\n"
+					+ " (2) 연락처 수정\n"
+					+ " (3) 연락처 삭제\n"
+					+ " (4) 연락처 보기\n"
+					+ " (5) 돌아가기");
 			int choice = nextInt("옵션을 선택하세요:"); // 메뉴 선택
 			switch (choice) {
 			case 1:

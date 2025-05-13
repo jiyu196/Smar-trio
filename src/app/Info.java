@@ -26,7 +26,12 @@ public class Info implements Serializable{
 
 	public void accountMenu() {
 		while (true) {
-			int no = nextInt("사용할기능 선택 1. 사용자 확인 2.사용자 정보 수정 3.로그아웃 4.사용자 제거");
+			int no = nextInt("사용할기능 선택\n"
+					+ " (1) 사용자 확인\n"
+					+ " (2) 사용자 정보 수정\n"
+					+ " (3) 로그아웃\n"
+					+ " (4) 사용자 제거\n"
+					+ "	(0) 종료");
 			switch (no) {
 			case 1:
 				checkInfo();
@@ -74,7 +79,12 @@ public class Info implements Serializable{
 			throw new NullPointerException("로그인 상태가 아닙니다");
 		}
 		
-		int no = nextInt("수정할 정보를 선택해주세요 1.이름 2. 비밀번호 3. 이메일 4.휴대폰 번호 0취소");
+		int no = nextInt("수정할 정보를 선택해주세요 :\n"
+				+ " (1) 이름\n"
+				+ " (2) 비밀번호\n"
+				+ " (3) 이메일\n"
+				+ " (4) 휴대폰 번호\n"
+				+ " (0) 취소");
 		switch (no) {
 		case 1:
 			String name = nextLine("사용자 이름을 입력해주세요");
