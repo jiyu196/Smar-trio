@@ -6,7 +6,7 @@ import main.Main;
 
 public class Setting extends App {
 
-	
+	Info info = Info.getInstance();
 	
 	public Setting(int appNo) {
 		super(appNo, "설정", true);
@@ -22,10 +22,8 @@ public class Setting extends App {
 
 			switch (no) {
 			case 1:
-				Info.getInstance().accountMenu();
-//				if(!Info.getInstance().isLoginInfo()) {
-//					return;
-//				}
+				info.accountMenu();
+				if(info.getloginInfo() == null) {return;}
 				break;
 			case 2:
 				deletApp();

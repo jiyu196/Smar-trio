@@ -64,7 +64,7 @@ public class DeviceInfo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "DeviceInfo [ 기기 이름 = "+DEVICENAME+"사용자 이름 :" + userName + ", 사용자 이메일=" + userEmail + ", 사용자 전화번="
+		return "DeviceInfo [ 기기 이름 = "+DEVICENAME+"사용자 이름 :" + userName + ", 사용자 이메일=" + userEmail + ", 사용자 전화번호="
 				+ tel + "]";
 	}
 	

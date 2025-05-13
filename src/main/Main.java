@@ -19,9 +19,7 @@ public class Main {
 	public static void main(String[] args) {
 		main.menu();
 	}
-
 	private static Main main = new Main();
-
 	private Main() {
 		loadApp();
 		
@@ -34,29 +32,26 @@ public class Main {
 	public List<App> installedApps;
 	Info info = Info.getInstance();
 	
-	
 	public void menu() {
-
-		
 
 		while (true) {
 
 			try {
-				
-				if (info.getloginInfo() == null ) {
-					guestMenu();
-				}else{
-				appList();
-				int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
-				if (!(no >= 0 && no <= main.installedApps.size())) {
-					throw new IllegalArgumentException("표기된 번호만 입력해주세요");
-				}
-				if (no == 0) {
-					System.out.println("기기를 종료합니다");
-					return;
-				}
-				runApp(no - 1);
-				}
+
+//				if (info.getloginInfo() == null) {
+//					guestMenu();
+//				} else {
+					appList();
+					int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
+					if (!(no >= 0 && no <= main.installedApps.size())) {
+						throw new IllegalArgumentException("표기된 번호만 입력해주세요");
+					}
+					if (no == 0) {
+						System.out.println("기기를 종료합니다");
+						return;
+					}
+					runApp(no - 1);
+//				}
 			} catch (NumberFormatException e) {
 				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
 			} catch (IllegalArgumentException e) {
@@ -66,17 +61,23 @@ public class Main {
 			}
 		}
 	}
-	
+
 	public void guestMenu() {
-		int no = nextInt("다음중 선택해주세요. 1. 비밀번호 입력 2. 사용자 정보 입력 0.종료");
+		int no = nextInt("다음중 선택해주세요. 1. 비밀번호 입력 2. 사용자 등록 0.종료");
 		switch (no) {
-		case 1: 
-			info.logIn();
+		case 1:
+			if (!info.loadUserData()) {
+				System.out.println("회원가입이 필요합니다");
+			} else {
+				info.logIn();
+			}
 			break;
-		case 2: 
-			info.register();
+		case 2:
+			if (!info.loadUserData()) {
+				info.register();
+			}
 			break;
-		case 0: 
+		case 0:
 			System.out.println("기기를 종료합니다");
 			return;
 		default:
@@ -108,7 +109,7 @@ public class Main {
 			this.installedApps = loadApp;
 		} else {
 			this.installedApps = new ArrayList<>(); // 파일이 없거나 실패한 경우에도 빈 리스트로 초기화
-			System.out.println("기록을 불러오는 데 실패했습니다.");
+			System.out.println(" 앱  기록을 불러오는 데 실패했습니다.");
 		}
 
 		if (installedApps.isEmpty()) {

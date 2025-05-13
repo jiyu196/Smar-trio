@@ -7,7 +7,7 @@ import main.Main;
 
 public class Info {
 
-	private DeviceInfo loginInfo; // 비 로그인시 null
+	private DeviceInfo loginInfo = null; // 비 로그인시 null
 
 //	private static Main main = new Main();
 
@@ -30,31 +30,34 @@ public class Info {
 				checkInfo();
 				break;
 			case 2:
-				editInfo();
+				editInfo(getloginInfo());
 				break;
 			case 3:
 				logOut();
-				return;
+				if(getloginInfo() == null) {return;}
+				break;
 			case 4:
 				deleteUserData();
-				return;
+				if(getloginInfo() == null) {return;}
+				break;
 			case 0:
 				System.out.println("종료합니다");
-				break;
+				return;
 			}
 		}
 	}
 
 	public DeviceInfo getloginInfo() { // 해당 객체를 호출해서 로그인 여부 확인
-		return loginInfo;
+		return this.loginInfo;
 
 	}
 
-	public void loadUserData() {
+	public boolean loadUserData() {
 		if (loadInfo("storage/system/userData") != null) {
 			this.Info = loadInfo("storage/system/userData");
+			return true;
 		}else {
-			System.out.println("계정을 만들어야합니다");
+			return false;
 		}
 
 	}
@@ -64,30 +67,38 @@ public class Info {
 		System.out.println(Info.toString());
 	}
 
-	public void editInfo() {
+	public void editInfo(DeviceInfo loginInfo) {
+		if(loginInfo == null) {
+			throw new NullPointerException("로그인 상태가 아닙니다");
+		}
+		
 		int no = nextInt("수정할 정보를 선택해주세요 1.이름 2. 비밀번호 3. 이메일 4.휴대폰 번호 0취소");
 		switch (no) {
 		case 1:
 			String name = nextLine("사용자 이름을 입력해주세요");
-			Info.setUserName(name);
+			loginInfo.setUserName(name);
+			Info = loginInfo;
 			saveInfo(Info, "storage/system/userData");
 			break;
 		case 2:
 			String pw = nextLine("비밀번호를 입력해주세요");
 			checkPw(pw);
-			Info.setDeivcePw(pw);
+			loginInfo.setDeivcePw(pw);
+			Info = loginInfo;
 			saveInfo(Info, "storage/system/userData");
 			break;
 		case 3:
 			String email = nextLine("이메일을 입력해주세요");
 			checkEmail(email);
-			Info.setUserEmail(email);
+			loginInfo.setUserEmail(email);
+			Info = loginInfo;
 			saveInfo(Info, "storage/system/userData");
 			break;
 		case 4:
 			String tel = nextLine("휴대폰 번호를 입력해주세요");
 			checkTel(tel);
-			Info.setTel(tel);
+			loginInfo.setTel(tel);
+			Info = loginInfo;
 			saveInfo(Info, "storage/system/userData");
 			break;
 		case 0:
@@ -142,6 +153,7 @@ public class Info {
 			Info.setTel(null);
 			System.out.println("사용자 정보가 제거 되었습니다");
 			deleteInfo("storage/system/userData");
+			this.loginInfo =null;
 			return;
 		}
 	}
