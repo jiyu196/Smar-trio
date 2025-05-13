@@ -24,7 +24,10 @@ public class Calculator extends App {
 	public void run() {
 		loadHistory();
 		System.out.println("< 계산기 앱을 실행합니다 >");
-		System.out.println("1: 계산 \n2: 기록 보기 \n0: 종료");
+		System.out.println(""
+				+ " (1) 계산 하기\n"
+				+ " (2) 기록 보기 \n"
+				+ " (0) 종료");
 		int choice = nextInt("옵션을 선택하세요:");
 		switch (choice) {
 		case 1:

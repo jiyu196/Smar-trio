@@ -46,7 +46,7 @@ public class RSP extends App{
 				break;
 			case -1:
 				result = "패배";
-				System.out.println(">> 결과 : 패배입니다.. 다시 도전?");
+				System.out.println(">> 결과 : 패배입니다...\n다시 도전 하시겠습니까? ");
 				break;
 			case 0:
 				result = "비김";
@@ -58,11 +58,11 @@ public class RSP extends App{
 				break;
 			case 2:
 				result = "패배";
-				System.out.println(">> 결과 : 패배입니다.. 다시 도전?");
+				System.out.println(">> 결과 : 패배입니다...\n다시 도전 하시겠습니까? ");
 				break;
 			}
 			System.out.println("=================================================");
-			if (!TrioUtils.nextConfirm("가위바위보 게임을 다시 시작하시겠습니까? ")) {
+			if (!TrioUtils.nextConfirm("가위바위보 게임을 다시 시작하시겠습니까?")) {
 				System.out.println("가위바위보 게임이 종료되었습니다.");
 				return;
 			}

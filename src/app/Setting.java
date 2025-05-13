@@ -18,7 +18,10 @@ public class Setting extends App {
 
 		while (true) {
 			
-			int no = nextInt("실행할 설정을 골라주세요 1.계정설정 2.어플 삭제 3 0.종료");
+			int no = nextInt("실행할 설정을 골라주세요\n"
+					+ " (1) 계정설정"
+					+ " (2) 어플 삭제"
+					+ " (0) 종료");
 
 			switch (no) {
 			case 1:

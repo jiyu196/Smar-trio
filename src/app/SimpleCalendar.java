@@ -18,7 +18,10 @@ public class SimpleCalendar extends App{
         while (true) {
         	displayCalendar();
         	System.out.println("\n옵션을 선택하세요:");
-        	int choice = TrioUtils.nextInt(" 1: 이전 달\n 2: 다음 달 \n 0: 종료");
+        	int choice = TrioUtils.nextInt(""
+        			+ " (1) 이전 달\n"
+        			+ " (2) 다음 달\n"
+        			+ " (0) 종료");
         	switch (choice) {
 			case 1: {
 				cal.set(Calendar.DAY_OF_MONTH, 1);
