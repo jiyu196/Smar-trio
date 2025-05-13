@@ -9,12 +9,12 @@ import java.util.List;
 import domain.Memo;
 import static util.TrioUtils.*;
 
-public class Memojang extends App {
+public class MemoPad extends App {
 
 	private List<Memo> memos;
 	private int nextNo = 0;
 
-	public Memojang(int no) {
+	public MemoPad(int no) {
 		super(no, "메모");
 	}
 
