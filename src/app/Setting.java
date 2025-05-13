@@ -63,6 +63,8 @@ public class Setting extends App {
 		if(nextConfirm(app.getAppName()+"을 정말 삭제시겠습니까?")) {
 			System.out.println(app.getAppName() + "을 삭제했습니다");
 			main.installedApps.remove(app);
+
+			saveData(main.installedApps, "storage/system/Appdata");
 			return;
 		}
 		
