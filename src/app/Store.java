@@ -31,7 +31,7 @@ public class Store extends App {
 	@Override
 	public void run() {
 		while (true) {
-			appList();
+			showAppList();
 
 			int no = nextInt("설치하고 싶은 어플의 번호를 입력해주세요. 0. 종료");
 			if (!(no >= 0 && no <= store.size())) {
@@ -47,7 +47,21 @@ public class Store extends App {
 		}
 	}
 
-	private void appList() {
+	private void storeApps() {
+		store.add(ContactList.getInstance());
+		store.add(new Memojang(generateAppNo()));
+		store.add(new Calculator(generateAppNo()));
+		store.add(new SimpleCalendar(generateAppNo()));
+		store.add(new WeatherNow(generateAppNo()));
+		store.add(new CountDown(generateAppNo()));
+		store.add(new UpandDown(generateAppNo()));
+		store.add(new BlackJack(generateAppNo()));
+		store.add(new HighLow(generateAppNo()));
+		store.add(new Lotto(generateAppNo()));
+		store.add(new RSP(generateAppNo()));
+	}
+	
+	private void showAppList() {
 		for (App a : store) {
 			System.out.println(" (" + (store.indexOf(a) + 1) + ") " + a.getAppName());
 		}

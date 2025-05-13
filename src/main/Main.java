@@ -24,6 +24,7 @@ public class Main {
 
 	private Main() {
 		loadApp();
+		
 	}
 
 	public static Main getInstance() {
@@ -39,12 +40,14 @@ public class Main {
 		while (true) {
 
 			try {
-
+				
 //				if (!info.isRegistInfo()) {
-//					System.out.println("등록된 사용자가 없습니다 가입하시겠습니까?");
-//					info.register();
+//					if(nextConfirm("등록된 사용자가 없습니다 가입하시겠습니까?")){
+//						info.register();
+//					}else {
+//						System.out.println("가입후 사용가능합니다");
+//					}
 //				}
-//
 //				if (!info.isLoginInfo()) {
 //					info.logIn();
 //				} else {
