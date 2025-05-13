@@ -24,6 +24,7 @@ public class Main {
 
 	private Main() {
 		loadApp();
+		
 	}
 
 	public static Main getInstance() {
@@ -39,22 +40,26 @@ public class Main {
 		while (true) {
 
 			try {
-
+				
 //				if (!info.isRegistInfo()) {
-//					System.out.println("등록된 사용자가 없습니다 가입하시겠습니까?");
-//					info.register();
+//					if(nextConfirm("등록된 사용자가 없습니다 가입하시겠습니까?")){
+//						info.register();
+//					}else {
+//						System.out.println("가입후 사용가능합니다");
+//					}
 //				}
-//
 //				if (!info.isLoginInfo()) {
 //					info.logIn();
 //				} else {
 				appList();
 				int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
+				if (!(no >= 0 && no <= main.installedApps.size())) {
+					throw new IllegalArgumentException("표기된 번호만 입력해주세요");
+				}
 				if (no == 0) {
 					System.out.println("기기를 종료합니다");
 					return;
 				}
-
 				runApp(no - 1);
 //				}
 			} catch (NumberFormatException e) {
@@ -68,10 +73,6 @@ public class Main {
 	}
 
 	public void appList() {
-//		for (App a : installedApps) {
-//			System.out.println(
-//					"("+ (installedApps.indexOf(a) + 1) + ") " + a.getAppName());
-//		}
 		int index = 1;
 		for (App a : installedApps) {
 			System.out.println(" (" + index + ") " + a.getAppName());
@@ -87,22 +88,6 @@ public class Main {
 			}
 		}
 	}
-
-//	public void saveInstalledApps() {
-//        save("storage", "system", "installed_apps.ser", installedApps); // 파일료 저장
-//    }
-
-//	public void loadInstalledApps() {
-//        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/system/installed_apps.ser"))) {
-//            List<App> loadedApps = (List<App>) ois.readObject(); // Read installed apps from file
-//            installedApps.clear();
-//            installedApps.addAll(loadedApps);
-//            System.out.println("앱 목록을 성공적으로 불러왔습니다.");
-//        } catch (Exception e) {
-//            System.out.println("앱 목록을 불러오는 데 실패했습니다.");
-//            e.printStackTrace();
-//        }
-//    }
 
 	private void loadApp() {
 		List<App> loadApp = loadData("storage/system/Appdata");

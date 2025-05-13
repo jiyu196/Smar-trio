@@ -23,9 +23,9 @@ public class Setting extends App {
 			switch (no) {
 			case 1:
 				Info.getInstance().accountMenu();
-				if(!Info.getInstance().isLoginInfo()) {
-					return;
-				}
+//				if(!Info.getInstance().isLoginInfo()) {
+//					return;
+//				}
 				break;
 			case 2:
 				deletApp();
@@ -63,8 +63,6 @@ public class Setting extends App {
 		if(nextConfirm(app.getAppName()+"을 정말 삭제시겠습니까?")) {
 			System.out.println(app.getAppName() + "을 삭제했습니다");
 			main.installedApps.remove(app);
-
-			saveData(main.installedApps, "storage/system/Appdata");
 			return;
 		}
 		

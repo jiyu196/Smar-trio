@@ -55,8 +55,6 @@ public class TrioUtils {
 	}
 
 	public static boolean nextConfirm(String msg) {
-//		String s = nextLine(msg + " [y/n]");
-//		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");
 		while (true) {
 			String s = nextLine(msg + " [y/n]");
 			if (s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes"))
@@ -122,7 +120,40 @@ public class TrioUtils {
 	    }
 	}
 	
-	public static <T> void saveData(T data, String filePath) {
+	public static <T> void saveInfo(T data, String filePath) {
+		File file = new File(filePath);
+		File dir = file.getParentFile();
 		
+		if (dir != null && !dir.exists()) {
+            if (dir.mkdirs()) {
+                System.out.println("디렉토리 생성 완료: " + dir.getPath());
+            } else {
+                System.out.println("디렉토리 생성 실패: " + dir.getPath());
+            }
+        }
+		
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(data);
+            System.out.println("저장 완료: " + file.getPath());
+        } catch (IOException e) {
+            System.out.println("저장 실패: " + e.getMessage());
+        }
 	}
+	
+	public static <T> T loadInfo(String filepath){
+	    File file = new File(filepath);
+
+	    if (!file.exists()) {
+	        System.out.println("불러올 파일이 없습니다: " + filepath);
+	        return null; // 실패 시 null 반환
+	    }
+
+	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+	        return (T) ois.readObject();
+	    } catch (IOException | ClassNotFoundException e) {
+	        System.out.println("불러오기 실패: " + e.getMessage());
+	        return null;
+	    }
+	}
+	
 }

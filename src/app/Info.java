@@ -1,21 +1,22 @@
 package app;
 
-import static util.TrioUtils.nextConfirm;
-import static util.TrioUtils.nextInt;
-import static util.TrioUtils.nextLine;
+import static util.TrioUtils.*;
+
 
 import domain.DeviceInfo;
+import main.Main;
 
 public class Info {
 	
-	private boolean loginInfo = false;
-	private boolean RegistInfo = false;
+	private DeviceInfo loginInfo; // 비 로그인시 null
 	
 	
-	private static DeviceInfo Info = new DeviceInfo();
-	private static final Info INSTANCE = new Info();
+//	private static Main main = new Main();
+	
+	private DeviceInfo Info = new DeviceInfo(); //기기 정보 객체 호출
+	
+	private static Info INSTANCE = new Info();
 	private Info() {} // 외부에서 생성 불가
-
 	public static Info getInstance() { //유일한 객체
 		return INSTANCE;
 	}
@@ -44,6 +45,20 @@ public class Info {
 		}
 	}
 
+	
+	public DeviceInfo getloginInfo() { //해당 객체를 호출해서 로그인 여부 확인
+		return loginInfo;
+		
+	}
+	
+	public void loadUserData() {
+		if(loadInfo("storage/system/userData") != null) {
+			this.Info=loadInfo("storage/system/userData");
+		}
+			
+	}
+	
+	
 	public void checkInfo() {
 		System.out.println(Info.toString());
 	}
@@ -54,21 +69,25 @@ public class Info {
 		case 1: 
 			String name = nextLine("사용자 이름을 입력해주세요");
 			Info.setUserName(name);
+			saveInfo(Info, "storage/system/userData");
 			break;
 		case 2: 
 			String pw = nextLine("비밀번호를 입력해주세요");
 			checkPw(pw);
 			Info.setDeivcePw(pw);
+			saveInfo(Info, "storage/system/userData");
 			break;
 		case 3: 
 			String email = nextLine("이메일을 입력해주세요");
 			checkEmail(email);
 			Info.setUserEmail(email);
+			saveInfo(Info, "storage/system/userData");
 			break;
 		case 4: 
 			String tel = nextLine("휴대폰 번호를 입력해주세요");
 			checkTel(tel);
 			Info.setTel(tel);
+			saveInfo(Info, "storage/system/userData");
 			break;
 		case 0: 
 			System.out.println("이전메뉴로 되돌아갑니다");
@@ -79,10 +98,7 @@ public class Info {
 	}
 
 	public void register() { // 가입기능, 최초싱행시 가입이 안되어있으면 실행
-		if(isRegistInfo()) {
-			System.out.println("이미 등록된 계정이 있습니다");
-			return;
-		}
+
 		
 		String name = nextLine("사용자 이름을 입력해주세요");
 		String pw = nextLine("비밀번호를 입력해주세요");
@@ -97,7 +113,9 @@ public class Info {
 		Info.setDeivcePw(pw);
 		Info.setUserEmail(email);
 		Info.setTel(tel);
-		RegistInfo = true;
+		saveInfo(Info, "storage/system/userData");
+
+		
 	}
 
 	public void logIn() {
@@ -105,33 +123,26 @@ public class Info {
 		checkPw(pw); //null 예외처리
 		
 		if(Info.getDeivcePw().equals(pw)) {
-			setLoginInfo(true);
 			return;
 		}
 	}
 
 	public void logOut() {
-		if(!isLoginInfo()) {
-			System.out.println("이미 로그아웃중입니다");
-			return;
-		}
+
 		if(nextConfirm("로그아웃 하시겠습니까 삭제시겠습니까? y/n")) {
-			setLoginInfo(false);
+			
 		}
 	}
 
 	public void deleteInfo() {
-		if(!isRegistInfo()) {
-			System.out.println("가입된 계정이 없습니다");
-			return;
-		}
+
 		if(nextConfirm("사용자를 정말 삭제시겠습니까? y/n")) {
 			Info.setUserName(null);
 			Info.setDeivcePw(null);
 			Info.setTel(null);
 			System.out.println("사용자 정보가 제거 되었습니다");
-			setLoginInfo(false);
-			setRegistInfo(false);
+			saveInfo(Info, "storage/system/userData");
+
 			return;	
 		}
 	}
@@ -156,19 +167,8 @@ public class Info {
 			throw new IllegalArgumentException("비밀번호는 공백을 포함하지 않은 4글자 이상이어야합니다\n 처음부터 다시 시도해주세요");
 		}
 	}
-	
-	public boolean isLoginInfo() {
-		return loginInfo;
-	}
-	public boolean isRegistInfo() {
-		return RegistInfo;
-	}
-	public void setLoginInfo(boolean loginInfo) {
-		this.loginInfo = loginInfo;
-	}
-	public void setRegistInfo(boolean registInfo) {
-		RegistInfo = registInfo;
-	}
+
+
 	
 	
 	

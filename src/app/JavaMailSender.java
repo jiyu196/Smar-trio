@@ -11,6 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import static util.TrioUtils.*;
 
 
 public class JavaMailSender extends App{
@@ -22,11 +23,13 @@ public class JavaMailSender extends App{
 
 	public static void main(String[] args) throws AddressException, MessagingException {
 		
-		
-		
-
 		final String id = "tiger2ys98@gmail.com";
 		final String pw = "httyqnfhvnpepmvi";
+		
+		
+		
+		
+		
 		
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -57,6 +60,21 @@ public class JavaMailSender extends App{
 	@Override
 	public void run() {
 		while(true) {
+			
+			int no = nextInt("사용할 기능을 선택해주세요. 1. 주소록에서 메모 선택 2.메모직접 입력 0.되돌아가기");
+			switch (no) {
+			case 1: 
+				
+				break;
+			case 2:	
+			
+				break;
+			case 0:
+				
+				break;
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + no);
+			}
 			
 		}
 	}
