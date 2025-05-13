@@ -42,15 +42,14 @@ public class Store extends App {
 				System.out.println("설치를 취소하고 스토어로 되돌아갑니다");
 				return;
 			} else {
-				install(no);
+				install(no - 1);
 			}
-
 		}
 	}
 
 	private void appList() {
 		for (App a : store) {
-			System.out.println("(" + (store.indexOf(a) + 1) + ") " + a.getAppName());
+			System.out.println(" (" + (store.indexOf(a) + 1) + ") " + a.getAppName());
 		}
 	}
 
@@ -69,11 +68,10 @@ public class Store extends App {
 					main.installedApps.add(a);
 					System.out.println(a.getAppName() + "을 설치했습니다");
 					saveData(main.installedApps, "storage/system/Appdata");
+
 					return;
 				}
 			}
 		}
-
 	}
-
 }

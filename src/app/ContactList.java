@@ -37,7 +37,7 @@ public class ContactList extends App {
 
 		while (true) {
 			System.out.println("--- 연락처 메뉴 ---");
-			System.out.println("1. 연락처 추가\n2. 연락처 수정\n3. 연락처 삭제\n4. 연락처 보기\n5. 돌아가기");
+			System.out.println(" 1. 연락처 추가\n 2. 연락처 수정\n 3. 연락처 삭제\n 4. 연락처 보기\n 5. 돌아가기");
 			int choice = nextInt("옵션을 선택하세요:"); // 메뉴 선택
 			switch (choice) {
 			case 1:
@@ -61,32 +61,6 @@ public class ContactList extends App {
 			}
 		}
 	}
-
-//	// 연락처 목록 로드
-//	private void loadContacts() {
-//	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/contacts/contacts_log.ser"))) {
-//	        List<Contacts> loadedContacts = (List<Contacts>) ois.readObject();// 파일에서 연락처 목록을 읽어옴
-//	        contacts.clear();  // 기존 연락처 목록을 초기화한 후 불러온 목록을 추가
-//	        contacts.addAll(loadedContacts);
-//	        if (!contacts.isEmpty()) { // 연락처가 하나 이상 있을 경우 다음 연락처 번호 설정
-//	            nextNo = contacts.get(contacts.size() - 1).getNo() + 1;
-//	        }
-//	        System.out.println("연락처를 성공적으로 불러왔습니다.");
-//	    } catch (Exception e) { // 예외 발생 시 오류 메시지 출력
-//	        System.out.println("연락처를 불러오는 데 실패했습니다.");
-//	        e.printStackTrace();
-//	    }
-//	}
-//
-//	// 연락처 저장
-//	private void saveContacts() {
-//		try {
-////			save("storage", "contacts", "contacts_log.ser", contacts);
-//			System.out.println("연락처가 성공적으로 저장되었습니다.");
-//		} catch (Exception e) {
-//			System.out.println("연락처 저장 실패: " + e.getMessage());
-//		}
-//	}
 
 	private void saveContacts() {
 		saveData(contacts, "storage/contacts/contacts_log.ser");
