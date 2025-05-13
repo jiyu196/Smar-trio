@@ -11,7 +11,6 @@ import static util.TrioUtils.*;
 
 public class Memojang extends App {
 
-//	private List<Memo> memos = new ArrayList<>(); // 지속적으로 수정이 예상되는 리스트이기 때문에 final를 옳바르지 않아보입니다
 	private List<Memo> memos;
 	private int nextNo = 0;
 
@@ -121,27 +120,6 @@ public class Memojang extends App {
 			System.out.println("메모장 삭제가 취소되었습니다");
 		}
 	}
-	// 메모 저장하기
-//	private void save() {
-//		TrioUtils.save("storage", "memos", "memos_log.ser", memos);
-//	}
-
-	// 메모 로드
-//	private void load() {
-//	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("storage/memos/memos_log.ser"))) {
-//	        List<Memo> loadedMemos = (List<Memo>) ois.readObject(); // 파일에서 메모 목록을 읽어옴
-//	        memos.clear(); // 기존 메모 목록을 초기화한 후 불러온 목록을 추가
-//	        memos.addAll(loadedMemos);
-//	        if (!memos.isEmpty()) { // 메모가 하나 이상 있을 경우 다음 메모 번호 설정
-//	            nextNo = memos.get(memos.size() - 1).getNo() + 1;
-//	        }
-//	        System.out.println("저장된 메모 (" + memos.size() + "개)를 성공적으로 불러왔습니다.");
-//	        System.out.println("-------------------------------------------------");
-//	    } catch (Exception e) { // 예외 발생 시 오류 메시지 출력
-//	        System.out.println("메모장 로드 실패: " + e.getMessage());
-//	        e.printStackTrace();
-//	    }
-//	}
 
 	private void saveMemo() {
 		saveData(memos, "storage/memos/memos_log.ser");
