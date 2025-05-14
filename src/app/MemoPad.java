@@ -20,7 +20,7 @@ public class MemoPad extends App {
 		super(no, "메모");
 		this.memos = new ArrayList<>();
 	}
-
+	
 	public void run() {
 		System.out.println("메모 앱을 실행합니다");
 		loadMemo();

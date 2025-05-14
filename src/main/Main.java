@@ -38,13 +38,13 @@ public class Main {
 	public void menu() {
 
 		while (true) {
-			PhoneUI.printTimeLine();
-			PhoneUI.printWallpaper();
-			System.out.println("실행할 어플의 번호를 선택해 주세요 : ");
 			try {
 				if (info.getloginInfo() == null) {
 					guestMenu();
 				} else {
+					PhoneUI.printTimeLine();
+					PhoneUI.printWallpaper();
+					System.out.println("실행할 어플의 번호를 선택해 주세요 : ");
 					appList();
 					PhoneUI.printBorder();
 					int no = nextInt(" (0) 종료");
@@ -86,6 +86,9 @@ public class Main {
 		case 2:
 			if (!info.loadUserData()) {
 				info.register();
+			} else if (info.loadUserData()) {
+				System.out.println("이미 계정이 있습니다.");
+				info.logIn();
 			}
 			break;
 		case 0:

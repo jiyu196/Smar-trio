@@ -31,7 +31,7 @@ public class Setting extends App {
 				if(info.getloginInfo() == null) {return;}
 				break;
 			case 2:
-				deletApp();
+				deleteApp();
 				return;
 			case 0:
 				System.out.println("(홈 화면으로 되돌아갑니다)");
@@ -43,7 +43,7 @@ public class Setting extends App {
 
 	}
 
-	public void deletApp() {
+	public void deleteApp() {
 		Main main = Main.getInstance();
 		for (App a : main.installedApps) {
 			System.out.println("(" + (main.installedApps.indexOf(a) + 1) + ")" + a.getAppName());
@@ -66,8 +66,8 @@ public class Setting extends App {
 		if(nextConfirm(app.getAppName()+"을 정말 삭제시겠습니까?")) {
 			System.out.println(app.getAppName() + "을 삭제했습니다");
 			main.installedApps.remove(app);
+			saveData(main.installedApps, "storage/system/Appdata");
 			return;
 		}
-		
 	}
 }
