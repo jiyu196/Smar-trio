@@ -151,7 +151,7 @@ public class ContactList extends App {
 	// 연락처 목록 출력
 	public void showContacts() {
 		
-		if (contacts.isEmpty()) {
+		if (contacts == null || contacts.isEmpty()  ) {
 			System.out.println("등록된 연락처가 없습니다.");
 			return;
 		}

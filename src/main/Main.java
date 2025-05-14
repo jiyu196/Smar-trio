@@ -39,7 +39,7 @@ public class Main {
 
 		while (true) {
 
-			try {
+//			try {
 
 //				if (info.getloginInfo() == null) {
 //					guestMenu();
@@ -55,13 +55,13 @@ public class Main {
 					}
 					runApp(no - 1);
 //				}
-			} catch (NumberFormatException e) {
-				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			} catch (NullPointerException e) {
-				System.out.println(e.getMessage());
-			}
+//			} catch (NumberFormatException e) {
+//				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
+//			} catch (IllegalArgumentException e) {
+//				System.out.println(e.getMessage());
+//			} catch (NullPointerException e) {
+//				System.out.println(e.getMessage());
+//			}
 		}
 	}
 
