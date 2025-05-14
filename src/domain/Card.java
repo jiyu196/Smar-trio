@@ -18,8 +18,20 @@ public class Card implements Serializable{
     public int getValue() {
         return value;
     }
+    
+    public void setValue(int value) {
+		this.value = value;
+	}
 
-    @Override
+    public int getSuit() {
+		return suit;
+	}
+
+	public void setSuit(int suit) {
+		this.suit = suit;
+	}
+
+	@Override
     public String toString() {
         return "[" + Suits[suit] + Values[value] + "]";
     }
