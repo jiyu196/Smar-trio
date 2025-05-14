@@ -7,7 +7,9 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import app.App;
+import app.ContactList;
 import app.Info;
+import app.JavaMailSender;
 import app.Setting;
 import app.Store;
 import domain.Contacts;
@@ -39,9 +41,9 @@ public class Main {
 
 			try {
 
-				if (info.getloginInfo() == null) {
-					guestMenu();
-				} else {
+//				if (info.getloginInfo() == null) {
+//					guestMenu();
+//				} else {
 					appList();
 					int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
 					if (!(no >= 0 && no <= main.installedApps.size())) {
@@ -52,7 +54,7 @@ public class Main {
 						return;
 					}
 					runApp(no - 1);
-				}
+//				}
 			} catch (NumberFormatException e) {
 				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
 			} catch (IllegalArgumentException e) {
@@ -121,6 +123,8 @@ public class Main {
 		if (installedApps.isEmpty()) {
 			installedApps.add(new Store(generateAppNo()));
 			installedApps.add(new Setting(generateAppNo()));
+			installedApps.add(ContactList.getInstance());
+			installedApps.add(new JavaMailSender(generateAppNo()));
 		}
 	}
 

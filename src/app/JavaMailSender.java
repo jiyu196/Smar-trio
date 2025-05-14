@@ -17,20 +17,66 @@ import static util.TrioUtils.*;
 public class JavaMailSender extends App{
 	
 	
+	
 	public JavaMailSender(int appNo) {
 		super(appNo, "메일 발송", true);
 	}
 
-	public static void main(String[] args) throws AddressException, MessagingException {
+	@SuppressWarnings("finally")
+	@Override
+	public void run() {
+		while(true) {
+			
+			int no = nextInt("사용할 기능을 선택해주세요.\n"
+					+ " (1) 메일 입력\n"
+					+ " (0) 되돌아가기");
+			switch (no) {
+			case 1:	
+				try {
+					insertEmail();
+				} catch (AddressException e) {
+					e.printStackTrace();
+				} catch (MessagingException e) {
+					e.printStackTrace();
+				}finally {
+					return;
+				}
+			case 0:
+				System.out.println("이전 메뉴로 되돌아갑니다");
+				return;
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + no);
+			}
+			
+		}
+	}
+	
+//	public void viewList() {
+//		ContactList contactList = ContactList.getInstance();
+//		contactList.showContacts();
+//	}
+	
+	public void insertEmail() throws AddressException, MessagingException {
+		String recipient = nextLine("수신자의 이메일을 정확히 입력해주세요");
 		
+		if (!recipient.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+			System.out.println("이메일 형식이 올바르지 않습니다.");
+			return;
+		}
+		String title = nextLine("메일 제목을 입력해주세요");
+		String content = nextLine("메일 본문을 입력해주세요");
+		sendMail(recipient,title,content);
+		
+	}
+	
+
+	
+	public void sendMail(String recipient, String title, String content) throws AddressException, MessagingException {
 		final String id = "tiger2ys98@gmail.com";
 		final String pw = "httyqnfhvnpepmvi";
 		
-		
-		
-		
-		
-		
+		System.out.println("잠시 기다려주세요");
+
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
@@ -47,43 +93,14 @@ public class JavaMailSender extends App{
 		
 		Message message = new MimeMessage(session);
 		message.setFrom(new InternetAddress(id));
-		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("imtaehoonkim@gmail.com"));
+		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient)); // 수신자 이메일
 		
-		message.setSubject("자바 메일 발송 테스트");
-		message.setText("java mail 1.6기반 내용");
+		message.setSubject(title); // 메일 제목
+		message.setText(content); // 제목 본문
 		Transport.send(message);
 		
-		System.out.println("done.");
-		
-	}
-
-	@Override
-	public void run() {
-		while(true) {
-			
-			int no = nextInt("사용할 기능을 선택해주세요.\n"
-					+ " (1) 주소록에서 메모 선택\n"
-					+ " (2) 메모직접 입력\n"
-					+ " (0) 되돌아가기");
-			switch (no) {
-			case 1: 
-				
-				break;
-			case 2:	
-			
-				break;
-			case 0:
-				
-				break;
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + no);
-			}
-			
-		}
+		System.out.println("전송되었습니다");
 	}
 	
-	public void viewList() {
-		
-	}
 	
 }
