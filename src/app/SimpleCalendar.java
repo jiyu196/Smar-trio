@@ -41,6 +41,7 @@ public class SimpleCalendar extends App{
 				break;
 			}
 			case 0: {
+				System.out.println("(홈 화면으로 되돌아갑니다)");
 				return; // 종료 + 매인으로
 			}
 			default:

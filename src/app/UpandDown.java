@@ -18,9 +18,11 @@ public class UpandDown extends App{
 
 
 	public void run() {
+		
 		System.out.println("업앤다운 앱을 실행합니다");
 		PhoneUI.printTimeLine();
 		PhoneUI.printWallpaper();
+		
 		if (!TrioUtils.nextConfirm(" 게임을 시작하시겠습니까? ")) {
 			System.out.println("업앤다운 앱이 종료되었습니다.");
 			return;
@@ -47,7 +49,7 @@ public class UpandDown extends App{
 			System.out.println("=================================================");
 
 			if (!TrioUtils.nextConfirm("게임을 다시 시작하시겠습니까? ")) {
-				System.out.println("업앤다운 앱이 종료되었습니다.");
+				System.out.println("(홈 화면으로 되돌아갑니다)");
 				return;
 			}
 			continue;

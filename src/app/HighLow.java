@@ -20,9 +20,11 @@ public class HighLow extends App {
 
 	public void run() {
 		while (true) {
+			
 			PhoneUI.printTimeLine();
 			PhoneUI.printWallpaper();
 			System.out.println(" < 하이로우 > :");
+			
 			boolean input = nextConfirm("게임을 시작하시겠습니까? ");
 			if (!input) {
 				System.out.println("게임을 종료합니다.");
@@ -51,7 +53,7 @@ public class HighLow extends App {
 			}
 			
 			if (!nextConfirm("다시 하시겠습니까?")) {
-				System.out.println("게임을 종료합니다.");
+				System.out.println("(홈 화면으로 되돌아갑니다)");
 				break;
 			}
 		}

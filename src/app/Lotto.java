@@ -22,7 +22,7 @@ public class Lotto extends App{
 		PhoneUI.printWallpaper();
 		System.out.println(" < 로또 앱 > :");
 		if (!TrioUtils.nextConfirm("로또 번호를 뽑으시겠습니까? ")) {
-			System.out.println("로또 앱이 종료되었습니다.");
+			System.out.println("(홈 화면으로 되돌아갑니다)");
 			return;
 		}
 		while (true) {

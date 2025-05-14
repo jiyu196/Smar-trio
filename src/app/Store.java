@@ -4,6 +4,7 @@ import static util.TrioUtils.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.PhoneUI;
 import main.Main;
 
 public class Store extends App {
@@ -18,9 +19,12 @@ public class Store extends App {
 	@Override
 	public void run() {
 		while (true) {
+			System.out.println("설치하고 싶은 어플의 번호를 입력해주세요.");
 			showAppList();
-
-			int no = nextInt("설치하고 싶은 어플의 번호를 입력해주세요.\n 0. 종료");
+			
+			PhoneUI.printBorder();
+			int no = nextInt(" (0) 돌아가기");
+			
 			if (!(no >= 0 && no <= store.size())) {
 				throw new IllegalArgumentException("표기된 번호만 입력해주세요");
 			}

@@ -2,6 +2,7 @@ package app;
 
 import static util.TrioUtils.*;
 
+import domain.PhoneUI;
 import main.Main;
 
 public class Setting extends App {
@@ -17,7 +18,8 @@ public class Setting extends App {
 	public void run() {
 
 		while (true) {
-			
+			PhoneUI.printTimeLine();
+			PhoneUI.printWallpaper();
 			int no = nextInt(" < 설정 > :\n"
 					+ " (1) 계정설정\n"
 					+ " (2) 어플 삭제\n"

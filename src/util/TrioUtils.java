@@ -22,6 +22,7 @@ public class TrioUtils {
 	}
 
 	public static int nextInt(String msg) {
+		
 		while (true) {
 			try {
 				String input = nextLine(msg);
@@ -115,7 +116,7 @@ public class TrioUtils {
 	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
 	        return (List<T>) ois.readObject();
 	    } catch (IOException | ClassNotFoundException e) {
-	        System.out.println("불러오기 실패: " + e.getMessage());
+//	        System.out.println("불러오기 실패: " + e.getMessage());
 	        return null;
 	    }
 	}
@@ -144,14 +145,14 @@ public class TrioUtils {
 	    File file = new File(filepath);
 
 	    if (!file.exists()) {
-	        System.out.println("불러올 파일이 없습니다: " + filepath);
+//	        System.out.println("불러올 파일이 없습니다: " + filepath);
 	        return null; // 실패 시 null 반환
 	    }
 
 	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
 	        return (T) ois.readObject();
 	    } catch (IOException | ClassNotFoundException e) {
-	        System.out.println("불러오기 실패: " + e.getMessage());
+//	        System.out.println("불러오기 실패: " + e.getMessage());
 	        return null;
 	    }
 	}

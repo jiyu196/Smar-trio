@@ -48,7 +48,7 @@ public class Info implements Serializable{
 				if(getloginInfo() == null) {return;}
 				break;
 			case 0:
-				System.out.println("종료합니다");
+				System.out.println("(홈 화면으로 되돌아갑니다)");
 				return;
 			}
 		}
@@ -114,7 +114,7 @@ public class Info implements Serializable{
 			saveInfo(Info, "storage/system/userData");
 			break;
 		case 0:
-			System.out.println("이전메뉴로 되돌아갑니다");
+			System.out.println("(이전메뉴로 되돌아갑니다)");
 			return;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + no);

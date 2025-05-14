@@ -17,12 +17,14 @@ public class BlackJack extends App {
 
 	public void run() {
 		while (true) {
+			
 			PhoneUI.printTimeLine();
 			PhoneUI.printWallpaper();
             System.out.println(" < 블랙잭 > :");
             System.out.println(" (1) 게임 시작");
             System.out.println(" (0) 돌아가기");
             PhoneUI.printBorder();
+            
             int choice = TrioUtils.nextInt("(옵션을 선택하세요) :");
             switch (choice) {
             case 1:

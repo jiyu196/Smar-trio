@@ -38,14 +38,17 @@ public class Main {
 	public void menu() {
 
 		while (true) {
-
+			PhoneUI.printTimeLine();
+			PhoneUI.printWallpaper();
+			System.out.println("실행할 어플의 번호를 선택해 주세요 : ");
 //			try {
 
 //				if (info.getloginInfo() == null) {
 //					guestMenu();
 //				} else {
 					appList();
-					int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
+					PhoneUI.printBorder();
+					int no = nextInt(" (0) 종료");
 					if (!(no >= 0 && no <= main.installedApps.size())) {
 						throw new IllegalArgumentException("표기된 번호만 입력해주세요");
 					}
@@ -68,10 +71,11 @@ public class Main {
 	public void guestMenu() {
 		PhoneUI.printTimeLine();
 		PhoneUI.printWallpaper();
-		int no = nextInt(""
+		System.out.println(""
 				+ " (1) 비밀번호 입력\n"
-				+ " (2) 사용자 등록\n"
-				+ " (0) 기기 종료");
+				+ " (2) 사용자 등록");
+		PhoneUI.printBorder();
+		int no = nextInt(" (0) 기기 종료");
 		switch (no) {
 		case 1:
 			if (!info.loadUserData()) {
@@ -86,7 +90,7 @@ public class Main {
 			}
 			break;
 		case 0:
-			System.out.println("기기를 종료합니다");
+			System.out.println("(기기를 종료합니다)");
 			return;
 		default:
 			throw new IllegalArgumentException("정해진 번호를 입력해주세요");
