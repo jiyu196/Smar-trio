@@ -36,11 +36,11 @@ public class Main {
 
 		while (true) {
 
-//			try {
+			try {
 
-//				if (info.getloginInfo() == null) {
-//					guestMenu();
-//				} else {
+				if (info.getloginInfo() == null) {
+					guestMenu();
+				} else {
 					appList();
 					int no = nextInt("실행할 어플의 번호를 선택해 주세요. 0.종료");
 					if (!(no >= 0 && no <= main.installedApps.size())) {
@@ -51,14 +51,14 @@ public class Main {
 						return;
 					}
 					runApp(no - 1);
-//				}
-//			} catch (NumberFormatException e) {
-//				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
-//			} catch (IllegalArgumentException e) {
-//				System.out.println(e.getMessage());
-//			} catch (NullPointerException e) {
-//				System.out.println(e.getMessage());
-//			}
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("실행할 메뉴의 숫자를 정확히 입력해주세요");
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			} catch (NullPointerException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
