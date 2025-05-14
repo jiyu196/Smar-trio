@@ -3,6 +3,7 @@ package app;
 import java.util.Comparator;
 import java.util.stream.IntStream;
 
+import domain.PhoneUI;
 import util.TrioUtils;
 public class CountDown extends App{
 
@@ -18,6 +19,9 @@ public class CountDown extends App{
 	public void run() {
 		System.out.println("카운트다운 앱을 실행합니다");
 		while(true) {
+			PhoneUI.printTimeLine();
+			PhoneUI.printWallpaper();
+			System.out.println(" < 카운트다운 > :");
 			int no = TrioUtils.nextInt("시간(초)을 입력해주세요: ");
 		
 		IntStream.rangeClosed(1, no).boxed().sorted(Comparator.reverseOrder()).forEach(i->{
@@ -30,7 +34,7 @@ public class CountDown extends App{
 			}
 		});
 		System.out.println("시간이 다 되었습니다!");
-		System.out.println("-------------------------");
+		PhoneUI.printBorder();
 		if (!TrioUtils.nextConfirm("다시 시작하시겠습니까? ")) {
 			System.out.println("카운트다운 앱이 종료되었습니다.");
 			return;

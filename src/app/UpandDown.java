@@ -2,6 +2,7 @@ package app;
 
 import static util.TrioUtils.generateAppNo;
 
+import domain.PhoneUI;
 import util.TrioUtils;
 
 public class UpandDown extends App{
@@ -18,7 +19,9 @@ public class UpandDown extends App{
 
 	public void run() {
 		System.out.println("업앤다운 앱을 실행합니다");
-		if (!TrioUtils.nextConfirm("업앤다운 게임을 시작하시겠습니까? ")) {
+		PhoneUI.printTimeLine();
+		PhoneUI.printWallpaper();
+		if (!TrioUtils.nextConfirm(" 게임을 시작하시겠습니까? ")) {
 			System.out.println("업앤다운 앱이 종료되었습니다.");
 			return;
 		}

@@ -2,6 +2,7 @@ package app;
 
 import domain.Deck;
 import domain.Hand;
+import domain.PhoneUI;
 import util.TrioUtils;
 
 public class BlackJack extends App {
@@ -16,10 +17,13 @@ public class BlackJack extends App {
 
 	public void run() {
 		while (true) {
-            System.out.println("\n< 블랙잭 게임 >");
-            System.out.println(" (1) 시작");
-            System.out.println(" (0) 종료");
-            int choice = TrioUtils.nextInt("선택하세요: ");
+			PhoneUI.printTimeLine();
+			PhoneUI.printWallpaper();
+            System.out.println(" < 블랙잭 > :");
+            System.out.println(" (1) 게임 시작");
+            System.out.println(" (0) 돌아가기");
+            PhoneUI.printBorder();
+            int choice = TrioUtils.nextInt("(옵션을 선택하세요) :");
             switch (choice) {
             case 1:
             	play();
@@ -29,7 +33,7 @@ public class BlackJack extends App {
 				}
             	break;
             case 0:
-            	System.out.println("게임을 종료합니다.");
+            	System.out.println("(홈 화면으로 되돌아갑니다)");
             	return;
             default:
 				System.out.println("잘못된 입력입니다.");

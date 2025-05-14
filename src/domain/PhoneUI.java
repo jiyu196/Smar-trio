@@ -24,11 +24,11 @@ public class PhoneUI {
 		printLine(currentTime);
 	}
 	
-	private static void printBorder() {
+	public static void printBorder() {
 		System.out.println("+" + "-".repeat(FRAME_WIDTH) + "+");
 	}
 	
-	private static void printLine(String text) {
+	public static void printLine(String text) {
 		int length = getDisplayLength(text);
 		int frame = (FRAME_WIDTH - length) / 2;
 		int wall = Math.max(0, FRAME_WIDTH - length - frame);		

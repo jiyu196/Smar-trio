@@ -18,10 +18,10 @@ public class Setting extends App {
 
 		while (true) {
 			
-			int no = nextInt("실행할 설정을 골라주세요\n"
-					+ " (1) 계정설정"
-					+ " (2) 어플 삭제"
-					+ " (0) 종료");
+			int no = nextInt(" < 설정 > :\n"
+					+ " (1) 계정설정\n"
+					+ " (2) 어플 삭제\n"
+					+ " (0) 돌아가기");
 
 			switch (no) {
 			case 1:
@@ -32,7 +32,7 @@ public class Setting extends App {
 				deletApp();
 				return;
 			case 0:
-				System.out.println("설정을끝내고 되돌아갑니다");
+				System.out.println("(홈 화면으로 되돌아갑니다)");
 				return;
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + no);

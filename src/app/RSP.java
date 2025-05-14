@@ -2,6 +2,7 @@ package app;
 
 import java.util.Scanner;
 
+import domain.PhoneUI;
 import util.TrioUtils;
 
 public class RSP extends App{
@@ -16,15 +17,19 @@ public class RSP extends App{
 	}
 
 	public void run() {
-		System.out.println("가위바위보 앱을 실행합니다");
+		PhoneUI.printTimeLine();
+		PhoneUI.printWallpaper();
+		System.out.println(" < 가위바위보 앱 > :");
 		if (!TrioUtils.nextConfirm("컴퓨터와 대결하시겠습니까? ")) {
 			System.out.println("가위바위보 게임이 종료되었습니다.");
 			return;
 		}
 		while (true) {
-			System.out.println("-------------------------------------------------");
-			System.out.print("가위(1), 바위(2), 보(3) 중 하나를 선택하세요 >\n");
-			System.out.println("-------------------------------------------------");
+//			System.out.println("-------------------------------------------------");
+			PhoneUI.printBorder();
+			System.out.print(" (1) 가위\n (2) 바위\n (3) 보\n중 하나를 선택하세요 >\n");
+			PhoneUI.printBorder();
+//			System.out.println("-------------------------------------------------");
 			Scanner scanner = new Scanner(System.in);
 
 			int me = scanner.nextInt();

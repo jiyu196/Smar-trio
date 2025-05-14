@@ -5,6 +5,7 @@ import static util.TrioUtils.generateAppNo;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import domain.PhoneUI;
 import util.TrioUtils;
 
 public class SimpleCalendar extends App{
@@ -18,6 +19,8 @@ public class SimpleCalendar extends App{
 
 	public void run() {
         while (true) {
+        	PhoneUI.printTimeLine();
+        	PhoneUI.printWallpaper();
         	displayCalendar();
         	System.out.println("\n옵션을 선택하세요:");
         	int choice = TrioUtils.nextInt(""
@@ -50,8 +53,9 @@ public class SimpleCalendar extends App{
 	private void displayCalendar() {
 		cal.set(Calendar.DAY_OF_MONTH, 1);
         // 시작 날자
-		System.out.println(new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
         // 주일 출력
+		String currentTime = TrioUtils.getCurrentDateTime();
+		System.out.println(" " + currentTime);
         System.out.println(" 일 월 화 수 목 금 토");
         int firstDayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1 (Sun) to 7 (Sat)
         int lastDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH); // 마지막 날자 (월당)
