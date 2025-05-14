@@ -108,7 +108,7 @@ public class TrioUtils {
 	    File file = new File(filepath);
 
 	    if (!file.exists()) {
-	        System.out.println("불러올 파일이 없습니다: " + filepath);
+//	        System.out.println("불러올 파일이 없습니다: " + filepath);
 	        return null; // 실패 시 null 반환
 	    }
 

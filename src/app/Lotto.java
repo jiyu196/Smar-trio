@@ -2,6 +2,7 @@ package app;
 
 import java.util.Arrays;
 
+import domain.PhoneUI;
 import util.TrioUtils;
 
 
@@ -17,7 +18,9 @@ public class Lotto extends App{
 	}
 
 	public void run() {
-		System.out.println("로또 앱을 실행합니다");
+		PhoneUI.printTimeLine();
+		PhoneUI.printWallpaper();
+		System.out.println(" < 로또 앱 > :");
 		if (!TrioUtils.nextConfirm("로또 번호를 뽑으시겠습니까? ")) {
 			System.out.println("로또 앱이 종료되었습니다.");
 			return;

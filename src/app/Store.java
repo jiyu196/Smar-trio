@@ -20,13 +20,13 @@ public class Store extends App {
 		while (true) {
 			showAppList();
 
-			int no = nextInt("설치하고 싶은 어플의 번호를 입력해주세요. 0. 종료");
+			int no = nextInt("설치하고 싶은 어플의 번호를 입력해주세요.\n 0. 종료");
 			if (!(no >= 0 && no <= store.size())) {
 				throw new IllegalArgumentException("표기된 번호만 입력해주세요");
 			}
 
 			if (no == 0) {
-				System.out.println("설치를 취소하고 스토어로 되돌아갑니다");
+				System.out.println("(홈 화면으로 되돌아갑니다)");
 				return;
 			} else {
 				install(no - 1);

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Memo;
+import domain.PhoneUI;
 import util.TrioUtils;
 
 import static util.TrioUtils.*;
@@ -22,16 +23,18 @@ public class MemoPad extends App {
 
 	public void run() {
 		System.out.println("메모 앱을 실행합니다");
-//		load();
 		loadMemo();
 		while (true) {
+			PhoneUI.printTimeLine();
+			PhoneUI.printWallpaper();
+			System.out.println(" < 메모 앱 >");
 			System.out.println(""
 					+ " (1) 메모 추가\n"
 					+ " (2) 메모 수정\n"
 					+ " (3) 메모 삭제\n"
 					+ " (4) 메모 보기\n"
 					+ " (0) 돌아가기");
-			System.out.println("-".repeat(30));
+			PhoneUI.printBorder();
 			int check = nextInt("옵션을 선택하세요:");
 			switch (check) {
 			case 1:
@@ -48,6 +51,7 @@ public class MemoPad extends App {
 				break;
 			case 0:
 				saveMemo();
+				System.out.println("(홈 화면으로 되돌아갑니다)");
 				return;	
 			default:
 				System.out.println("잘못된 입력입니다.");

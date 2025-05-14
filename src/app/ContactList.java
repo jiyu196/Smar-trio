@@ -6,6 +6,8 @@ import java.util.*;
 
 import domain.Calculation;
 import domain.Contacts;
+import domain.PhoneUI;
+
 import static util.TrioUtils.*;
 
 @SuppressWarnings("unchecked")
@@ -36,14 +38,17 @@ public class ContactList extends App {
 		loadContacts();
 
 		while (true) {
-			System.out.println("--- 연락처 메뉴 ---");
+			PhoneUI.printTimeLine();
+			PhoneUI.printWallpaper();
+			System.out.println(" < 연락처 메뉴 > :");
 			System.out.println(""
 					+ " (1) 연락처 추가\n"
 					+ " (2) 연락처 수정\n"
 					+ " (3) 연락처 삭제\n"
 					+ " (4) 연락처 보기\n"
-					+ " (5) 돌아가기");
-			int choice = nextInt("옵션을 선택하세요:"); // 메뉴 선택
+					+ " (0) 돌아가기");
+			PhoneUI.printBorder();
+			int choice = nextInt("(옵션을 선택하세요) :"); // 메뉴 선택
 			switch (choice) {
 			case 1:
 				addContact(); // 연락처 추가
@@ -57,7 +62,7 @@ public class ContactList extends App {
 			case 4:
 				showContacts(); // 연락처 보기
 				break;
-			case 5:
+			case 0:
 				saveContacts(); // 연락처 저장 후 종료
 				return;
 			default:
@@ -156,7 +161,12 @@ public class ContactList extends App {
 		}
 
 		for (Contacts c : contacts) {
-			System.out.printf("번호: %d | 이름: %s | 전화: %s | 이메일: %s | 별명: %s\n", c.getNo(), c.getName(), c.getPhone(),
+			System.out.printf(""
+					+ "번호: %d\n"
+					+ "  이름: %s\n"
+					+ "  전화: %s\n"
+					+ "  이메일: %s\n"
+					+ "  별명: %s\n", c.getNo(), c.getName(), c.getPhone(),
 					c.getEmail(), c.getNickname());
 		}
 	}

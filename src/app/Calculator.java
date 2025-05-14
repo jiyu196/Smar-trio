@@ -12,6 +12,7 @@ import java.util.List;
 
 import domain.Calculation;
 import domain.Memo;
+import domain.PhoneUI;
 import util.TrioUtils;
 
 public class Calculator extends App {
@@ -23,28 +24,34 @@ public class Calculator extends App {
 		this.calculationHistory = new ArrayList<>();
 	}
 
-
 	public void run() {
+		System.out.println("계산기 앱을 실행합니다");
 		loadHistory();
-		System.out.println("< 계산기 앱을 실행합니다 >");
-		System.out.println(""
-				+ " (1) 계산 하기\n"
-				+ " (2) 기록 보기 \n"
-				+ " (0) 종료");
-		int choice = nextInt("옵션을 선택하세요:");
-		switch (choice) {
-		case 1:
-			calculate();
-			break;
-		case 2:
-			showHistory();
-			break;
-		case 0:
-			System.out.println("종료");
-			saveHistory(); // return 시키는것이 편할거라 생각합니다.
-			return;
-		default:
-			System.out.println("잘못된 입력입니다.");
+		while (true) {
+			PhoneUI.printTimeLine();
+			PhoneUI.printWallpaper();
+			System.out.println(" < 계산기 > :");
+			System.out.println("" + 
+					" (1) 계산 하기\n" + 
+					" (2) 기록 보기 \n" + 
+					" (0) 돌아가기");
+			PhoneUI.printBorder();
+			int choice = nextInt("(옵션을 선택하세요) :");
+			switch (choice) {
+			case 1:
+				calculate();
+				break;
+			case 2:
+				showHistory();
+				break;
+			case 0:
+				System.out.println("(홈 화면으로 되돌아갑니다)");
+				saveHistory();
+				return;
+			default:
+				System.out.println("잘못된 입력입니다.");
+				break;
+			}
 		}
 	}
 
@@ -76,17 +83,15 @@ public class Calculator extends App {
 				break;
 			case "/": // 나눗셈
 				result = number1 / number2;
+				break;
 			}
 			String date = TrioUtils.getCurrentDateTime();
 			Calculation calc = new Calculation(number1, number2, operation, result, date);
 			System.out.println("결과 : " + result);
 			calculationHistory.add(calc);
 			saveHistory();
-			break;
 		}
 	}
-
-
 
 	private void saveHistory() {
 		saveData(calculationHistory, "storage/calculator/math_log.ser");

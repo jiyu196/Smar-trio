@@ -66,10 +66,10 @@ public class Main {
 	public void guestMenu() {
 		PhoneUI.printTimeLine();
 		PhoneUI.printWallpaper();
-		int no = nextInt("다음중 선택해주세요.\n"
+		int no = nextInt(""
 				+ " (1) 비밀번호 입력\n"
 				+ " (2) 사용자 등록\n"
-				+ " (0) 종료");
+				+ " (0) 기기 종료");
 		switch (no) {
 		case 1:
 			if (!info.loadUserData()) {
