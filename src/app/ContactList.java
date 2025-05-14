@@ -67,11 +67,11 @@ public class ContactList extends App {
 		}
 	}
 
-	private void saveContacts() {
+	public void saveContacts() {
 		saveData(contacts, "storage/contacts/contacts_log.ser");
 	}
 
-	private void loadContacts() {
+	public void loadContacts() {
 		List<Contacts> loadcontacts = loadData("storage/contacts/contacts_log.ser");
 
 		if (loadcontacts != null) {
@@ -88,7 +88,7 @@ public class ContactList extends App {
 	}
 
 	// 새 연락처 추가
-	private void addContact() {
+	public void addContact() {
 		String name = nextLine("이름: ");
 		String phone = nextLine("전화번호 (010-1234-5678): ");
 
@@ -110,7 +110,7 @@ public class ContactList extends App {
 	}
 
 	// 연락처 수정
-	private void modifyContact() {
+	public void modifyContact() {
 		if (contacts.isEmpty()) {
 			System.out.println("수정할 연락처가 없습니다.");
 			return;
@@ -149,7 +149,7 @@ public class ContactList extends App {
 	}
 
 	// 연락처 목록 출력
-	private void showContacts() {
+	public void showContacts() {
 		if (contacts.isEmpty()) {
 			System.out.println("등록된 연락처가 없습니다.");
 			return;
@@ -162,7 +162,7 @@ public class ContactList extends App {
 	}
 
 	// 번호로 연락처 찾기
-	private Contacts findByNo(int no) {
+	public Contacts findByNo(int no) {
 		for (Contacts contact : contacts) {
 			if (contact.getNo() == no) {
 				return contact;
@@ -172,7 +172,7 @@ public class ContactList extends App {
 	}
 
 	// 연락처 삭제
-	private void deleteContact() {
+	public void deleteContact() {
 		if (contacts.isEmpty()) {
 			System.out.println("삭제할 연락처가 없습니다.");
 			return;
