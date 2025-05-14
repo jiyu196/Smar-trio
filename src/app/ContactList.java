@@ -13,14 +13,14 @@ import static util.TrioUtils.*;
 @SuppressWarnings("unchecked")
 public class ContactList extends App {
 //	private final List<Contacts> contacts = new ArrayList<>(); // 연락처를 저장할 리스트
-	private List<Contacts> contacts; // 연락처를 저장할 리스트
+	public List<Contacts> contacts; // 연락처를 저장할 리스트
 	private int nextNo = 0; // 다음 연락처 번호
 
 	// 생성자, 주소록의 번호를 받아서 App 클래스의 생성자를 호출
 	private static ContactList contactList;
 
 	private ContactList(int no) {
-		super(no, "주소록");
+		super(no, "주소록",true);
 	}
 
 	public static ContactList getInstance() {
@@ -155,6 +155,7 @@ public class ContactList extends App {
 
 	// 연락처 목록 출력
 	public void showContacts() {
+		
 		if (contacts.isEmpty()) {
 			System.out.println("등록된 연락처가 없습니다.");
 			return;

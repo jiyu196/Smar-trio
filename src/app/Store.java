@@ -35,7 +35,7 @@ public class Store extends App {
 	}
 
 	private void storeApps() {
-		store.add(ContactList.getInstance());
+		
 		store.add(new MemoPad(generateAppNo()));
 		store.add(new Calculator(generateAppNo()));
 		store.add(new SimpleCalendar(generateAppNo()));
@@ -45,6 +45,7 @@ public class Store extends App {
 		store.add(new HighLow(generateAppNo()));
 		store.add(new Lotto(generateAppNo()));
 		store.add(new RSP(generateAppNo()));
+
 	}
 
 	private void showAppList() {
