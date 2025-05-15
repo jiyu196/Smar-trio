@@ -71,6 +71,9 @@ public class BlackJack extends App {
 			boolean hit = TrioUtils.nextConfirm("히트하시겠습니까?");
 			if (hit) {
 				playerHand.addCard(deck.draw());
+				dealerHand.addCard(deck.draw());
+				System.out.println("딜러의 패: " + dealerHand);
+				PhoneUI.printBorder();
 				System.out.println("현재 패: " + playerHand);
 			} else
 				break;
@@ -98,7 +101,8 @@ public class BlackJack extends App {
 		playerHand.addCard(deck.draw());
 		dealerHand.addCard(deck.draw());
 
-		System.out.println("딜러의 오픈 카드: " + dealerHand.getCards().get(0));
+		System.out.println("딜러의 패: [?] [?] ");
+//+ dealerHand.getCards().get(0));
 		System.out.println("당신의 패: " + playerHand);
 	}
 
