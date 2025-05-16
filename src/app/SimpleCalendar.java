@@ -53,27 +53,22 @@ public class SimpleCalendar extends App{
 	
 	private void displayCalendar() {
 		cal.set(Calendar.DAY_OF_MONTH, 1);
-        // 시작 날자
-        // 주일 출력
-		String currentTime = TrioUtils.getCurrentDateTime();
-		System.out.println(" " + currentTime);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월");
+		System.out.println(" [" + sdf.format(cal.getTime()) + "]");
         System.out.println(" 일 월 화 수 목 금 토");
-        int firstDayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1 (Sun) to 7 (Sat)
-        int lastDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH); // 마지막 날자 (월당)
+        int firstDayOfWeek = cal.get(Calendar.DAY_OF_WEEK); //첫 주
+        int lastDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH); // 마지막주 
 
         // 빈공간 출력
-        for (int i = 1 - firstDayOfWeek; i <= lastDate; i++) {
-            if (i < 1) {
-                // 월 시작 날자 위해 빈공간 출력
-                System.out.print("   ");
-            } else {
-                // 날자 출력
-                System.out.printf("%3d", i);
-            }
-            // 화요일 이면 다음줄 바꾸기
-            if(i % 7 == ((7 - firstDayOfWeek) % 7)) {
-                System.out.println();
-            }
+        for (int i = 1; i < firstDayOfWeek; i++) {
+            System.out.print("   ");
+        }
+        // 날짜 출력
+        int dayOfWeek = firstDayOfWeek;
+        for (int i = 1; i <= lastDate; i++) {
+            System.out.printf("%3d", i);
+            if (dayOfWeek % 7 == 0) System.out.println();
+            dayOfWeek++;
         }
 	}
 }

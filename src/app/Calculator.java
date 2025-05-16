@@ -90,6 +90,7 @@ public class Calculator extends App {
 			System.out.println("결과 : " + result);
 			calculationHistory.add(calc);
 			saveHistory();
+			return;
 		}
 	}
 

@@ -93,7 +93,8 @@ public class Main {
 			break;
 		case 0:
 			System.out.println("(기기를 종료합니다)");
-			return;
+			System.exit(0);
+			break;
 		default:
 			throw new IllegalArgumentException("정해진 번호를 입력해주세요");
 		}
